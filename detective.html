@@ -11,9 +11,9 @@
 <meta name="theme-color" content="#F4F7FE">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="frame.css?v=2">
+<link rel="stylesheet" href="frame.css?v=3">
 <script src="dc-runtime.js"></script>
-<script src="frame.js?v=2" defer></script>
+<script src="frame.js?v=3" defer></script>
 <link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
 <script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
 </head>
@@ -40,7 +40,7 @@ a{color:#316BDF}a:hover{color:#2758CE}
 <span class="h5Bold">Mène l’enquête autour de toi</span>
 <span class="p2Medium" style="opacity: .75">Quand l’anxiété monte, ta tête tourne en boucle. En cherchant des indices autour de toi, ton attention revient dans la pièce et ton corps se calme.</span>
 </div>
-<div style="position: absolute; top: 330px; left: 0; right: 0; height: 260px">
+<div style="position: absolute; top: 330px; left: calc(50% - 195px); width: 390px; height: 260px">
 <span style="position: absolute; left: 50px; top: 30px; width: 150px; height: 190px; border-radius: 6px; background: #fff; border: 2.5px solid #2B2A4C; box-shadow: 0 6px 0 #2B2A4C; transform: rotate(-6deg); box-sizing: border-box; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px"><span class="addTextBold" style="opacity: .55">MISSIONS</span><span class="p4Medium">🟡 3 choses jaunes</span><span class="p4Medium">⭕ 2 choses rondes</span><span class="p4Medium">🧸 1 chose douce</span></span>
 <span style="position: absolute; left: 170px; top: 40px; width: 140px; height: 140px; border-radius: 50%; border: 12px solid #2B2A4C; box-sizing: border-box; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.95), #FFE08A 140%); overflow: hidden; transform: rotate(-8deg)"><span style="position: absolute; top: -20px; left: 0; width: 26px; height: 180px; background: rgba(255,255,255,.55); animation: dtShine 2.4s ease-in-out infinite"></span></span>
 <span style="position: absolute; left: 280px; top: 160px; width: 22px; height: 76px; border-radius: 11px; background: #2B2A4C; transform: rotate(-42deg); transform-origin: top"></span>
@@ -54,14 +54,14 @@ a{color:#316BDF}a:hover{color:#2758CE}
 <div style="display: flex; align-items: center; gap: 12px; margin-top: 6px"><span style="font-size: 40px">{{mEmoji}}</span><span class="h5Bold">{{mText}}</span></div>
 <span class="p4Medium" style="opacity: .7; margin-top: 6px; display: block">{{mHelp}}</span>
 </div>
-<button type="button" onClick="{{find}}" aria-label="J’en ai trouvé une" style="all: unset; position: absolute; top: 340px; left: 95px; width: 200px; height: 230px; cursor: pointer">
+<button type="button" onClick="{{find}}" aria-label="J’en ai trouvé une" style="all: unset; position: absolute; top: 340px; left: calc(50% - 100px); width: 200px; height: 230px; cursor: pointer">
 <span style="position: absolute; left: 0; top: 0; width: 170px; height: 170px; border-radius: 50%; border: 14px solid #2B2A4C; box-sizing: border-box; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.95), {{mColor}} 140%); overflow: hidden; transform: rotate(-8deg); display: flex; align-items: center; justify-content: center">
 <span style="position: absolute; top: -20px; left: 0; width: 30px; height: 220px; background: rgba(255,255,255,.55); animation: dtShine 2.4s ease-in-out infinite"></span>
 <span class="h2Bold" style="position: relative; color: #2B2A4C">{{found}}/{{need}}</span>
 </span>
 <span style="position: absolute; left: 132px; top: 140px; width: 26px; height: 88px; border-radius: 13px; background: #2B2A4C; transform: rotate(-42deg); transform-origin: top"></span>
 </button>
-<span aria-hidden="true" style="position: absolute; left: 238px; top: 470px; z-index: 4; pointer-events: none"><span style="display: block; animation: dtHand 1.6s ease-in-out infinite"><span style="display: block; font-size: 48px; transform: rotate(-35deg); filter: drop-shadow(0 4px 8px rgba(43,42,76,.3))">👆</span></span></span>
+<span aria-hidden="true" style="position: absolute; left: calc(50% + 43px); top: 470px; z-index: 4; pointer-events: none"><span style="display: block; animation: dtHand 1.6s ease-in-out infinite"><span style="display: block; font-size: 48px; transform: rotate(-35deg); filter: drop-shadow(0 4px 8px rgba(43,42,76,.3))">👆</span></span></span>
 <span class="p2Medium" style="position: absolute; top: 580px; left: 30px; right: 30px; text-align: center; font-weight: 700; opacity: .8">Touche la loupe à chaque objet trouvé. Juste avec les yeux.</span>
 <div style="position: absolute; bottom: 44px; left: 22px; right: 22px; display: flex; gap: 10px; justify-content: center">
 <sc-for list="{{slots}}" as="s" hint-placeholder-count="3"><span style="width: 74px; height: 74px; border-radius: 6px; border: 2px dashed rgba(43,42,76,.3); background: {{s.bg}}; display: flex; align-items: center; justify-content: center; font-size: 30px"><span style="animation: {{s.anim}}; color: #C2410C; font-weight: 900">{{s.mark}}</span></span></sc-for>

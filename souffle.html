@@ -11,9 +11,9 @@
 <meta name="theme-color" content="#F4F7FE">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="frame.css?v=2">
+<link rel="stylesheet" href="frame.css?v=3">
 <script src="dc-runtime.js"></script>
-<script src="frame.js?v=2" defer></script>
+<script src="frame.js?v=3" defer></script>
 <link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
 <script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
 </head>
@@ -63,7 +63,7 @@ a{color:#316BDF}a:hover{color:#2758CE}
 <span class="addTextBold" style="letter-spacing: .2em; opacity: .6">{{modeLabel}}</span>
 <span class="p2Medium" style="opacity: .75">Suis le cercle, ou ferme les yeux et suis la vibration.</span>
 </div>
-<div style="position: absolute; top: 230px; left: 45px; width: 300px; height: 300px">
+<div style="position: absolute; top: 230px; left: calc(50% - 150px); width: 300px; height: 300px">
 <span style="position: absolute; inset: 0; border-radius: 50%; border: 1.5px dashed rgba(46,139,192,.35)"></span>
 <span style="position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.95), rgba(159,211,238,.75) 60%, rgba(46,139,192,.45)); box-shadow: 0 20px 60px rgba(46,139,192,.35); animation: {{anim}}; animation-play-state: {{play}}"></span>
 <sc-if value="{{isNormal}}" hint-placeholder-val="{{true}}">
@@ -83,7 +83,7 @@ a{color:#316BDF}a:hover{color:#2758CE}
 </sc-if>
 
 <sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
-<div style="position: absolute; top: 200px; left: 135px; width: 120px; height: 120px"><span style="position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.95), rgba(159,211,238,.75) 60%, rgba(46,139,192,.45)); box-shadow: 0 0 0 18px rgba(255,255,255,.35), 0 0 0 36px rgba(255,255,255,.18); animation: sbFloat 6s ease-in-out infinite"></span></div>
+<div style="position: absolute; top: 200px; left: calc(50% - 60px); width: 120px; height: 120px"><span style="position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.95), rgba(159,211,238,.75) 60%, rgba(46,139,192,.45)); box-shadow: 0 0 0 18px rgba(255,255,255,.35), 0 0 0 36px rgba(255,255,255,.18); animation: sbFloat 6s ease-in-out infinite"></span></div>
 <div style="position: absolute; top: 380px; left: 36px; right: 36px; display: flex; flex-direction: column; gap: 10px; text-align: center; animation: sbFade .5s ease-out">
 <span class="h5Bold">Tu as pris 1 minute pour toi</span>
 <span class="p2Medium" style="opacity: .75">Ton corps a reçu le signal de ralentir. Tu peux refaire un tour si tu en as besoin.</span>

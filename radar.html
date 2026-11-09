@@ -11,9 +11,9 @@
 <meta name="theme-color" content="#F4F7FE">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="frame.css?v=2">
+<link rel="stylesheet" href="frame.css?v=3">
 <script src="dc-runtime.js"></script>
-<script src="frame.js?v=2" defer></script>
+<script src="frame.js?v=3" defer></script>
 <link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
 <script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
 </head>
@@ -39,7 +39,7 @@ a{color:#316BDF}a:hover{color:#2758CE}
 <span class="h5Bold" style="color: #fff">Fais le tour des sons autour de toi</span>
 <span class="p2Medium" style="opacity: .8">Écouter ce qui t’entoure, du plus fort au plus lointain, sort ta tête des pensées qui tournent. 4 sons à repérer.</span>
 </div>
-<div style="position: absolute; top: 330px; left: 85px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(70,193,153,.10) 0%, rgba(70,193,153,.02) 70%); box-shadow: inset 0 0 0 1px rgba(207,247,232,.25)">
+<div style="position: absolute; top: 330px; left: calc(50% - 110px); width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(70,193,153,.10) 0%, rgba(70,193,153,.02) 70%); box-shadow: inset 0 0 0 1px rgba(207,247,232,.25)">
 <span style="position: absolute; inset: 27px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 55px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 82px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(207,247,232,.15)"></span>
 <span style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(207,247,232,.15)"></span>
 <span style="position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(110,212,174,.55), rgba(110,212,174,0) 60deg, transparent 360deg); animation: rdSweep 3.2s linear infinite; animation-play-state: {{sweep}}"></span>
@@ -69,7 +69,7 @@ a{color:#316BDF}a:hover{color:#2758CE}
 <span class="p2Medium" style="opacity: .75">{{tx.sub}}</span>
 </div></sc-for>
 </div>
-<button type="button" onClick="{{place}}" aria-label="Placer le son sur le radar" style="all: unset; cursor: crosshair; position: absolute; top: 330px; left: 35px; width: 320px; height: 320px; border-radius: 50%; animation: {{invite}}; background: radial-gradient(circle, rgba(70,193,153,.10) 0%, rgba(70,193,153,.02) 70%); box-shadow: inset 0 0 0 1px rgba(207,247,232,.25)">
+<button type="button" onClick="{{place}}" aria-label="Placer le son sur le radar" style="all: unset; cursor: crosshair; position: absolute; top: 330px; left: calc(50% - 160px); width: 320px; height: 320px; border-radius: 50%; animation: {{invite}}; background: radial-gradient(circle, rgba(70,193,153,.10) 0%, rgba(70,193,153,.02) 70%); box-shadow: inset 0 0 0 1px rgba(207,247,232,.25)">
 <span style="position: absolute; inset: 40px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 80px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 120px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(207,247,232,.15)"></span>
 <span style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(207,247,232,.15)"></span>
 <span style="position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(110,212,174,.55), rgba(110,212,174,0) 60deg, transparent 360deg); animation: rdSweep 3.2s linear infinite; animation-play-state: {{sweep}}"></span>

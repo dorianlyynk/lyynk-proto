@@ -11,9 +11,9 @@
 <meta name="theme-color" content="#F4F7FE">
 <link rel="apple-touch-icon" href="assets/icon.png">
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="frame.css?v=2">
+<link rel="stylesheet" href="frame.css?v=3">
 <script src="dc-runtime.js"></script>
-<script src="frame.js?v=2" defer></script>
+<script src="frame.js?v=3" defer></script>
 <link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
 <script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
 </head>
@@ -37,7 +37,7 @@ input::placeholder{color:rgba(74,6,162,.35)}
 <span class="h5Bold">{{title}}</span>
 </div>
 
-<div style="position: absolute; top: 178px; left: 95px; width: 200px; height: 200px; transform: scale(.7); transform-origin: 50% 0">
+<div style="position: absolute; top: 178px; left: calc(50% - 100px); width: 200px; height: 200px; transform: scale(.7); transform-origin: 50% 0">
 <svg width="200" height="200" viewBox="0 0 200 200" style="position: absolute; inset: 0">
 <path d="M100 14c-46 0-80 34-80 78 0 26 12 46 30 60v34h70v-22h18c10 0 16-6 16-16v-20l12-6c4-2 4-6 2-10l-12-22c2-44-22-76-56-76z" fill="#fff" stroke="#9C57F9" stroke-width="3"></path>
 </svg>
@@ -47,7 +47,7 @@ input::placeholder{color:rgba(74,6,162,.35)}
 </svg>
 </div>
 
-<div style="position: absolute; top: 330px; left: 70px; width: 250px; height: 136px; border-radius: 22px 22px 40px 40px; background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.65)); box-shadow: inset 0 0 0 3px rgba(156,87,249,.35), 0 10px 30px rgba(74,6,162,.12)">
+<div style="position: absolute; top: 330px; left: calc(50% - 125px); width: 250px; height: 136px; border-radius: 22px 22px 40px 40px; background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.65)); box-shadow: inset 0 0 0 3px rgba(156,87,249,.35), 0 10px 30px rgba(74,6,162,.12)">
 <span style="position: absolute; top: -14px; left: 20px; right: 20px; height: 18px; border-radius: 8px; background: #C093FB"></span>
 <sc-for list="{{words}}" as="w" hint-placeholder-count="2">
 <button type="button" onClick="{{w.pick}}" class="p2Medium" style="all: unset; position: absolute; left: {{w.x}}%; top: {{w.y}}px; transform: translate(-50%,0); padding: 10px 16px; border-radius: 999px; background: {{w.bg}}; color: {{w.fg}}; font-weight: 800; cursor: pointer; animation: vtDrop .9s cubic-bezier(.3,1.4,.5,1) both; white-space: nowrap">{{w.text}}
