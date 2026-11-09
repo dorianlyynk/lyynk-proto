@@ -1,3 +1,5 @@
-html,body{margin:0;height:100%;background:#0E1430;overflow:hidden;overscroll-behavior:none;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%}
-#dc-root{position:fixed;left:50%;top:50%;width:390px;height:844px;transform-origin:center center;transform:translate(-50%,-50%) scale(var(--s,1))}
+html,body{margin:0;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:100%;overflow-x:hidden}
+body{height:var(--ph,100vh);position:relative}
+#dc-root{position:absolute;left:0;top:0;width:390px;height:var(--h,844px);transform-origin:0 0;transform:scale(var(--s,1))}
+#dc-root>.sc-host,#dc-root>.sc-host>div{height:var(--h,844px)!important}
 #dc-root *{-webkit-user-select:none;user-select:none}
