@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>V2 · Rituel du soir (constellation)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+
+@keyframes rsTw{0%,100%{opacity:.95}50%{opacity:.3}}
+@keyframes rsStar{0%{transform:translate(-50%,-50%) scale(0) rotate(0)}70%{transform:translate(-50%,-50%) scale(1.4) rotate(160deg)}100%{transform:translate(-50%,-50%) scale(1) rotate(180deg)}}
+@keyframes rsGrow{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes rsIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes rsMoon{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+input::placeholder{color:rgba(220,225,255,.45)}
+
+@keyframes kbCaret{0%,49%{opacity:1}50%,100%{opacity:0}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: linear-gradient(180deg, #070B26 0%, #141C52 60%, #2A2470 100%); font-family: var(--font-sans); color: #E8EAFF">
+<span style="position: absolute; left: -60px; top: -40px; width: 520px; height: 260px; transform: rotate(-24deg); background: radial-gradient(ellipse at 50% 50%, rgba(170,180,255,.10) 0%, rgba(170,180,255,0) 70%); pointer-events: none"></span>
+<sc-for list="{{bg}}" as="b" hint-placeholder-count="60"><span style="position: absolute; left: {{b.x}}px; top: {{b.y}}px; width: {{b.s}}px; height: {{b.s}}px; border-radius: 50%; background: {{b.c}}; box-shadow: {{b.g}}; opacity: {{b.o}}; animation: rsTw {{b.d}}s ease-in-out {{b.dl}}s infinite"></span></sc-for>
+<span style="position: absolute; right: 34px; top: 46px; width: 44px; height: 44px; border-radius: 50%; box-shadow: -10px 5px 0 0 #FFE6A8"></span>
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(232,234,255,.12); display: flex; align-items: center; justify-content: center; color: #E8EAFF; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #E8EAFF; opacity: .75">{{stepLabel}}</span></div>
+<div style="position: absolute; inset: 0; transform: {{zoom}}; transform-origin: 185px 320px; transition: transform 1.1s cubic-bezier(.3,1.2,.5,1); pointer-events: none">
+<sc-for list="{{lines}}" as="l" hint-placeholder-count="2"><span style="position: absolute; left: {{l.x}}px; top: {{l.y}}px; width: {{l.w}}px; height: 1.5px; background: rgba(255,230,168,.7); transform-origin: 0 50%; transform: rotate({{l.a}}deg); animation: rsGrow 1s ease-out both"></span></sc-for>
+<sc-for list="{{stars}}" as="st" hint-placeholder-count="3">
+<span style="position: absolute; left: {{st.x}}px; top: {{st.y}}px; transform: translate(-50%,-50%); font-size: 34px; color: #FFE6A8; text-shadow: 0 0 18px #FFD36E; animation: rsStar .8s ease-out both">★</span>
+<span class="addTextBold" style="position: absolute; left: {{st.x}}px; top: calc({{st.y}}px + 24px); transform: translateX(-50%); max-width: 150px; text-align: center; color: #fff; opacity: .9">{{st.t}}</span>
+</sc-for>
+</div>
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 104px; left: 22px; right: 100px; display: flex; flex-direction: column; gap: 8px; animation: rsIn .4s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">RITUEL DU SOIR · 2 MIN</span>
+<span class="h5Bold" style="color: #fff">Allume 3 étoiles avant de dormir</span>
+<span class="p2Medium" style="opacity: .75">Repenser à ta journée en 3 petites phrases aide ta tête à se poser, et à finir sur quelque chose de doux.</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><button type="button" onClick="{{begin}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Allumer ma 1ʳᵉ étoile</button></div>
+</sc-if>
+<sc-if value="{{isWrite}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; top: 104px; left: 22px; right: 100px; display: flex; flex-direction: column; gap: 6px">
+<div style="display: flex; gap: 6px; margin-bottom: 4px"><sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><span style="font-size: 16px; color: {{d}}">★</span></sc-for></div><span class="addTextBold" style="letter-spacing: .14em; opacity: .6">ÉTOILE {{num}} SUR 3</span>
+<span class="h5Bold" style="color: #fff">{{q}}</span>
+<span class="p4Medium" style="opacity: .7">{{ex}}</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 312px; display: flex; flex-direction: column-reverse; gap: 6px; z-index: 6"><div style="display: flex; gap: 8px">
+<div class="p1Bold" style="flex: 1; box-sizing: border-box; height: 58px; padding: 0 16px; border-radius: 16px; border: 1.5px solid rgba(255,230,168,.8); background: rgba(255,255,255,.08); color: #fff; display: flex; align-items: center; white-space: nowrap; overflow: hidden">{{draft}}<span style="display: inline-block; width: 2px; height: 1.05em; background: #007AFF; vertical-align: -0.15em; margin-left: 1px; animation: kbCaret 1s step-end infinite"></span><span style="color: rgba(220,225,255,.45); display: {{phD}}">Quelques mots…</span></div>
+<button type="button" onClick="{{add}}" aria-label="Allumer l’étoile" style="all: unset; box-sizing: border-box; width: 58px; height: 58px; border-radius: 16px; background: {{addBg}}; color: #141C52; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer">★</button>
+</div>
+<span class="addTextSemiBold" style="text-align: center; opacity: .7">{{tip}}</span></div>
+</sc-if>
+<sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 104px; left: 22px; right: 22px; display: flex; flex-direction: column; gap: 6px; animation: rsIn .6s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">TA CONSTELLATION DU JOUR</span>
+<span class="h5Bold" style="color: #fff">Ta journée finit sur du positif ✨</span>
+<span class="p2Medium" style="opacity: .8">Tu as gardé un bon moment, reconnu une fierté et préparé demain. Ta tête n’a plus besoin de tout repasser en boucle : tu peux t’endormir sur ça, pas sur tes soucis.</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 10px; z-index: 6">
+<div style="box-sizing: border-box; padding: 14px 16px; border-radius: 16px; background: rgba(255,230,168,.14); border: 1px solid rgba(255,230,168,.35); display: flex; gap: 12px; align-items: center; opacity: {{savedOp}}; transition: opacity .3s"><span style="font-size: 24px">💛</span><span style="display: flex; flex-direction: column; gap: 2px"><span class="p2Medium" style="font-weight: 700; color: #fff">{{savedTitle}}</span><span class="addTextSemiBold" style="opacity: .7">{{savedSub}}</span></span></div>
+<a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a>
+<button type="button" onClick="{{toggleSave}}" class="p2Medium" style="all: unset; height: 36px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; opacity: .8">{{toggleLabel}}</button>
+</div>
+</sc-if>
+<sc-if value="{{kbOn}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: #D1D4DA; z-index: 20; font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif; color: #000">
+<div style="height: 40px; display: flex; align-items: center; padding: 0 6px">
+<sc-for list="{{kb.sugg}}" as="sg" hint-placeholder-count="3"><button type="button" onClick="{{sg.tap}}" style="all: unset; box-sizing: border-box; flex: 1; min-width: 0; height: 30px; display: flex; align-items: center; justify-content: center; font-size: {{sg.fs}}px; cursor: pointer; border-right: {{sg.br}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px">{{sg.l}}</button></sc-for>
+</div>
+<div style="padding: 6px 3px 0; display: flex; flex-direction: column; gap: 11px">
+<sc-for list="{{kb.rows}}" as="row" hint-placeholder-count="4"><div style="display: flex; justify-content: center; gap: 6px">
+<sc-for list="{{row.keys}}" as="k" hint-placeholder-count="10"><button type="button" onClick="{{k.tap}}" style="all: unset; box-sizing: border-box; height: 42px; width: {{k.w}}; flex: {{k.flex}}; border-radius: 5px; background: {{k.bg}}; color: {{k.fg}}; box-shadow: 0 1px 0 rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; font-size: {{k.fs}}px; cursor: pointer; user-select: none">{{k.l}}</button></sc-for>
+</div></sc-for>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 46px; display: flex; justify-content: space-between; align-items: flex-start; padding: 6px 28px 0; font-size: 22px; color: #50555C"><span>🌐</span><span>🎙️</span><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background: #000"></span></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+kbMake(field, max, o){ o = o || {}; const s = this.state; const v = s[field] || ''; const num = !!s.kbNum;
+const auto = v.length === 0 || /[.!?]\s$/.test(v); const up = !num && (!!s.kbShift || (auto && !o.lower));
+const put = (ch) => { const cur = this.state[field] || ''; if (cur.length >= max) return; this.setState({ [field]: (cur + ch).slice(0, max), kbShift: false }); };
+const del = () => { const cur = this.state[field] || ''; this.setState({ [field]: cur.slice(0, -1) }); };
+const K = (c) => { const l = up ? c.toUpperCase() : c; return { l: l, w: '33px', flex: '0 0 auto', bg: '#FFFFFF', fg: '#000', fs: 22, tap: () => put(l) }; };
+const S = (l, w, tap, fs, bg, fg) => ({ l: l, w: w, flex: '0 0 auto', bg: bg || '#ABB0BA', fg: fg || '#000', fs: fs || 16, tap: tap });
+const L = num ? [['1','2','3','4','5','6','7','8','9','0'],['-','/',':',';','(',')','€','&','@','"'],['.',',','?','!','’']] : [['a','z','e','r','t','y','u','i','o','p'],['q','s','d','f','g','h','j','k','l','m'],['w','x','c','v','b','n','’']];
+const rows = [ { keys: L[0].map(K) }, { keys: L[1].map(K) },
+ { keys: [S(num ? '#+=' : '⇧', num ? '52px' : '44px', () => { if (!num) this.setState({ kbShift: !s.kbShift }); }, num ? 15 : 20, up ? '#FFFFFF' : '#ABB0BA')].concat(L[2].map(K)).concat([S('⌫', num ? '52px' : '44px', del, 20)]) },
+ { keys: [S(num ? 'ABC' : '123', '88px', () => this.setState({ kbNum: !num }), 16), { l: 'espace', w: 'auto', flex: '1', bg: '#FFFFFF', fg: '#000', fs: 16, tap: () => put(' ') }, S(o.enter || 'retour', '88px', () => { if (o.newline) put('\n'); else if (o.onEnter) o.onEnter(); }, 16, o.blue ? '#007AFF' : '#ABB0BA', o.blue ? '#FFFFFF' : '#000')] } ];
+const acc = ['é', 'è', 'à', 'ç', 'ê', 'ù'];
+const sug = (v.length === 0 && o.sugg) ? o.sugg.slice(0, 3).map(t => ({ l: '« ' + t + ' »', fs: 15, tap: () => this.setState({ [field]: t.slice(0, max), kbShift: false }) })) : acc.map(a => ({ l: up ? a.toUpperCase() : a, fs: 20, tap: () => put(up ? a.toUpperCase() : a) }));
+return { rows: rows, sugg: sug.map((x, i, a) => Object.assign(x, { br: i < a.length - 1 ? '1px solid rgba(0,0,0,.12)' : 'none' })) }; }
+
+
+constructor(props){ super(props); this.state = { intro: true, items: [], draft: '', saved: true }; }
+renderVals(){ const s = this.state; const n = s.items.length; const done = n >= 3;
+const Q = [ ['Une chose que tu as vécue aujourd’hui', 'Même toute petite : un fou rire, un bon repas, un message reçu.'], ['Une fierté du jour', 'Ex. : je suis allé·e en cours alors que j’étais fatigué·e.'], ['Une intention pour demain', 'Ex. : demain, je prends 5 minutes pour moi.'] ];
+const P = [[90, 300], [280, 262], [190, 380]];
+const ok = s.draft.trim().length > 0;
+let seed = 20251027; const rnd = () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let t = Math.imul(seed ^ seed >>> 15, 1 | seed); t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t; return ((t ^ t >>> 14) >>> 0) / 4294967296; };
+const SKY = []; for (let i = 0; i < 90; i++) { const big = rnd() < .08, mid = !big && rnd() < .25; const x = Math.round(rnd() * 386); const y = Math.round(Math.pow(rnd(), 1.5) * 820); SKY.push({ x: x, y: y, s: big ? 3 : (mid ? 2 : 1), c: rnd() < .15 ? '#FFE9C4' : (rnd() < .2 ? '#CFD6FF' : '#FFFFFF'), g: big ? '0 0 6px 1px rgba(255,255,255,.7)' : 'none', o: big ? 1 : (mid ? .8 : .55), d: (2.5 + rnd() * 4).toFixed(1), dl: (rnd() * 4).toFixed(1) }); }
+return { zoom: done ? 'translateY(95px) scale(1.28)' : 'translateY(0) scale(1)', isIntro: s.intro, isWrite: !s.intro && !done, isEnd: done, stepLabel: '', i: n, num: n + 1, q: done ? '' : Q[n][0], ex: done ? '' : Q[n][1],
+bg: SKY,
+stars: s.items.map((t, i) => ({ x: P[i][0], y: P[i][1], t: t })),
+lines: s.items.slice(1).map((_, i) => [i, i + 1]).concat(done ? [[2, 0]] : []).map(([a, b]) => { const dx = P[b][0] - P[a][0], dy = P[b][1] - P[a][1]; return { x: P[a][0], y: P[a][1], w: Math.round(Math.hypot(dx, dy)), a: Math.round(Math.atan2(dy, dx) * 180 / Math.PI) }; }),
+draft: s.draft, onDraft: (e) => this.setState({ draft: e.target.value }), addBg: ok ? '#FFE6A8' : 'rgba(255,230,168,.35)',
+add: () => { if (!ok) return; this.setState({ items: s.items.concat([s.draft.trim()]), draft: '' }); },
+how: [ { t: 'Une chose vécue aujourd’hui', d: 'Un moment, même tout petit.' }, { t: 'Une fierté du jour', d: 'Quelque chose que tu as réussi ou osé.' }, { t: 'Une intention pour demain', d: 'Un petit truc que tu veux faire pour toi.' } ],
+dots: [0,1,2].map(k => k < n ? '#FFE6A8' : k === n ? 'rgba(255,230,168,.6)' : 'rgba(255,255,255,.2)'),
+phD: s.draft.length ? 'none' : 'inline', kbOn: !s.intro && !done, kb: this.kbMake('draft', 40, { enter: 'OK', blue: true, onEnter: () => { const st = this.state; if (!st.draft.trim() || st.items.length >= 3) return; this.setState({ items: st.items.concat([st.draft.trim()]), draft: '' }); } }),
+tip: ok ? 'Touche ★ pour allumer ton étoile dans le ciel.' : 'Quelques mots suffisent (40 caractères max).',
+begin: () => this.setState({ intro: false }),
+savedOp: s.saved ? 1 : .55, savedTitle: s.saved ? 'Rangée dans tes pensées positives' : 'Pas gardée', savedSub: s.saved ? 'Tu pourras la relire un soir où ça va moins bien.' : 'Ta constellation disparaîtra quand tu fermes.',
+toggleLabel: s.saved ? 'Ne pas la garder' : 'Finalement, la garder', toggleSave: () => this.setState({ saved: !s.saved }),
+reset: () => this.setState({ intro: true, items: [], draft: '', saved: true }) }; }
+
+}
+</script>
+</body>
+</html>

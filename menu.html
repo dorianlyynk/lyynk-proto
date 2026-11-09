@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>V2 · Mon menu feel-good</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+
+@keyframes mnIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes mnTicket{0%{transform:translateY(420px)}70%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+@keyframes mnDice{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+input::placeholder{color:rgba(60,30,20,.4)}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #F3ECE0; font-family: var(--font-sans); color: #3C1E14">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(60,30,20,.08); display: flex; align-items: center; justify-content: center; color: #3C1E14; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #3C1E14; opacity: .75">{{stepLabel}}</span></div>
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; animation: mnIn .4s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">MENU FEEL-GOOD · DANS L’HEURE</span>
+<span class="h5Bold">Commande-toi un moment qui fait du bien</span>
+<span class="p2Medium" style="opacity: .75">Quand le moral est bas, on attend d’avoir envie pour bouger. Ici, c’est l’inverse : tu choisis 3 petites choses à faire, et l’envie revient en les faisant.</span>
+</div>
+<div style="position: absolute; top: 330px; left: 50px; right: 50px; box-sizing: border-box; padding: 20px 22px; border-radius: 6px; background: #FFFCF5; border: 1.5px solid #E7D9C1; box-shadow: 0 10px 30px rgba(60,30,20,.12); transform: rotate(-2deg); display: flex; flex-direction: column; gap: 12px">
+<span style="text-align: center; font-family: var(--font-thought); font-size: 24px; color: #C8553D; border-bottom: 1.5px dashed #D9C6A6; padding-bottom: 10px">Ce soir au menu</span>
+<sc-for list="{{courses}}" as="c" hint-placeholder-count="3"><div style="display: flex; align-items: baseline; gap: 8px"><span style="font-size: 20px">{{c.e}}</span><span style="font-family: var(--font-thought); font-size: 20px">{{c.n}}</span><span style="flex: 1; border-bottom: 1.5px dotted #D9C6A6; transform: translateY(-4px)"></span><span class="addTextBold" style="opacity: .6">{{c.t}}</span></div></sc-for>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; z-index: 6"><button type="button" onClick="{{open}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 64px; border-radius: 16px; background: #C8553D; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 0 #8E3524">Ouvrir la carte</button></div>
+</sc-if>
+<sc-if value="{{isMenu}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; top: 100px; left: 18px; right: 18px; bottom: 120px; box-sizing: border-box; padding: 18px 18px 14px; border-radius: 6px; background: #FFFCF5; box-shadow: 0 10px 30px rgba(60,30,20,.12); border: 1.5px solid #E7D9C1; overflow: hidden; display: flex; flex-direction: column">
+<div style="text-align: center; border-bottom: 1.5px dashed #D9C6A6; padding-bottom: 12px; margin-bottom: 12px; position: relative">
+<span class="addTextBold" style="display: block; letter-spacing: .2em; opacity: .5">MON MENU FEEL-GOOD</span>
+<div style="display: flex; justify-content: center; gap: 6px; margin: 8px 0 6px"><sc-for list="{{dots}}" as="d" hint-placeholder-count="3"><span style="width: 26px; height: 5px; border-radius: 3px; background: {{d}}"></span></sc-for></div>
+<span style="display: block; font-family: var(--font-thought); font-size: 34px; line-height: 40px; color: #C8553D">{{courseName}}</span>
+<span class="addTextSemiBold" style="display: block; opacity: .65">{{courseSub}}</span>
+<button type="button" onClick="{{chef}}" aria-label="Le chef choisit" style="all: unset; position: absolute; right: -4px; top: -4px; width: 40px; height: 40px; border-radius: 50%; background: #C8553D; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 20px">🎲</button>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px; overflow-y: auto">
+<sc-for list="{{items}}" as="it" hint-placeholder-count="6">
+<button type="button" onClick="{{it.pick}}" style="all: unset; box-sizing: border-box; min-height: 56px; padding: 10px 12px; border-radius: 12px; background: {{it.bg}}; border: 1.5px solid {{it.bd}}; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background .2s"><span style="font-size: 24px">{{it.e}}</span><span class="p2Medium" style="flex: 1; font-weight: {{it.fw}}">{{it.t}}</span><span style="width: 22px; height: 22px; border-radius: 50%; border: 2px solid #C8553D; background: {{it.dot}}; box-sizing: border-box; flex-shrink: 0"></span></button>
+</sc-for>
+</div>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; gap: 10px; z-index: 6">
+<sc-if value="{{canBack}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{back}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 64px; min-height: 64px; border-radius: 16px; background: rgba(60,30,20,.08); display: flex; align-items: center; justify-content: center; cursor: pointer">←</button></sc-if>
+<button type="button" onClick="{{next}}" class="p1Bold" style="all: unset; box-sizing: border-box; flex: 1; min-height: 64px; border-radius: 16px; background: {{nextBg}}; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 0 #8E3524">{{nextLabel}}</button>
+</div>
+</sc-if>
+<sc-if value="{{isTicket}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 95px; left: 22px; right: 22px; bottom: 120px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 26px">
+
+<div style="text-align: center; display: flex; flex-direction: column; gap: 8px; animation: mnIn .4s ease-out"><span class="h5Bold">C’est commandé ! 🛎️</span></div><div style="position: relative; width: 290px; box-sizing: border-box; padding: 22px 20px; background: #fff; box-shadow: 0 12px 30px rgba(60,30,20,.15); animation: mnTicket .7s cubic-bezier(.3,1.3,.5,1); display: flex; flex-direction: column; gap: 14px; -webkit-mask: radial-gradient(circle 8px at 50% 100%, transparent 98%, #000) bottom / 20px 100% repeat-x">
+<span class="addTextBold" style="text-align: center; letter-spacing: .2em; opacity: .5">TICKET N° {{num}}</span>
+<sc-for list="{{chosen}}" as="c" hint-placeholder-count="3"><button type="button" onClick="{{c.toggle}}" style="all: unset; display: flex; gap: 10px; align-items: center; cursor: pointer; border-bottom: 1px dashed #E7D9C1; padding-bottom: 10px"><span style="font-size: 22px">{{c.e}}</span><span style="display: flex; flex-direction: column; flex: 1"><span class="addTextBold" style="color: #C8553D">{{c.s}}</span><span class="p4Medium" style="text-decoration: {{c.deco}}; opacity: {{c.op}}">{{c.t}}</span></span><span style="font-size: 18px">{{c.mark}}</span></button></sc-for>
+<span class="addTextSemiBold" style="text-align: center; opacity: .6">Touche un plat quand c’est fait</span>
+</div><div style="text-align: center; display: flex; flex-direction: column; gap: 8px; animation: mnIn .4s ease-out"><span class="p2Medium" style="opacity: 0.75">Maintenant que tu as choisi, fais ces 3 choses à ton rythme dans l’heure, en commençant par l’entrée. Pas besoin de tout faire : chaque petite action redonne un peu d’énergie, et l’envie revient en faisant.</span></div>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">{{endLabel}}</a></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+
+constructor(props){ super(props); this.state = this.fresh(); }
+fresh(){ const sh = (a) => a.slice().sort(() => Math.random() - .5).slice(0, 6);
+const E = [['💧','Boire un grand verre d’eau'],['🪟','Ouvrir la fenêtre 1 minute'],['🎵','Écouter une chanson que j’aime'],['🧴','Me passer de l’eau fraîche sur le visage'],['🙆','M’étirer en grand'],['🍊','Manger un fruit'],['🌤️','Regarder le ciel par la fenêtre'],['🧸','Prendre un truc doux dans mes mains'],['😮‍💨','Faire 3 grandes respirations'],['🌱','Arroser une plante']];
+const P = [['🚶','Faire le tour du pâté de maisons'],['🛁','Prendre une douche chaude'],['📞','Appeler ou écrire à quelqu’un que j’aime'],['🧹','Ranger juste mon bureau'],['🎨','Dessiner ou gribouiller'],['💃','Danser sur 3 chansons'],['🍳','Me préparer un bon goûter'],['🧩','Avancer un puzzle ou un jeu calme'],['📝','Écrire ce que j’ai en tête'],['🏀','Aller taper quelques balles dehors']];
+const D = [['🍫','Un carré de chocolat'],['📺','Un épisode de ma série'],['🐶','Câliner mon animal'],['🧦','Mettre mes vêtements les plus doux'],['☕','Une boisson chaude'],['📖','10 pages d’un livre'],['🎧','Un podcast ou une playlist cosy'],['🕯️','Lumière douce et plaid'],['📸','Regarder mes photos préférées'],['😂','Une vidéo qui me fait rire']];
+return { S: [ { name: 'Entrée', sub: '2 minutes pour commencer en douceur', items: sh(E) }, { name: 'Plat', sub: '15 minutes pour te faire du bien', items: sh(P) }, { name: 'Dessert', sub: 'Un petit plaisir pour finir', items: sh(D) } ], k: 0, sel: [null, null, null], done: [false,false,false], step: 'intro', num: 100 + Math.floor(Math.random() * 900) }; }
+renderVals(){ const s = this.state; const C = s.S[s.k]; const picked = s.sel[s.k] !== null; const last = s.k === 2;
+return { isIntro: s.step === 'intro', open: () => this.setState({ step: 'menu' }), courses: [ { e: '🥗', n: 'Entrée', t: '2 min' }, { e: '🍲', n: 'Plat', t: '15 min' }, { e: '🍰', n: 'Dessert', t: 'petit plaisir' } ],
+isMenu: s.step === 'menu', isTicket: s.step === 'ticket', stepLabel: s.step === 'menu' ? (s.k + 1) + ' / 3' : '', num: s.num,
+dots: [0,1,2].map(i => i <= s.k ? '#C8553D' : '#E7D9C1'), courseName: C.name, courseSub: C.sub,
+items: C.items.map((it, ii) => { const on = s.sel[s.k] === ii; return { e: it[0], t: it[1], bg: on ? '#FBE3D9' : '#fff', bd: on ? '#C8553D' : '#EFE3CF', fw: on ? 700 : 500, dot: on ? '#C8553D' : 'transparent', pick: () => { const n = s.sel.slice(); n[s.k] = ii; this.setState({ sel: n }); } }; }),
+canBack: s.k > 0, back: () => this.setState({ k: s.k - 1 }),
+nextBg: picked ? '#C8553D' : 'rgba(200,85,61,.4)', nextLabel: !picked ? 'Choisis ton ' + C.name.toLowerCase() : (last ? 'Commander' : 'Suivant'),
+next: () => { if (!picked) return; if (last) this.setState({ step: 'ticket' }); else this.setState({ k: s.k + 1 }); },
+chef: () => { const n = s.sel.slice(); n[s.k] = Math.floor(Math.random() * C.items.length); this.setState({ sel: n }); },
+chosen: s.S.map((sec, si) => { const it = sec.items[s.sel[si] ?? 0]; const d = s.done[si]; return { s: sec.name, e: it[0], t: it[1], deco: d ? 'line-through' : 'none', op: d ? .5 : 1, mark: d ? '✅' : '⬜', toggle: () => { const n = s.done.slice(); n[si] = !d; this.setState({ done: n }); } }; }),
+endLabel: s.done.every(x => x) ? 'Tout est fait 🎉' : 'Terminer',
+reset: () => this.setState(this.fresh()) }; }
+
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>V2 · Câlin papillon</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+
+@keyframes bfFlapL{0%{transform:scaleX(1)}40%{transform:scaleX(.35)}100%{transform:scaleX(1)}}
+@keyframes bfFlapR{0%{transform:scaleX(-1)}40%{transform:scaleX(-.35)}100%{transform:scaleX(-1)}}
+@keyframes bfFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@keyframes bfHint{0%,100%{opacity:.35}50%{opacity:1}}
+@keyframes bfBeat{0%{transform:scaleX(1)}15%{transform:scaleX(.35)}35%,100%{transform:scaleX(1)}}
+@keyframes bfTap{0%,30%{opacity:1;transform:scale(1.15)}45%,100%{opacity:.3;transform:scale(1)}}
+@keyframes bfGauge{from{width:0%}to{width:100%}}
+@keyframes bfCoach{0%{opacity:0;transform:translateY(8px)}8%,88%{opacity:1;transform:none}100%{opacity:0;transform:translateY(-6px)}}
+@keyframes bfCount{0%{transform:scale(.6);opacity:0}20%{transform:scale(1);opacity:1}85%{opacity:1}100%{opacity:0;transform:scale(1.2)}}
+@keyframes bfIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: linear-gradient(180deg, #FFE9F2 0%, #F3DDFB 60%, #E2DAFF 100%); font-family: var(--font-sans); color: #4A1F5C">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(74,31,92,.08); display: flex; align-items: center; justify-content: center; color: #4A1F5C; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #4A1F5C; opacity: .75">{{stepLabel}}</span></div>
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; top: 108px; left: 22px; right: 22px; display: flex; flex-direction: column; gap: 10px; animation: bfIn .4s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">CÂLIN PAPILLON</span>
+<span class="h5Bold">Un câlin que tu te fais à toi</span>
+<span class="p2Medium" style="opacity: .8">Quand c’est trop fort, ton corps a besoin d’un rythme doux. 1 minute, ton téléphone posé devant toi : tu n’as pas besoin de le toucher.</span>
+</div>
+<div style="position: absolute; top: 300px; left: 22px; right: 22px; display: flex; flex-direction: column; gap: 10px">
+<sc-for list="{{how}}" as="h" hint-placeholder-count="3"><div style="box-sizing: border-box; padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,.75); display: flex; gap: 12px; align-items: center"><span class="p1Bold" style="width: 32px; height: 32px; border-radius: 50%; background: #F7C6E0; display: flex; align-items: center; justify-content: center; flex-shrink: 0">{{h.n}}</span><span class="p2Medium">{{h.t}}</span></div></sc-for>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><button type="button" onClick="{{start}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Commencer</button></div>
+</sc-if>
+<sc-if value="{{isCount}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; padding: 0 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 24px; text-align: center">
+<div style="position: relative; width: 200px; height: 150px"><sc-for list="{{counts}}" as="c" hint-placeholder-count="3"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 140px; font-weight: 900; line-height: 1; color: #C2479A; opacity: {{c.op}}; transform: scale({{c.sc}}); transition: opacity .3s ease, transform .3s ease">{{c.n}}</span></sc-for></div>
+<span class="p2Medium" style="opacity: .8">Croise les bras, pose tes mains sur tes épaules, et regarde le papillon.</span>
+</div>
+</sc-if>
+<sc-if value="{{isRun}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 112px; left: 30px; right: 30px; min-height: 84px; display: flex; align-items: center; justify-content: center; text-align: center">
+<span class="h5Bold" style="animation: bfCoach 7.5s ease-in-out infinite; animation-play-state: {{play}}">{{coach}}</span>
+</div>
+<div style="position: absolute; top: 230px; left: 0; right: 0; height: 260px; display: flex; justify-content: center; animation: bfFloat 3s ease-in-out infinite; animation-play-state: {{play}}">
+<span style="transform-origin: right center; width: 150px; height: 190px; animation: bfBeat 2s ease-in-out infinite; animation-play-state: {{play}}"><svg width="150" height="190" viewBox="0 0 150 190" aria-hidden="true"><path d="M140 95C120 20 40 -10 15 30C-5 65 40 95 140 95Z" fill="#F28CC0"></path><path d="M140 100C100 110 30 130 35 165C42 195 110 175 140 100Z" fill="#C79BF2"></path><circle cx="55" cy="50" r="12" fill="#fff" opacity=".6"></circle></svg></span>
+<span style="width: 14px; height: 120px; margin-top: 40px; border-radius: 7px; background: #4A1F5C"></span>
+<span style="transform-origin: left center; width: 150px; height: 190px; animation: bfBeat 2s ease-in-out 1s infinite; animation-play-state: {{play}}"><span style="display: block; transform: scaleX(-1)"><svg width="150" height="190" viewBox="0 0 150 190" aria-hidden="true"><path d="M140 95C120 20 40 -10 15 30C-5 65 40 95 140 95Z" fill="#C79BF2"></path><path d="M140 100C100 110 30 130 35 165C42 195 110 175 140 100Z" fill="#F28CC0"></path><circle cx="55" cy="50" r="12" fill="#fff" opacity=".6"></circle></svg></span></span>
+</div>
+<div style="position: absolute; top: 510px; left: 40px; right: 40px; display: flex; justify-content: space-between"><span class="p1Bold" style="animation: bfTap 2s ease-in-out infinite; animation-play-state: {{play}}">gauche</span><span class="p1Bold" style="animation: bfTap 2s ease-in-out 1s infinite; opacity: .3; animation-play-state: {{play}}">droite</span></div>
+<div style="position: absolute; top: 580px; left: 60px; right: 60px; height: 8px; border-radius: 8px; background: rgba(74,31,92,.1); overflow: hidden"><div style="height: 100%; width: 0%; background: linear-gradient(90deg, #F28CC0, #C79BF2); animation: bfGauge 60s linear forwards; animation-play-state: {{play}}"></div></div>
+<span class="addTextBold" style="position: absolute; top: 600px; left: 0; right: 0; text-align: center; opacity: .6">{{left}}</span>
+<div style="position: absolute; left: 0; right: 0; bottom: 48px; display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 6">
+<button type="button" onClick="{{togglePause}}" aria-label="{{pauseLabel}}" class="p2Medium" style="all: unset; box-sizing: border-box; height: 52px; padding: 0 24px; border-radius: 999px; background: rgba(255,255,255,.8); display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer">{{pauseLabel}}</button>
+<button type="button" onClick="{{finish}}" class="p2Medium" style="all: unset; height: 40px; display: flex; align-items: center; font-weight: 700; cursor: pointer; opacity: .75">J’ai fini</button>
+</div>
+</sc-if>
+<sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 170px; left: 40px; right: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; animation: bfIn .5s ease-out"><span style="font-size: 64px; animation: bfFloat 3s ease-in-out infinite">🦋</span><span class="h5Bold">Tu t’es tenu·e compagnie</span><span class="p2Medium" style="opacity: .8">1 minute au rythme d’un papillon. Si l’émotion est encore forte, tu peux recommencer ou parler à quelqu’un de confiance.</span></div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a><button type="button" onClick="{{start}}" class="p2Medium" style="all: unset; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer">Encore un tour</button></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+
+constructor(props){ super(props); this.state = { step: 'intro', count: 3, sec: 0, paused: false }; this.timer = null; }
+stop(){ if (this.timer) { clearTimeout(this.timer); this.timer = null; } }
+loop(){ this.timer = setTimeout(() => { const s = this.state; if (s.step === 'count') { if (s.count <= 1) { this.setState({ step: 'run', sec: 0 }); } else this.setState({ count: s.count - 1 }); this.loop(); return; } if (s.step === 'run' && !s.paused) { if (s.sec + 1 >= 60) { this.stop(); this.setState({ step: 'end' }); return; } this.setState({ sec: s.sec + 1 }); } this.loop(); }, 1000); }
+renderVals(){ const s = this.state;
+const C = [ 'Je suis là avec toi. On y va doucement.', 'Gauche… droite… comme des ailes qui battent lentement.', 'Sens le poids de tes mains sur tes épaules.', 'Inspire par le nez… et souffle tout doucement.', 'Tu n’as rien d’autre à faire que suivre le papillon.', 'Si une pensée arrive, laisse-la passer, comme un nuage.', 'Tes épaules peuvent descendre un peu. Relâche.', 'Encore quelques battements. Tu t’en sors très bien.' ];
+const rest = 60 - s.sec;
+return { isIntro: s.step === 'intro', isCount: s.step === 'count', isRun: s.step === 'run', isEnd: s.step === 'end', stepLabel: '',
+how: [ { n: 1, t: 'Pose ton téléphone devant toi, là où tu le vois.' }, { n: 2, t: 'Croise les bras sur ta poitrine, les mains sur tes épaules.' }, { n: 3, t: 'Tapote une épaule puis l’autre, en même temps que les ailes.' } ],
+count: s.count, counts: [3, 2, 1].map(n => ({ n: n, op: n === s.count ? 1 : 0, sc: n === s.count ? 1 : .7 })), coach: C[Math.min(7, Math.floor(s.sec / 7.5))], left: s.paused ? 'En pause' : '0:' + String(rest).padStart(2, '0'),
+play: s.paused ? 'paused' : 'running', pauseLabel: s.paused ? '▶ Reprendre' : '❚❚ Pause',
+togglePause: () => this.setState({ paused: !s.paused }),
+finish: () => { this.stop(); this.setState({ step: 'end' }); },
+start: () => { this.stop(); this.setState({ step: 'count', count: 3, sec: 0, paused: false }); this.loop(); },
+reset: () => { this.stop(); this.setState({ step: 'intro', count: 3, sec: 0, paused: false }); } }; }
+
+}
+</script>
+</body>
+</html>

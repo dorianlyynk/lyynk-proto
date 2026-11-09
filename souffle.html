@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>MG2 · Souffle au bout des doigts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+@keyframes sbBreath{0%{transform:scale(.5)}40%{transform:scale(1)}100%{transform:scale(.5)}}
+@keyframes sbIn{0%,38%{opacity:1}42%,100%{opacity:0}}
+@keyframes sbOut{0%,38%{opacity:0}42%,96%{opacity:1}100%{opacity:0}}
+@keyframes sbDouble{0%{transform:scale(.5)}22%{transform:scale(.85)}33%{transform:scale(1)}100%{transform:scale(.5)}}
+@keyframes sbDIn{0%,20%{opacity:1}23%,100%{opacity:0}}
+@keyframes sbDMore{0%,21%{opacity:0}23%,31%{opacity:1}34%,100%{opacity:0}}
+@keyframes sbDOut{0%,32%{opacity:0}35%,96%{opacity:1}100%{opacity:0}}
+@keyframes sbBar{from{width:0%}to{width:100%}}
+@keyframes sbFloat{0%,100%{transform:scale(.8)}50%{transform:scale(1)}}
+@keyframes sbFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: linear-gradient(180deg, #EEF8FF 0%, #CDE7F7 100%); font-family: var(--font-sans); color: #0E3A55">
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; top: 47px; left: 16px; height: 48px; display: flex; align-items: center"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(14,58,85,.08); display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="#0E3A55" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+<div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; animation: sbFade .4s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">SOUFFLE · 1 MIN</span>
+<span class="h5Bold">Calme ton corps en 1 minute</span>
+<span class="p2Medium" style="opacity: .75">Souffler plus longtemps que tu inspires ralentit ton cœur. Ton téléphone vibre au rythme du souffle : tu peux fermer les yeux.</span>
+</div>
+<div style="position: absolute; top: 262px; left: 24px; right: 24px; height: 180px; border-radius: 22px; overflow: hidden; box-shadow: 0 12px 30px rgba(46,139,192,.22)"><img src="assets/souffle.jpg" alt="" style="width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; display: block"></div>
+<div style="position: absolute; top: 462px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 10px">
+<span class="addTextBold" style="opacity: .6; letter-spacing: .04em">TON RYTHME</span>
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px">
+<sc-for list="{{rhythms}}" as="r" hint-placeholder-count="4"><button type="button" onClick="{{r.pick}}" style="all: unset; box-sizing: border-box; padding: 12px 10px; border-radius: 14px; background: {{r.bg}}; color: {{r.color}}; border: 1.5px solid {{r.bd}}; display: flex; flex-direction: column; gap: 2px; cursor: pointer"><span class="p2Medium" style="font-weight: 700">{{r.label}}</span><span class="addTextSemiBold" style="opacity: .75">{{r.sub}}</span></button></sc-for>
+</div>
+<span class="addTextSemiBold" style="opacity: .6">Souffle court ou asthme ? Choisis « Plus court ». Pense à activer les vibrations.</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px"><button type="button" onClick="{{start}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Commencer</button></div>
+</sc-if>
+
+<sc-if value="{{isSession}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; gap: 14px; z-index: 5">
+<a href="index.html" aria-label="Quitter" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(14,58,85,.08); display: flex; align-items: center; justify-content: center; color: #0E3A55; cursor: pointer; flex-shrink: 0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></a>
+<div style="flex: 1; height: 6px; border-radius: 6px; background: rgba(14,58,85,.1); overflow: hidden"><div style="height: 100%; width: 0; background: #2E8BC0; animation: sbBar 60s linear forwards; animation-play-state: {{play}}"></div></div>
+</div>
+<div style="position: absolute; top: 120px; left: 30px; right: 30px; text-align: center; display: flex; flex-direction: column; gap: 6px">
+<span class="addTextBold" style="letter-spacing: .2em; opacity: .6">{{modeLabel}}</span>
+<span class="p2Medium" style="opacity: .75">Suis le cercle, ou ferme les yeux et suis la vibration.</span>
+</div>
+<div style="position: absolute; top: 230px; left: 45px; width: 300px; height: 300px">
+<span style="position: absolute; inset: 0; border-radius: 50%; border: 1.5px dashed rgba(46,139,192,.35)"></span>
+<span style="position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.95), rgba(159,211,238,.75) 60%, rgba(46,139,192,.45)); box-shadow: 0 20px 60px rgba(46,139,192,.35); animation: {{anim}}; animation-play-state: {{play}}"></span>
+<sc-if value="{{isNormal}}" hint-placeholder-val="{{true}}">
+<span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #0E3A55; animation: sbIn {{dur}}s linear infinite; animation-play-state: {{play}}">Inspire</span>
+<span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #0E3A55; animation: sbOut {{dur}}s linear infinite; animation-play-state: {{play}}">Souffle</span>
+</sc-if>
+<sc-if value="{{isDouble}}" hint-placeholder-val="{{false}}">
+<span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #0E3A55; animation: sbDIn 9s linear infinite; animation-play-state: {{play}}">Inspire</span>
+<span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #0E3A55; animation: sbDMore 9s linear infinite; animation-play-state: {{play}}">encore un peu</span>
+<span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 26px; font-weight: 800; color: #0E3A55; animation: sbDOut 9s linear infinite; animation-play-state: {{play}}">Souffle…</span>
+</sc-if>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 44px; display: flex; flex-direction: column; align-items: center; gap: 10px">
+<button type="button" onClick="{{togglePause}}" class="p2Medium" style="all: unset; box-sizing: border-box; height: 52px; padding: 0 26px; border-radius: 999px; background: #fff; color: #0E3A55; font-weight: 700; display: flex; align-items: center; cursor: pointer; box-shadow: 0 6px 18px rgba(46,139,192,.2)">{{pauseLabel}}</button>
+<button type="button" onClick="{{finish}}" class="p2Medium" style="all: unset; height: 40px; display: flex; align-items: center; font-weight: 700; cursor: pointer; opacity: .7">J’ai fini</button>
+</div>
+</sc-if>
+
+<sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 200px; left: 135px; width: 120px; height: 120px"><span style="position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 40% 35%, rgba(255,255,255,.95), rgba(159,211,238,.75) 60%, rgba(46,139,192,.45)); box-shadow: 0 0 0 18px rgba(255,255,255,.35), 0 0 0 36px rgba(255,255,255,.18); animation: sbFloat 6s ease-in-out infinite"></span></div>
+<div style="position: absolute; top: 380px; left: 36px; right: 36px; display: flex; flex-direction: column; gap: 10px; text-align: center; animation: sbFade .5s ease-out">
+<span class="h5Bold">Tu as pris 1 minute pour toi</span>
+<span class="p2Medium" style="opacity: .75">Ton corps a reçu le signal de ralentir. Tu peux refaire un tour si tu en as besoin.</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a><button type="button" onClick="{{start}}" class="p2Medium" style="all: unset; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer">Refaire un tour</button></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props){ super(props); this.state = { step: 'intro', paused: false, rhythm: 1 }; this.t = null; }
+renderVals(){ const s = this.state;
+const RH = [ { label: 'Plus court', sub: '3 s / 5 s', in: 3, out: 5 }, { label: 'Normal', sub: '4 s / 6 s', in: 4, out: 6 }, { label: 'Plus lent', sub: '5 s / 7 s', in: 5, out: 7 }, { label: 'Double soupir', sub: '2 + 1 s / 6 s', in: 3, out: 6, dbl: true } ];
+const r = RH[s.rhythm]; const dur = r.in + r.out;
+const clear = () => { if (this.t) { clearTimeout(this.t); this.t = null; } };
+return { isIntro: s.step === 'intro', isSession: s.step === 'session', isEnd: s.step === 'end',
+rhythms: RH.map((x, i) => ({ label: x.label, sub: x.sub, bg: i === s.rhythm ? '#2E8BC0' : '#fff', color: i === s.rhythm ? '#fff' : '#0E3A55', bd: i === s.rhythm ? '#2E8BC0' : 'rgba(14,58,85,.1)', pick: () => this.setState({ rhythm: i }) })),
+dur: dur, isNormal: !r.dbl, isDouble: !!r.dbl, anim: r.dbl ? 'sbDouble 9s ease-in-out infinite' : 'sbBreath ' + dur + 's ease-in-out infinite',
+modeLabel: (r.dbl ? 'DOUBLE SOUPIR' : 'RYTHME ' + r.label.toUpperCase()) + ' · ' + Math.round(60 / dur) + ' RESPIRATIONS',
+play: s.paused ? 'paused' : 'running', pauseLabel: s.paused ? '▶ Reprendre' : '❚❚ Pause',
+togglePause: () => this.setState({ paused: !s.paused }),
+start: () => { clear(); this.setState({ step: 'session', paused: false, sec: 0 }); const loop = () => { this.t = setTimeout(() => { const st = this.state; if (st.step !== 'session') return; if (!st.paused) { if ((st.sec || 0) + 1 >= 60) { this.setState({ step: 'end' }); return; } this.setState({ sec: (st.sec || 0) + 1 }); } loop(); }, 1000); }; loop(); },
+finish: () => { clear(); this.setState({ step: 'end' }); },
+reset: () => { clear(); this.setState({ step: 'intro', paused: false }); } }; }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+/* Shadows, motion, press — from Snackbar.tsx, constants/styles PRESS_SCALE, theme/animations.ts */
+:root{
+  --shadow-snackbar-error: 0 1px 12px rgba(255, 102, 67, 0.08);
+  --shadow-snackbar-success: 0 1px 12px rgba(0, 61, 85, 0.08);
+  --shadow-snackbar-info: 0 1px 12px rgba(217, 227, 251, 0.08);
+  --shadow-snackbar-warning: 0 1px 12px rgba(254, 238, 199, 0.08);
+  --press-scale: 0.97; /* @kind other */
+  --overlay-opacity: 0.5; /* @kind other */
+  --disabled-opacity: 0.5; /* @kind other */
+  --duration-100: 100ms; /* @kind other */
+  --duration-200: 200ms; /* @kind other */
+  --duration-300: 300ms; /* @kind other */
+  /* spring approximations for web */
+  --ease-quick: cubic-bezier(0.2, 0.9, 0.3, 1); /* @kind other */
+  --ease-bouncy: cubic-bezier(0.34, 1.56, 0.64, 1); /* @kind other */
+  --ease-medium: cubic-bezier(0.25, 0.8, 0.35, 1); /* @kind other */
+}

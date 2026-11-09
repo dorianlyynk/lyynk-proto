@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>V2 · Alphabet à thèmes</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+
+@keyframes abFlip{0%{transform:rotateY(90deg)}100%{transform:rotateY(0)}}
+@keyframes abPop{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
+@keyframes abSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: linear-gradient(180deg, #E9F7EF 0%, #CDEBDB 100%); font-family: var(--font-sans); color: #123B2A">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(18,59,42,.08); display: flex; align-items: center; justify-content: center; color: #123B2A; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #123B2A; opacity: .75">{{stepLabel}}</span></div>
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; animation: none">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">ALPHABET · À TON RYTHME</span>
+<span class="h5Bold">Un jeu de lettres pour occuper ta tête</span>
+<span class="p2Medium" style="opacity: .75">Chercher un mot pour chaque lettre occupe ton cerveau : il a moins de place pour ruminer. Pas besoin d’aller jusqu’à Z.</span>
+</div>
+<div style="position: absolute; top: 300px; left: 0; right: 0; height: 130px"><span style="position: absolute; left: 62px; top: 20px; width: 86px; height: 96px; border-radius: 16px; background: #FFFDF6; box-shadow: 0 6px 0 #2F9E6E, 0 12px 20px rgba(18,59,42,.15); display: flex; align-items: center; justify-content: center; font-size: 60px; font-weight: 900; transform: rotate(-8deg)">A</span><span style="position: absolute; left: 152px; top: 0px; width: 86px; height: 96px; border-radius: 16px; background: #FFFDF6; box-shadow: 0 6px 0 #9ED8BB, 0 12px 20px rgba(18,59,42,.15); display: flex; align-items: center; justify-content: center; font-size: 60px; font-weight: 900; transform: rotate(4deg)">B</span><span style="position: absolute; left: 242px; top: 24px; width: 86px; height: 96px; border-radius: 16px; background: #FFFDF6; box-shadow: 0 6px 0 #2F9E6E, 0 12px 20px rgba(18,59,42,.15); display: flex; align-items: center; justify-content: center; font-size: 60px; font-weight: 900; transform: rotate(10deg)">C</span></div>
+<div style="position: absolute; top: 470px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px">
+<span class="addTextBold" style="opacity: .6; letter-spacing: .04em">TON THÈME</span>
+<button type="button" onClick="{{roll}}" style="all: unset; box-sizing: border-box; padding: 14px 16px; border-radius: 16px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; box-shadow: 0 4px 0 #9ED8BB"><span style="font-size: 30px">{{tEmoji}}</span><span class="p1Bold" style="flex: 1">{{tName}}</span><span class="addTextBold" style="opacity: .6">🎲 changer</span></button>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; z-index: 6"><button type="button" onClick="{{begin}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">C’est parti</button></div>
+</sc-if>
+<sc-if value="{{isRun}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; top: 104px; left: 22px; right: 22px; display: flex; flex-direction: column; gap: 10px">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">L’ALPHABET DE…</span>
+<button type="button" onClick="{{roll}}" style="all: unset; box-sizing: border-box; padding: 14px 16px; border-radius: 16px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; box-shadow: 0 4px 0 #9ED8BB">
+<span style="font-size: 32px">{{tEmoji}}</span><span class="h5Bold" style="flex: 1">{{tName}}</span><span class="addTextBold" style="opacity: .6">🎲 changer</span></button>
+</div>
+<div style="position: absolute; top: 250px; left: 0; right: 0; display: flex; justify-content: center; perspective: 600px">
+<div style="width: 170px; height: 190px; border-radius: 22px; background: #FFFDF6; box-shadow: 0 10px 0 #2F9E6E, 0 18px 30px rgba(18,59,42,.2); display: flex; flex-direction: column; align-items: center; justify-content: center">
+<div style="position: relative; width: 170px; height: 190px"><sc-for list="{{letters}}" as="lt" hint-placeholder-count="26"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 120px; line-height: 1; font-weight: 900; color: #123B2A; opacity: {{lt.op}}; transform: scale({{lt.sc}}); transition: opacity .3s ease, transform .3s ease">{{lt.l}}</span></sc-for></div>
+</div>
+</div>
+<div style="position: absolute; top: 470px; left: 22px; right: 22px; height: 40px"><sc-for list="{{prompts}}" as="pr" hint-placeholder-count="26"><span class="p2Medium" style="position: absolute; inset: 0; text-align: center; opacity: {{pr.op}}; transition: opacity .3s ease">{{pr.t}}</span></sc-for></div>
+<div style="position: absolute; top: 520px; left: 22px; right: 22px; display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px">
+<sc-for list="{{tiles}}" as="t" hint-placeholder-count="26"><span class="addTextBold" style="height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: {{t.bg}}; color: {{t.fg}}; outline: {{t.ol}}; transition: background .3s">{{t.l}}</span></sc-for>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><div style="display: flex; gap: 10px">
+<button type="button" onClick="{{skip}}" class="p1Bold" style="all: unset; box-sizing: border-box; flex: 1; min-height: 62px; border-radius: 16px; background: rgba(18,59,42,.08); display: flex; align-items: center; justify-content: center; cursor: pointer">Passer</button>
+<button type="button" onClick="{{ok}}" class="p1Bold" style="all: unset; box-sizing: border-box; flex: 2; min-height: 62px; border-radius: 16px; background: #2F9E6E; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 0 #1D6B4A">✓ Trouvé</button>
+</div>
+<button type="button" onClick="{{stop}}" class="p2Medium" style="all: unset; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; opacity: .8">Je me sens mieux, j’arrête là</button></div>
+</sc-if>
+<sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 180px; left: 40px; right: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
+<span style="font-size: 64px; animation: abPop .5s ease-out">{{tEmoji}}</span>
+<span class="h5Bold">{{endTitle}}</span>
+<span class="p2Medium" style="opacity: .75">Ton cerveau était occupé à chercher, il a eu moins de place pour ruminer. La prochaine fois, essaie un autre thème.</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+
+constructor(props){ super(props); this.state = { intro: true, th: Math.floor(Math.random() * 8), i: 0, st: [], end: false }; }
+renderVals(){ const s = this.state;
+const TH = [['📺','Séries et films','Une série, un film ou un dessin animé en'],['🍝','Plats','Un plat ou un aliment en'],['🐾','Animaux','Un animal en'],['🌍','Pays et villes','Un pays ou une ville en'],['🎤','Artistes','Un·e chanteur·se ou un groupe en'],['⚽','Sports','Un sport ou un geste sportif en'],['🛏️','Ta chambre','Un objet de ta chambre en'],['🍎','Fruits et légumes','Un fruit ou un légume en']];
+const t = TH[s.th]; const L = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); const found = s.st.filter(x => x).length;
+const next = (v) => { const st = s.st.concat([v]); if (st.length >= 26) this.setState({ st: st, end: true }); else this.setState({ st: st, i: s.i + 1 }); };
+return { isIntro: s.intro, begin: () => this.setState({ intro: false }), letters: L.map((l, k) => ({ l: l, op: k === s.i ? 1 : 0, sc: k === s.i ? 1 : .8 })), prompts: L.map((l, k) => ({ t: t[2] + ' « ' + l + ' » ?', op: k === s.i ? .75 : 0 })),
+isRun: !s.intro && !s.end, isEnd: s.end, stepLabel: (s.end || s.intro) ? '' : found + ' trouvés', themeKey: s.th, tEmoji: t[0], tName: t[1], i: s.i, letter: L[s.i], prompt: t[2] + ' « ' + L[s.i] + ' » ?',
+tiles: L.map((l, k) => ({ l: l, bg: k < s.st.length ? (s.st[k] ? '#2F9E6E' : 'rgba(18,59,42,.12)') : '#fff', fg: k < s.st.length && s.st[k] ? '#fff' : '#123B2A', ol: k === s.i && !s.end ? '2px solid #123B2A' : 'none' })),
+endTitle: found + ' lettre' + (found > 1 ? 's' : '') + ' trouvée' + (found > 1 ? 's' : ''),
+roll: () => this.setState({ th: (s.th + 1 + Math.floor(Math.random() * 7)) % 8 }), ok: () => next(true), skip: () => next(false), stop: () => this.setState({ end: true }),
+reset: () => this.setState({ intro: true, th: Math.floor(Math.random() * 8), i: 0, st: [], end: false }) }; }
+
+}
+</script>
+</body>
+</html>

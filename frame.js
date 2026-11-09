@@ -1,0 +1,1 @@
+(function(){function fit(){var s=Math.min(window.innerWidth/390,window.innerHeight/844);document.documentElement.style.setProperty('--s',s);}window.addEventListener('resize',fit);window.addEventListener('orientationchange',fit);fit();})();

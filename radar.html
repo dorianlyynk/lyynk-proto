@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>EX2+ · Radar à sons</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+@keyframes rdSweep{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+@keyframes rdPing{0%{transform:translate(-50%,-50%) scale(.4);opacity:1}100%{transform:translate(-50%,-50%) scale(3);opacity:0}}
+@keyframes rdIn{from{transform:translate(-50%,-50%) scale(0)}to{transform:translate(-50%,-50%) scale(1)}}
+@keyframes rdInvite{0%,100%{box-shadow:inset 0 0 0 1px rgba(207,247,232,.25),0 0 0 0 rgba(106,212,174,.0)}50%{box-shadow:inset 0 0 0 1px rgba(207,247,232,.25),0 0 0 10px rgba(106,212,174,.18)}}
+@keyframes rdText{0%{opacity:0;transform:translateY(10px)}100%{opacity:1;transform:none}}
+@keyframes rdFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: radial-gradient(circle at 50% 55%, #0F3A3A 0%, #072720 55%, #04140F 100%); font-family: var(--font-sans); color: #CFF7E8">
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 47px; left: 16px; height: 48px; display: flex; align-items: center; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(207,247,232,.12); display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="#CFF7E8" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+<div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; animation: rdFade .4s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .7">RADAR À SONS · 2 MIN</span>
+<span class="h5Bold" style="color: #fff">Fais le tour des sons autour de toi</span>
+<span class="p2Medium" style="opacity: .8">Écouter ce qui t’entoure, du plus fort au plus lointain, sort ta tête des pensées qui tournent. 4 sons à repérer.</span>
+</div>
+<div style="position: absolute; top: 330px; left: 85px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(70,193,153,.10) 0%, rgba(70,193,153,.02) 70%); box-shadow: inset 0 0 0 1px rgba(207,247,232,.25)">
+<span style="position: absolute; inset: 27px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 55px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 82px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(207,247,232,.15)"></span>
+<span style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(207,247,232,.15)"></span>
+<span style="position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(110,212,174,.55), rgba(110,212,174,0) 60deg, transparent 360deg); animation: rdSweep 3.2s linear infinite; animation-play-state: {{sweep}}"></span>
+<span class="addTextBold" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 34px; height: 34px; border-radius: 50%; background: #6AD4AE; color: #072720; display: flex; align-items: center; justify-content: center">toi</span>
+<span style="position: absolute; left: 72%; top: 28%; width: 12px; height: 12px; border-radius: 50%; background: #B0EAD1; box-shadow: 0 0 14px #6AD4AE; transform: translate(-50%,-50%)"></span>
+<span style="position: absolute; left: 72%; top: 28%; width: 12px; height: 12px; border-radius: 50%; border: 2px solid #6AD4AE; animation: rdPing 1.4s ease-out infinite"></span>
+<span style="position: absolute; left: 78%; top: 36%; font-size: 30px; transform: rotate(-25deg)">👆</span>
+</div>
+<div style="position: absolute; top: 580px; left: 24px; right: 24px; box-sizing: border-box; padding: 14px 16px; border-radius: 16px; background: rgba(106,212,174,.1); border: 1px solid rgba(106,212,174,.3); display: flex; flex-direction: column; gap: 4px">
+<span class="p2Medium" style="font-weight: 700; color: #fff">Écoute, puis touche le radar d’où vient le son.</span>
+<span class="addTextSemiBold" style="opacity: .7">Près du centre = près de toi. Au bord = loin.</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; z-index: 6"><button type="button" onClick="{{begin}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Commencer</button></div>
+</sc-if>
+
+<sc-if value="{{isPlay}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5">
+<a href="index.html" aria-label="Quitter" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(207,247,232,.12); display: flex; align-items: center; justify-content: center; color: #CFF7E8; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path></svg></a>
+<div style="display: flex; gap: 5px; align-items: flex-end; height: 22px" aria-label="Volume">
+<sc-for list="{{vol}}" as="v" hint-placeholder-count="4"><span style="width: 14px; height: {{v.h}}px; border-radius: 4px; background: {{v.bg}}; transition: background .3s"></span></sc-for>
+</div>
+</div>
+<div style="position: absolute; top: 118px; left: 28px; right: 28px; height: 150px">
+<sc-for list="{{texts}}" as="tx" hint-placeholder-count="5"><div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; opacity: {{tx.op}}; transform: translateY({{tx.dy}}px); transition: opacity .7s ease, transform .7s ease; pointer-events: none">
+<span class="addTextBold" style="letter-spacing: .2em; opacity: .65">{{tx.k}}</span>
+<span style="font-size: 26px; line-height: 33px; font-weight: 800; color: #fff">{{tx.t}}</span>
+<span class="p2Medium" style="opacity: .75">{{tx.sub}}</span>
+</div></sc-for>
+</div>
+<button type="button" onClick="{{place}}" aria-label="Placer le son sur le radar" style="all: unset; cursor: crosshair; position: absolute; top: 330px; left: 35px; width: 320px; height: 320px; border-radius: 50%; animation: {{invite}}; background: radial-gradient(circle, rgba(70,193,153,.10) 0%, rgba(70,193,153,.02) 70%); box-shadow: inset 0 0 0 1px rgba(207,247,232,.25)">
+<span style="position: absolute; inset: 40px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 80px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 120px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(207,247,232,.15)"></span>
+<span style="position: absolute; top: 50%; left: 0; right: 0; height: 1px; background: rgba(207,247,232,.15)"></span>
+<span style="position: absolute; inset: 0; border-radius: 50%; background: conic-gradient(from 0deg, rgba(110,212,174,.55), rgba(110,212,174,0) 60deg, transparent 360deg); animation: rdSweep 3.2s linear infinite; animation-play-state: {{sweep}}"></span>
+<span class="addTextBold" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); width: 34px; height: 34px; border-radius: 50%; background: #6AD4AE; color: #072720; display: flex; align-items: center; justify-content: center">toi</span>
+<sc-for list="{{blips}}" as="b" hint-placeholder-count="2">
+<span style="position: absolute; left: {{b.x}}%; top: {{b.y}}%; width: {{b.s}}px; height: {{b.s}}px; border-radius: 50%; background: #B0EAD1; box-shadow: 0 0 14px #6AD4AE; transform: translate(-50%,-50%); animation: rdIn .4s ease-out"></span>
+<span style="position: absolute; left: {{b.x}}%; top: {{b.y}}%; width: {{b.s}}px; height: {{b.s}}px; border-radius: 50%; border: 2px solid #6AD4AE; animation: rdPing 1.4s ease-out infinite"></span>
+<span class="addTextBold" style="position: absolute; left: {{b.x}}%; top: calc({{b.y}}% + 16px); transform: translateX(-50%); white-space: nowrap; color: #fff">{{b.label}}</span>
+</sc-for>
+</button>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6">
+<sc-if value="{{running}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{skip}}" class="p2Medium" style="all: unset; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; opacity: .7">Je n’entends rien, suivant</button></sc-if>
+<sc-if value="{{done}}" hint-placeholder-val="{{false}}"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a></sc-if>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props){ super(props); this.state = { intro: true, n: 0, pts: [] }; }
+renderVals(){
+const s = this.state;
+const P = [ { k: 'SON 1 SUR 4', t: 'Le son le plus fort', sub: 'Ferme les yeux si tu veux. D’où vient-il ?', label: 'le plus fort' }, { k: 'SON 2 SUR 4', t: 'Un son plus discret', sub: 'Une voix, une ventilation, une voiture…', label: 'plus discret' }, { k: 'SON 3 SUR 4', t: 'Un son très discret', sub: 'Ta respiration, un frottement, le frigo…', label: 'très discret' }, { k: 'SON 4 SUR 4', t: 'Le son le plus lointain', sub: 'Va chercher au bout de ce que tu entends.', label: 'le plus loin' } ];
+const done = s.n >= 4; const cur = Math.min(s.n, 4);
+const T = P.map(p => ({ k: p.k, t: p.t, sub: p.sub })).concat([{ k: 'TERMINÉ', t: 'Ton oreille a fait le tour 🎧', sub: 'Tu as cartographié ce qui t’entoure. Ta tête a eu une vraie pause.' }]);
+const next = (pt) => this.setState({ n: s.n + 1, pts: pt ? s.pts.concat([Object.assign({ i: s.n }, pt)]) : s.pts });
+return {
+isIntro: s.intro, isPlay: !s.intro, begin: () => this.setState({ intro: false, n: 0, pts: [] }),
+texts: T.map((x, i) => ({ k: x.k, t: x.t, sub: x.sub, op: i === cur ? 1 : 0, dy: i === cur ? 0 : (i < cur ? -12 : 12) })),
+blips: s.pts.map(p => ({ x: p.x, y: p.y, s: 18 - p.i * 2, label: P[p.i].label })),
+vol: [22, 17, 12, 7].map((h, i) => ({ h: h, bg: i < s.n ? '#6AD4AE' : 'rgba(207,247,232,.18)' })),
+sweep: done ? 'paused' : 'running', invite: s.n === 0 ? 'rdInvite 1.8s ease-in-out infinite' : 'none',
+running: !done, done: done,
+place: (e) => { if (done) return; const r = e.currentTarget.getBoundingClientRect(); let x = (e.clientX - r.left) / r.width * 100, y = (e.clientY - r.top) / r.height * 100; const dx = x - 50, dy = y - 50, d = Math.hypot(dx, dy); if (d > 44) { x = 50 + dx / d * 44; y = 50 + dy / d * 44; } if (d < 8) { const a = Math.random() * 6.28; x = 50 + Math.cos(a) * 10; y = 50 + Math.sin(a) * 10; } next({ x: Math.round(x), y: Math.round(y) }); },
+skip: () => { if (!done) next(null); },
+reset: () => this.setState({ intro: true, n: 0, pts: [] })
+};
+}
+}
+</script>
+</body>
+</html>

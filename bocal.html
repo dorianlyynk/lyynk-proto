@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>EX5+ · Vide-tête dans le bocal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+@keyframes vtWiggle{0%,100%{transform:rotate(0) translate(0,0)}25%{transform:rotate(2deg) translate(1px,-1px)}50%{transform:rotate(-2deg) translate(-1px,1px)}75%{transform:rotate(1deg) translate(1px,1px)}}
+@keyframes vtDrop{0%{transform:translate(-50%,-260px) scale(.6);opacity:0}30%{opacity:1}75%{transform:translate(-50%,8px) scale(1.05)}100%{transform:translate(-50%,0) scale(1)}}
+@keyframes vtCircle{from{stroke-dashoffset:400}to{stroke-dashoffset:0}}
+@keyframes vtFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+input::placeholder{color:rgba(74,6,162,.35)}
+@keyframes kbCaret{0%,49%{opacity:1}50%,100%{opacity:0}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: linear-gradient(180deg, #F8F3FF 0%, #E3CFFD 100%); font-family: var(--font-sans); color: #200346">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(32,3,70,.08); display: flex; align-items: center; justify-content: center; color: #200346; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #200346; opacity: .75">{{stepLabel}}</span></div>
+<div style="position: absolute; top: 100px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 4px">
+<span class="h5Bold">{{title}}</span>
+</div>
+
+<div style="position: absolute; top: 178px; left: 95px; width: 200px; height: 200px; transform: scale(.7); transform-origin: 50% 0">
+<svg width="200" height="200" viewBox="0 0 200 200" style="position: absolute; inset: 0">
+<path d="M100 14c-46 0-80 34-80 78 0 26 12 46 30 60v34h70v-22h18c10 0 16-6 16-16v-20l12-6c4-2 4-6 2-10l-12-22c2-44-22-76-56-76z" fill="#fff" stroke="#9C57F9" stroke-width="3"></path>
+</svg>
+<svg width="200" height="200" viewBox="0 0 200 200" style="position: absolute; inset: 0; opacity: {{mess}}; transition: opacity .6s; animation: vtWiggle .6s linear infinite; transform-origin: 90px 80px">
+<path d="M50 70c20-30 60-20 50 10s-40 10-20-15 70-10 40 30-60 20-40-10 50-20 60 10-30 40-50 10M60 110c20 10 50-10 40-20s-40 20-10 25 40-30 50-10" fill="none" stroke="#7512F6" stroke-width="2.5" stroke-linecap="round"></path>
+<path d="M70 50c30-10 50 30 20 30s-10-30 20-20 20 40-10 40" fill="none" stroke="#C093FB" stroke-width="2" stroke-linecap="round"></path>
+</svg>
+</div>
+
+<div style="position: absolute; top: 330px; left: 70px; width: 250px; height: 136px; border-radius: 22px 22px 40px 40px; background: linear-gradient(180deg, rgba(255,255,255,.35), rgba(255,255,255,.65)); box-shadow: inset 0 0 0 3px rgba(156,87,249,.35), 0 10px 30px rgba(74,6,162,.12)">
+<span style="position: absolute; top: -14px; left: 20px; right: 20px; height: 18px; border-radius: 8px; background: #C093FB"></span>
+<sc-for list="{{words}}" as="w" hint-placeholder-count="2">
+<button type="button" onClick="{{w.pick}}" class="p2Medium" style="all: unset; position: absolute; left: {{w.x}}%; top: {{w.y}}px; transform: translate(-50%,0); padding: 10px 16px; border-radius: 999px; background: {{w.bg}}; color: {{w.fg}}; font-weight: 800; cursor: pointer; animation: vtDrop .9s cubic-bezier(.3,1.4,.5,1) both; white-space: nowrap">{{w.text}}
+<svg width="140" height="64" viewBox="0 0 140 64" style="position: absolute; left: 50%; top: 50%; transform: translate(-50%,-50%); display: {{w.circleD}}; overflow: visible"><ellipse cx="70" cy="32" rx="72" ry="30" fill="none" stroke="#D74E2B" stroke-width="3" stroke-dasharray="400" style="animation: vtCircle .6s ease-out forwards"></ellipse></svg>
+</button>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 22px; right: 22px; bottom: {{ctaBottom}}px; display: flex; flex-direction: column; gap: 10px">
+<sc-if value="{{isTyping}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; gap: 8px">
+<div class="p1Bold" style="flex: 1; box-sizing: border-box; height: 58px; padding: 0 16px; border-radius: 16px; border: 2px solid #9C57F9; background: #fff; color: #200346; display: flex; align-items: center; white-space: nowrap; overflow: hidden">{{draft}}<span style="display: inline-block; width: 2px; height: 1.05em; background: #7512F6; vertical-align: -0.15em; margin-left: 1px; animation: kbCaret 1s step-end infinite"></span><span style="color: rgba(74,6,162,.35); display: {{phD}}">{{ph}}</span></div>
+<button type="button" onClick="{{drop}}" aria-label="Sortir de ma tête" style="all: unset; box-sizing: border-box; width: 58px; height: 58px; border-radius: 16px; background: {{dropBg}}; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer">⤵</button>
+</div>
+</sc-if>
+<sc-if value="{{isPicking}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-direction: column; gap: 10px; text-align: center"><span class="p4Medium" style="box-sizing: border-box; padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.75); opacity: .9">Par exemple : sur un contrôle, tu peux réviser 10 minutes. Sur ce que pense quelqu’un d’autre, tu n’as pas la main.</span><span class="p2Medium" style="font-weight: 700">👆 Touche un mot dans le bocal</span></div></sc-if>
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{toEnd}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Continuer</button></sc-if>
+</div>
+<sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; z-index: 8; background: linear-gradient(180deg, #F8F3FF 0%, #E3CFFD 100%)">
+<div style="position: absolute; top: 47px; left: 16px; height: 48px; display: flex; align-items: center"><button type="button" aria-label="Retour" onClick="{{backPick}}" style="all: unset; width: 40px; height: 40px; border-radius: 50%; background: rgba(32,3,70,.08); display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="#200346" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button></div>
+<div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; animation: vtFade .4s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">TON MOT</span>
+<span class="p1Bold" style="position: relative; padding: 14px 26px; border-radius: 999px; background: #fff; color: #4A06A2; font-size: 24px; font-weight: 800; box-shadow: 0 8px 24px rgba(74,6,162,.12)">{{chosen}}<svg width="200" height="80" viewBox="0 0 200 80" preserveAspectRatio="none" style="position: absolute; left: -12px; top: -10px; width: calc(100% + 24px); height: calc(100% + 20px); overflow: visible"><ellipse cx="100" cy="40" rx="100" ry="38" fill="none" stroke="#D74E2B" stroke-width="3" stroke-dasharray="520" style="animation: vtCircle .7s ease-out both"></ellipse></svg></span>
+<span class="h5Bold" style="margin-top: 6px">Celui-là, tu peux agir dessus.</span>
+<span class="p2Medium" style="opacity: .75">Pas besoin de tout régler. Un tout petit pas suffit à reprendre la main.</span>
+</div>
+<div style="position: absolute; top: 380px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 10px">
+<span class="addTextBold" style="opacity: .6; letter-spacing: .04em">CHOISIS UN TOUT PETIT PAS</span>
+<sc-for list="{{todo}}" as="t" hint-placeholder-count="3"><div style="box-sizing: border-box; padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.8); display: flex; gap: 12px; align-items: center"><span class="p1Bold" style="width: 30px; height: 30px; border-radius: 50%; background: #E3CFFD; color: #4A06A2; display: flex; align-items: center; justify-content: center; flex-shrink: 0">{{t.n}}</span><span class="p2Medium">{{t.t}}</span></div></sc-for>
+<span class="addTextSemiBold" style="opacity: .65; margin-top: 2px">🫙 {{others}}</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a></div>
+</div>
+</sc-if>
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; z-index: 8; background: linear-gradient(180deg, #F8F3FF 0%, #E3CFFD 100%)">
+<div style="position: absolute; top: 47px; left: 16px; height: 48px; display: flex; align-items: center"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(32,3,70,.08); display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="#200346" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+<div style="position: absolute; top: 100px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; animation: vtFade .4s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">VIDE-TÊTE · 2 MIN</span>
+<span class="h5Bold">Quand ça tourne en boucle dans ta tête</span>
+<span class="p2Medium" style="opacity: .75">Quand trop de pensées se mélangent, les sortir de ta tête aide à y voir plus clair. Et souvent, une seule d’entre elles dépend vraiment de toi.</span>
+</div>
+<div style="position: absolute; top: 330px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 10px">
+<span class="addTextBold" style="opacity: .6; letter-spacing: .04em">COMMENT ÇA MARCHE</span>
+<sc-for list="{{how}}" as="h" hint-placeholder-count="3"><div style="box-sizing: border-box; padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,.75); display: flex; gap: 12px; align-items: center"><span class="p1Bold" style="width: 32px; height: 32px; border-radius: 50%; background: #E3CFFD; color: #4A06A2; display: flex; align-items: center; justify-content: center; flex-shrink: 0">{{h.n}}</span><span class="p2Medium">{{h.t}}</span></div></sc-for>
+<span class="addTextSemiBold" style="opacity: .6; margin-top: 2px">🔒 Rien n’est enregistré.</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px"><button type="button" onClick="{{begin}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Commencer</button></div>
+</div>
+</sc-if>
+<sc-if value="{{kbOn}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: #D1D4DA; z-index: 20; font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif; color: #000">
+<div style="height: 40px; display: flex; align-items: center; padding: 0 6px">
+<sc-for list="{{kb.sugg}}" as="sg" hint-placeholder-count="3"><button type="button" onClick="{{sg.tap}}" style="all: unset; box-sizing: border-box; flex: 1; min-width: 0; height: 30px; display: flex; align-items: center; justify-content: center; font-size: {{sg.fs}}px; cursor: pointer; border-right: {{sg.br}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px">{{sg.l}}</button></sc-for>
+</div>
+<div style="padding: 6px 3px 0; display: flex; flex-direction: column; gap: 11px">
+<sc-for list="{{kb.rows}}" as="row" hint-placeholder-count="4"><div style="display: flex; justify-content: center; gap: 6px">
+<sc-for list="{{row.keys}}" as="k" hint-placeholder-count="10"><button type="button" onClick="{{k.tap}}" style="all: unset; box-sizing: border-box; height: 42px; width: {{k.w}}; flex: {{k.flex}}; border-radius: 5px; background: {{k.bg}}; color: {{k.fg}}; box-shadow: 0 1px 0 rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; font-size: {{k.fs}}px; cursor: pointer; user-select: none">{{k.l}}</button></sc-for>
+</div></sc-for>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 46px; display: flex; justify-content: space-between; align-items: flex-start; padding: 6px 28px 0; font-size: 22px; color: #50555C"><span>🌐</span><span>🎙️</span><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background: #000"></span></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+kbMake(field, max, o){ o = o || {}; const s = this.state; const v = s[field] || ''; const num = !!s.kbNum;
+const auto = v.length === 0 || /[.!?]\s$/.test(v); const up = !num && (!!s.kbShift || (auto && !o.lower));
+const put = (ch) => { const cur = this.state[field] || ''; if (cur.length >= max) return; this.setState({ [field]: (cur + ch).slice(0, max), kbShift: false }); };
+const del = () => { const cur = this.state[field] || ''; this.setState({ [field]: cur.slice(0, -1) }); };
+const K = (c) => { const l = up ? c.toUpperCase() : c; return { l: l, w: '33px', flex: '0 0 auto', bg: '#FFFFFF', fg: '#000', fs: 22, tap: () => put(l) }; };
+const S = (l, w, tap, fs, bg, fg) => ({ l: l, w: w, flex: '0 0 auto', bg: bg || '#ABB0BA', fg: fg || '#000', fs: fs || 16, tap: tap });
+const L = num ? [['1','2','3','4','5','6','7','8','9','0'],['-','/',':',';','(',')','€','&','@','"'],['.',',','?','!','’']] : [['a','z','e','r','t','y','u','i','o','p'],['q','s','d','f','g','h','j','k','l','m'],['w','x','c','v','b','n','’']];
+const rows = [ { keys: L[0].map(K) }, { keys: L[1].map(K) },
+ { keys: [S(num ? '#+=' : '⇧', num ? '52px' : '44px', () => { if (!num) this.setState({ kbShift: !s.kbShift }); }, num ? 15 : 20, up ? '#FFFFFF' : '#ABB0BA')].concat(L[2].map(K)).concat([S('⌫', num ? '52px' : '44px', del, 20)]) },
+ { keys: [S(num ? 'ABC' : '123', '88px', () => this.setState({ kbNum: !num }), 16), { l: 'espace', w: 'auto', flex: '1', bg: '#FFFFFF', fg: '#000', fs: 16, tap: () => put(' ') }, S(o.enter || 'retour', '88px', () => { if (o.newline) put('\n'); else if (o.onEnter) o.onEnter(); }, 16, o.blue ? '#007AFF' : '#ABB0BA', o.blue ? '#FFFFFF' : '#000')] } ];
+const acc = ['é', 'è', 'à', 'ç', 'ê', 'ù'];
+const sug = (v.length === 0 && o.sugg) ? o.sugg.slice(0, 3).map(t => ({ l: '« ' + t + ' »', fs: 15, tap: () => this.setState({ [field]: t.slice(0, max), kbShift: false }) })) : acc.map(a => ({ l: up ? a.toUpperCase() : a, fs: 20, tap: () => put(up ? a.toUpperCase() : a) }));
+return { rows: rows, sugg: sug.map((x, i, a) => Object.assign(x, { br: i < a.length - 1 ? '1px solid rgba(0,0,0,.12)' : 'none' })) }; }
+
+constructor(props){ super(props); this.state = { intro: true, end: false, words: [], draft: '', pick: null }; }
+renderVals(){
+const s = this.state; const n = s.words.length;
+const phase = n < 3 ? 'type' : (s.pick === null ? 'pick' : 'done');
+const pos = [ { x: 30, y: 78 }, { x: 70, y: 72 }, { x: 50, y: 24 } ];
+const ok = s.draft.trim().length > 0;
+return {
+isEnd: s.end, toEnd: () => this.setState({ end: true }), backPick: () => this.setState({ end: false }),
+chosen: s.pick !== null ? s.words[s.pick] : '',
+todo: [ { n: 1, t: 'Choisis un tout petit pas, moins de 5 minutes : un message, une question, une première ligne.' }, { n: 2, t: 'Décide quand tu le fais : aujourd’hui ou demain.' }, { n: 3, t: 'Si c’est trop lourd seul·e, parles-en à quelqu’un de confiance.' } ],
+others: s.words.length === 3 && s.pick !== null ? ('« ' + s.words.filter((_, i) => i !== s.pick).join(' » et « ') + ' » restent dans le bocal. Tu n’as pas à t’en occuper maintenant.') : '',
+isIntro: s.intro, begin: () => this.setState({ intro: false }),
+how: [ { n: 1, t: 'Écris 3 mots qui tournent dans ta tête, un par un.' }, { n: 2, t: 'Chaque mot sort de ta tête et tombe dans le bocal.' }, { n: 3, t: 'Choisis celui sur lequel tu peux agir un peu.' } ],
+phase: phase, stepLabel: phase === 'type' ? (n + 1) + ' / 3' : '',
+title: phase === 'type' ? (n === 0 ? 'Qu’est-ce qui tourne dans ta tête ? 3 mots.' : (n === 1 ? 'Encore un mot.' : 'Le dernier.')) : (phase === 'pick' ? 'Sur lequel de ces 3 mots peux-tu faire un petit quelque chose, toi ?' : 'Celui-là, tu peux agir dessus. Les autres peuvent attendre dans le bocal 🫙'),
+mess: phase === 'type' ? (1 - n * 0.3) : 0.08,
+words: s.words.map((w, i) => ({ text: w, x: pos[i].x, y: pos[i].y, bg: s.pick === i ? '#fff' : '#9C57F9', fg: s.pick === i ? '#4A06A2' : '#fff', circleD: s.pick === i ? 'block' : 'none', pick: () => { if (n >= 3) this.setState({ pick: i }); } })),
+isTyping: phase === 'type', isPicking: phase === 'pick', isDone: phase === 'done',
+phD: s.draft.length ? 'none' : 'inline', ctaBottom: phase === 'type' ? 312 : 34, kbOn: phase === 'type' && !s.intro && !s.end, kb: this.kbMake('draft', 18, { enter: 'OK', blue: true, lower: true, onEnter: () => { const st = this.state; if (!st.draft.trim() || st.words.length >= 3) return; this.setState({ words: st.words.concat([st.draft.trim()]), draft: '' }); } }),
+draft: s.draft, onDraft: (e) => this.setState({ draft: e.target.value }),
+ph: ['ex. contrôle', 'ex. dispute', 'ex. fatigue'][n] || '',
+dropBg: ok ? '#7512F6' : 'rgba(117,18,246,.35)',
+drop: () => { if (!ok || n >= 3) return; this.setState({ words: s.words.concat([s.draft.trim()]), draft: '' }); },
+reset: () => this.setState({ intro: true, end: false, words: [], draft: '', pick: null })
+};
+}
+}
+</script>
+</body>
+</html>

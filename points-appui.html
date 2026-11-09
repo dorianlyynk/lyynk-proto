@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>EX6+ · Mes 3 points d’appui (trépied)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+@keyframes apWobble0{0%,100%{transform:rotate(-14deg)}50%{transform:rotate(-8deg)}}
+@keyframes apWobble1{0%,100%{transform:rotate(-7deg)}50%{transform:rotate(-2deg)}}
+@keyframes apWobble2{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-2deg)}}
+@keyframes apStable{0%{transform:rotate(-2deg)}60%{transform:rotate(1deg)}100%{transform:rotate(0)}}
+@keyframes apGrow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+@keyframes apSway{0%,100%{transform:rotate(-2.5deg)}50%{transform:rotate(2.5deg)}}
+@keyframes apTwinkle{0%,100%{opacity:.3;transform:scale(.8)}50%{opacity:1;transform:scale(1.1)}}
+@keyframes apFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+input::placeholder{color:rgba(14,70,57,.35)}
+@keyframes kbCaret{0%,49%{opacity:1}50%,100%{opacity:0}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: linear-gradient(180deg, #EEFBF5 0%, #B0EAD1 100%); font-family: var(--font-sans); color: #0E4639">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(14,70,57,.08); display: flex; align-items: center; justify-content: center; color: #0E4639; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #0E4639; opacity: .75">{{stepLabel}}</span></div>
+<div style="position: absolute; top: 100px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 4px">
+<span class="h5Bold">{{title}}</span>
+</div>
+
+<div style="position: absolute; top: {{trepTop}}px; left: 45px; width: 300px; height: 300px; transform: scale({{trepSc}}); transform-origin: 50% 0; transition: transform .4s ease, top .4s ease">
+<div style="position: absolute; left: 20px; right: 20px; top: 70px; height: 24px; border-radius: 12px; background: #168567; transform-origin: 50% 50%; animation: {{wobble}}; box-shadow: 0 8px 18px rgba(14,70,57,.2)">
+<span style="position: absolute; left: 50%; bottom: 18px; transform: translateX(-50%); font-size: 64px; line-height: 1">{{figure}}</span>
+</div>
+<sc-for list="{{legs}}" as="l" hint-placeholder-count="3">
+<div style="position: absolute; left: {{l.x}}px; top: 94px; width: 74px; display: flex; flex-direction: column; align-items: center; gap: 6px">
+<span style="width: 16px; height: 140px; border-radius: 0 0 8px 8px; background: {{l.bg}}; transform-origin: top; animation: {{l.anim}}"></span>
+<span style="font-size: 26px; opacity: {{l.op}}">{{l.emoji}}</span>
+<span class="addTextBold" style="text-align: center; max-width: 90px; opacity: {{l.op}}">{{l.label}}</span>
+</div>
+</sc-for>
+</div>
+
+<div style="position: absolute; left: 22px; right: 22px; bottom: {{ctaBottom}}px; display: flex; flex-direction: column; gap: 8px">
+<sc-if value="{{isAdding}}" hint-placeholder-val="{{true}}">
+<div style="display: flex; gap: 8px">
+<sc-for list="{{types}}" as="t" hint-placeholder-count="4"><button type="button" onClick="{{t.pick}}" class="addTextBold" style="all: unset; flex: 1; padding: 10px 0; border-radius: 14px; text-align: center; background: {{t.bg}}; color: {{t.fg}}; cursor: pointer">{{t.label}}</button></sc-for>
+</div>
+<div style="display: flex; gap: 8px; align-items: center">
+<div class="p1Bold" style="flex: 1; min-width: 0; box-sizing: border-box; height: 52px; padding: 0 16px; border-radius: 16px; border: 2px solid #168567; background: #fff; color: #0E4639; display: flex; align-items: center; white-space: nowrap; overflow: hidden">{{draft}}<span style="display: inline-block; width: 2px; height: 1.05em; background: #007AFF; vertical-align: -0.15em; margin-left: 1px; animation: kbCaret 1s step-end infinite"></span><span style="color: rgba(14,70,57,.35); display: {{phD}}">{{ph}}</span></div>
+<button type="button" onClick="{{add}}" aria-label="Poser ce pied" style="all: unset; box-sizing: border-box; width: 52px; height: 52px; flex-shrink: 0; border-radius: 16px; background: #168567; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: {{addOp}}; transition: opacity .2s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+</sc-if>
+<sc-if value="{{isDone}}" hint-placeholder-val="{{false}}">
+<button type="button" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">🗃️ Ranger dans ma boîte refuge</button>
+<a href="index.html" onClick="{{reset}}" class="p2Medium" style="all: unset; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer">Terminer</a>
+</sc-if>
+</div>
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; inset: 0; z-index: 8; background: linear-gradient(180deg, #EEFBF5 0%, #B0EAD1 100%)">
+<div style="position: absolute; top: 47px; left: 16px; height: 48px; display: flex; align-items: center"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="width: 40px; height: 40px; border-radius: 50%; background: rgba(14,70,57,.08); display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="#0E4639" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a></div>
+<div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; animation: apFade .4s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">MES POINTS D’APPUI · 2 MIN</span>
+<span class="h5Bold">Qu’est-ce qui te tient debout ?</span>
+<span class="p2Medium" style="opacity: .75">Quand tout vacille, te rappeler ce sur quoi tu peux t’appuyer redonne de la stabilité : une personne, un animal, un lieu, une chose. Trouve tes 3 appuis.</span>
+</div>
+<div style="position: absolute; top: 320px; left: 95px; width: 200px; height: 270px">
+<span style="position: absolute; left: 20px; right: 20px; bottom: 6px; height: 18px; border-radius: 50%; background: rgba(14,70,57,.15); filter: blur(2px)"></span>
+<div style="position: absolute; inset: 0; transform-origin: 50% 100%; animation: apSway 4s ease-in-out infinite">
+<span style="position: absolute; left: 22px; bottom: 14px; width: 156px; height: 72px; border-radius: 50% 50% 46% 46% / 60% 60% 40% 40%; background: linear-gradient(160deg, #3DB58E, #168567); box-shadow: inset -8px -8px 0 rgba(0,0,0,.08)"></span>
+<span style="position: absolute; left: 44px; bottom: 80px; width: 116px; height: 62px; border-radius: 50% 50% 44% 44% / 62% 62% 38% 38%; background: linear-gradient(160deg, #7DDBB7, #3DB58E); box-shadow: inset -7px -7px 0 rgba(0,0,0,.07)"></span>
+<span style="position: absolute; left: 70px; bottom: 136px; width: 70px; height: 46px; border-radius: 50% 50% 44% 44% / 64% 64% 36% 36%; background: linear-gradient(160deg, #C6F2DF, #7DDBB7); box-shadow: inset -5px -5px 0 rgba(0,0,0,.06)"></span>
+<span style="position: absolute; left: 112px; bottom: 196px; font-size: 22px; color: #168567; opacity: .8; animation: apTwinkle 2.4s ease-in-out infinite">✦</span>
+</div>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px"><button type="button" onClick="{{begin}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Poser mon 1ᵉʳ pied</button></div>
+</div>
+</sc-if>
+<sc-if value="{{kbOn}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: #D1D4DA; z-index: 20; font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif; color: #000">
+<div style="height: 40px; display: flex; align-items: center; padding: 0 6px">
+<sc-for list="{{kb.sugg}}" as="sg" hint-placeholder-count="3"><button type="button" onClick="{{sg.tap}}" style="all: unset; box-sizing: border-box; flex: 1; min-width: 0; height: 30px; display: flex; align-items: center; justify-content: center; font-size: {{sg.fs}}px; cursor: pointer; border-right: {{sg.br}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px">{{sg.l}}</button></sc-for>
+</div>
+<div style="padding: 6px 3px 0; display: flex; flex-direction: column; gap: 11px">
+<sc-for list="{{kb.rows}}" as="row" hint-placeholder-count="4"><div style="display: flex; justify-content: center; gap: 6px">
+<sc-for list="{{row.keys}}" as="k" hint-placeholder-count="10"><button type="button" onClick="{{k.tap}}" style="all: unset; box-sizing: border-box; height: 42px; width: {{k.w}}; flex: {{k.flex}}; border-radius: 5px; background: {{k.bg}}; color: {{k.fg}}; box-shadow: 0 1px 0 rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; font-size: {{k.fs}}px; cursor: pointer; user-select: none">{{k.l}}</button></sc-for>
+</div></sc-for>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 46px; display: flex; justify-content: space-between; align-items: flex-start; padding: 6px 28px 0; font-size: 22px; color: #50555C"><span>🌐</span><span>🎙️</span><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background: #000"></span></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+kbMake(field, max, o){ o = o || {}; const s = this.state; const v = s[field] || ''; const num = !!s.kbNum;
+const auto = v.length === 0 || /[.!?]\s$/.test(v); const up = !num && (!!s.kbShift || (auto && !o.lower));
+const put = (ch) => { const cur = this.state[field] || ''; if (cur.length >= max) return; this.setState({ [field]: (cur + ch).slice(0, max), kbShift: false }); };
+const del = () => { const cur = this.state[field] || ''; this.setState({ [field]: cur.slice(0, -1) }); };
+const K = (c) => { const l = up ? c.toUpperCase() : c; return { l: l, w: '33px', flex: '0 0 auto', bg: '#FFFFFF', fg: '#000', fs: 22, tap: () => put(l) }; };
+const S = (l, w, tap, fs, bg, fg) => ({ l: l, w: w, flex: '0 0 auto', bg: bg || '#ABB0BA', fg: fg || '#000', fs: fs || 16, tap: tap });
+const L = num ? [['1','2','3','4','5','6','7','8','9','0'],['-','/',':',';','(',')','€','&','@','"'],['.',',','?','!','’']] : [['a','z','e','r','t','y','u','i','o','p'],['q','s','d','f','g','h','j','k','l','m'],['w','x','c','v','b','n','’']];
+const rows = [ { keys: L[0].map(K) }, { keys: L[1].map(K) },
+ { keys: [S(num ? '#+=' : '⇧', num ? '52px' : '44px', () => { if (!num) this.setState({ kbShift: !s.kbShift }); }, num ? 15 : 20, up ? '#FFFFFF' : '#ABB0BA')].concat(L[2].map(K)).concat([S('⌫', num ? '52px' : '44px', del, 20)]) },
+ { keys: [S(num ? 'ABC' : '123', '88px', () => this.setState({ kbNum: !num }), 16), { l: 'espace', w: 'auto', flex: '1', bg: '#FFFFFF', fg: '#000', fs: 16, tap: () => put(' ') }, S(o.enter || 'retour', '88px', () => { if (o.newline) put('\n'); else if (o.onEnter) o.onEnter(); }, 16, o.blue ? '#007AFF' : '#ABB0BA', o.blue ? '#FFFFFF' : '#000')] } ];
+const acc = ['é', 'è', 'à', 'ç', 'ê', 'ù'];
+const sug = (v.length === 0 && o.sugg) ? o.sugg.slice(0, 3).map(t => ({ l: '« ' + t + ' »', fs: 15, tap: () => this.setState({ [field]: t.slice(0, max), kbShift: false }) })) : acc.map(a => ({ l: up ? a.toUpperCase() : a, fs: 20, tap: () => put(up ? a.toUpperCase() : a) }));
+return { rows: rows, sugg: sug.map((x, i, a) => Object.assign(x, { br: i < a.length - 1 ? '1px solid rgba(0,0,0,.12)' : 'none' })) }; }
+
+constructor(props){ super(props); this.state = { intro: true, items: [], type: 0, draft: '' }; }
+renderVals(){
+const s = this.state; const n = s.items.length;
+const T = [ { e: '🤝', l: 'Personne', ph: 'ex. ma sœur Inès' }, { e: '🐾', l: 'Animal', ph: 'ex. Mochi, mon chat' }, { e: '📍', l: 'Lieu', ph: 'ex. le banc du parc' }, { e: '💛', l: 'Chose', ph: 'ex. ma playlist du soir' } ];
+const ok = s.draft.trim().length > 0;
+const xs = [10, 113, 216];
+return {
+isIntro: s.intro, begin: () => this.setState({ intro: false }),
+n: n, stepLabel: n < 3 ? (n + 1) + ' / 3' : '',
+title: n === 0 ? 'Ton plateau penche. Qu’est-ce qui te tient debout en ce moment ?' : (n === 1 ? 'Un pied posé. Encore un appui ?' : (n === 2 ? 'Presque stable. Un dernier ?' : 'Tu tiens debout grâce à ça 💚')),
+wobble: n >= 3 ? 'apStable .8s ease-out forwards' : ('apWobble' + n + ' ' + (1.4 + n * 0.4) + 's ease-in-out infinite'),
+figure: n >= 3 ? '🙆' : '🧍',
+legs: xs.map((x, i) => { const it = s.items[i]; return { x: x, bg: it ? '#168567' : 'rgba(22,133,103,.18)', anim: it ? 'apGrow .5s ease-out both' : 'none', emoji: it ? T[it.type].e : '·', label: it ? it.text : '', op: it ? 1 : .4 }; }),
+isAdding: n < 3, isDone: n >= 3,
+types: T.map((t, i) => ({ label: t.e + ' ' + t.l, bg: s.type === i ? '#168567' : 'rgba(255,255,255,.7)', fg: s.type === i ? '#fff' : '#0E4639', pick: () => this.setState({ type: i }) })),
+phD: s.draft.length ? 'none' : 'inline', ctaBottom: n < 3 ? 312 : 34, trepTop: n < 3 ? 196 : 200, trepSc: n < 3 ? .52 : 1, kbOn: n < 3 && !s.intro, kb: this.kbMake('draft', 22, { enter: 'OK', blue: true, onEnter: () => { const st = this.state; if (!st.draft.trim() || st.items.length >= 3) return; this.setState({ items: st.items.concat([{ type: st.type, text: st.draft.trim() }]), draft: '' }); } }),
+draft: s.draft, onDraft: (e) => this.setState({ draft: e.target.value }), ph: T[s.type].ph,
+addOp: ok ? 1 : .5,
+add: () => { if (!ok) return; this.setState({ items: s.items.concat([{ type: s.type, text: s.draft.trim() }]), draft: '' }); },
+reset: () => this.setState({ intro: true, items: [], type: 0, draft: '' })
+};
+}
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>V2 · Gestes discrets (incognito)</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+
+@keyframes gsFill{from{stroke-dashoffset:628}to{stroke-dashoffset:0}}
+@keyframes gsIn{from{opacity:0;transform:translateX(40px) rotate(4deg)}to{opacity:1;transform:none}}
+@keyframes gsBlink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(.1)}}
+@keyframes gsGlow{0%,100%{box-shadow:0 0 0 0 rgba(140,160,255,.0)}50%{box-shadow:0 0 40px 6px rgba(140,160,255,.35)}}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: radial-gradient(circle at 50% 30%, #1E2752 0%, #0E1430 70%); font-family: var(--font-sans); color: #DDE3FF">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(221,227,255,.1); display: flex; align-items: center; justify-content: center; color: #DDE3FF; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #DDE3FF; opacity: .75">{{stepLabel}}</span></div>
+<div style="position: absolute; top: 104px; left: 22px; right: 22px; display: flex; align-items: center; gap: 10px"><span style="font-size: 22px; display: inline-block; animation: gsBlink 4s infinite">🕶️</span><span class="addTextBold" style="letter-spacing: .14em; opacity: .7">MODE INCOGNITO · PERSONNE NE VOIT RIEN</span></div>
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 150px; left: 22px; right: 22px; display: flex; flex-direction: column; gap: 10px">
+<span class="h5Bold" style="color: #fff">4 gestes que personne ne remarque</span>
+<span class="p2Medium" style="opacity: .75">Pour te calmer en cours, dans le bus ou à table. 5 secondes chacun, ton téléphone peut rester posé.</span>
+</div>
+<div style="position: absolute; top: 300px; left: 22px; right: 22px; display: flex; flex-direction: column; gap: 10px">
+<span class="addTextBold" style="opacity: .6; letter-spacing: .04em">TES GESTES DU JOUR</span>
+<sc-for list="{{preview}}" as="pv" hint-placeholder-count="4"><div style="box-sizing: border-box; padding: 12px 14px; border-radius: 16px; background: rgba(221,227,255,.07); border: 1px solid rgba(140,160,255,.2); display: flex; gap: 12px; align-items: center"><span style="width: 40px; height: 40px; border-radius: 50%; background: #18204A; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0">{{pv.emoji}}</span><span class="p2Medium" style="font-weight: 700; color: #fff">{{pv.title}}</span></div></sc-for>
+<button type="button" onClick="{{reroll}}" class="addTextBold" style="all: unset; align-self: flex-start; padding: 8px 12px; border-radius: 999px; background: rgba(221,227,255,.1); cursor: pointer">🎲 D’autres gestes</button>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><button type="button" onClick="{{start}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Commencer</button></div>
+</sc-if>
+<sc-if value="{{isRun}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; top: 150px; left: 22px; right: 22px; display: flex; gap: 6px"><sc-for list="{{bars}}" as="b" hint-placeholder-count="4"><span style="flex: 1; height: 4px; border-radius: 4px; background: {{b}}"></span></sc-for></div>
+<div style="position: absolute; top: 186px; left: 22px; right: 22px; height: 110px">
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="4"><div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; opacity: {{c.op}}; transform: translateX({{c.dx}}px); transition: opacity .5s ease, transform .5s ease; pointer-events: none">
+<span class="h5Bold" style="color: #fff">{{c.title}}</span>
+<span class="p2Medium" style="opacity: .75">{{c.text}}</span>
+</div></sc-for>
+</div>
+<button type="button" onClick="{{go}}" style="all: unset; position: absolute; top: 330px; left: 75px; width: 240px; height: 240px; border-radius: 50%; cursor: pointer; animation: {{glow}}">
+<svg width="240" height="240" viewBox="0 0 240 240" style="position: absolute; inset: 0; transform: rotate(-90deg)"><circle cx="120" cy="120" r="100" fill="none" stroke="rgba(221,227,255,.12)" stroke-width="14"></circle><circle cx="120" cy="120" r="100" fill="none" stroke="#8CA0FF" stroke-width="14" stroke-linecap="round" stroke-dasharray="628" stroke-dashoffset="{{off}}" style="transition: stroke-dashoffset {{fillDur}}s linear"></circle></svg>
+<span style="position: absolute; inset: 34px; border-radius: 50%; background: #18204A"></span>
+<sc-for list="{{cards}}" as="c" hint-placeholder-count="4"><span style="position: absolute; left: 0; right: 0; top: 78px; text-align: center; font-size: 64px; line-height: 1; opacity: {{c.op}}; transition: opacity .4s ease">{{c.emoji}}</span></sc-for>
+<sc-for list="{{rings}}" as="r" hint-placeholder-count="3"><span class="addTextBold" style="position: absolute; left: 0; right: 0; top: 152px; text-align: center; opacity: {{r.op}}; transition: opacity .3s ease">{{r.t}}</span></sc-for>
+</button>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><span class="addTextSemiBold" style="text-align: center; opacity: .6">{{hint}}</span><button type="button" onClick="{{go}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer; opacity: {{ctaOp}}">{{ctaLabel}}</button></div>
+</sc-if>
+<sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 200px; left: 40px; right: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; animation: gsIn .5s ease-out">
+<span style="font-size: 64px">🤫</span><span class="h5Bold" style="color: #fff">Mission discrète réussie</span>
+<span class="p2Medium" style="opacity: .75">4 gestes, 20 secondes, personne n’a rien vu. La prochaine fois, d’autres gestes t’attendent.</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a><button type="button" onClick="{{start}}" class="p2Medium" style="all: unset; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer">Refaire avec d’autres gestes</button></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+
+constructor(props){ super(props); this.t = null; this.state = Object.assign({ step: 'intro' }, this.fresh()); }
+draw(){ const P = [ { emoji: '🙏', title: 'Paumes pressées', text: 'Sous la table, appuie fort tes paumes l’une contre l’autre.' }, { emoji: '🦶', title: 'Orteils ancrés', text: 'Enfonce tes orteils dans tes chaussures, puis relâche.' }, { emoji: '💪', title: 'Main sur l’avant-bras', text: 'Pose ta main sur ton avant-bras et sens sa chaleur.' }, { emoji: '😶', title: 'Mâchoire relâchée', text: 'Langue contre le palais, desserre les dents.' }, { emoji: '🪑', title: 'Dos contre la chaise', text: 'Colle ton dos au dossier, sens tout ce qui te porte.' }, { emoji: '✊', title: 'Poings fermés', text: 'Serre tes poings dans tes poches ou sous la table, puis ouvre.' }, { emoji: '🫁', title: 'Expire en silence', text: 'Souffle lentement par le nez, plus long que l’inspiration.' }, { emoji: '🤏', title: 'Doigts qui se touchent', text: 'Touche chaque doigt avec ton pouce, l’un après l’autre.' } ];
+return P.slice().sort(() => Math.random() - .5).slice(0, 4); }
+fresh(){ return { G: this.draw(), i: 0, phase: 'ready' }; }
+clear(){ if (this.t) { clearTimeout(this.t); this.t = null; } }
+renderVals(){ const s = this.state; const run = s.phase === 'run', done = s.phase === 'done', last = s.i === 3;
+const go = () => { if (run) return; if (done) { last ? this.setState({ step: 'end' }) : this.setState({ i: s.i + 1, phase: 'ready' }); return; } this.setState({ phase: 'run' }); this.clear(); this.t = setTimeout(() => { if (this.state.step === 'run' && this.state.phase === 'run') this.setState({ phase: 'done' }); }, 5000); };
+return { isIntro: s.step === 'intro', isRun: s.step === 'run', isEnd: s.step === 'end', stepLabel: s.step === 'run' ? (s.i + 1) + ' / 4' : '',
+preview: s.G.map(x => ({ emoji: x.emoji, title: x.title })),
+cards: s.G.map((x, k) => ({ emoji: x.emoji, title: x.title, text: x.text, op: k === s.i ? 1 : 0, dx: k === s.i ? 0 : (k < s.i ? -30 : 30) })),
+rings: [['touche', !run && !done], ['garde…', run], ['relâche ✓', done]].map(r => ({ t: r[0], op: r[1] ? .8 : 0 })),
+bars: [0,1,2,3].map(k => k < s.i || (k === s.i && done) ? '#8CA0FF' : 'rgba(221,227,255,.15)'),
+off: (run || done) ? 0 : 628, fillDur: run ? 5 : 0, glow: run ? 'gsGlow 2.5s ease-in-out infinite' : 'none',
+hint: run ? 'Garde le geste, respire normalement.' : done ? 'Bien. Ton corps a eu sa pause.' : 'Lis le geste, puis lance le cercle.',
+ctaLabel: run ? '5 secondes…' : done ? (last ? 'Terminer' : 'Geste suivant') : 'Je le fais', ctaOp: run ? .5 : 1, go: go,
+reroll: () => this.setState({ G: this.draw() }),
+start: () => { this.clear(); this.setState(Object.assign({ step: 'run' }, s.step === 'intro' ? { i: 0, phase: 'ready' } : this.fresh())); },
+reset: () => { this.clear(); this.setState(Object.assign({ step: 'intro' }, this.fresh())); } }; }
+
+}
+</script>
+</body>
+</html>

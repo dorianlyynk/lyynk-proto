@@ -1,0 +1,40 @@
+/* Type scale — mirrors theme/fonts.ts. Letter-spacing = factor × size (0 on Android in-app). */
+:root{
+  --font-sans: "Open Sans", system-ui, -apple-system, sans-serif;
+  --font-mood: "Hanken Grotesk", "Open Sans", sans-serif;
+  --font-thought: "Goudy Bookletter 1911", Georgia, serif;
+  --font-weight-regular: 400;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --h1Bold-size: 48px; --h1Bold-line: 57.6px; --h1Bold-weight: 700; --h1Bold-tracking: -1.92px;
+  --h2Bold-size: 36px; --h2Bold-line: 43.2px; --h2Bold-weight: 700; --h2Bold-tracking: -1.08px;
+  --h3Bold-size: 30px; --h3Bold-line: 39px; --h3Bold-weight: 700; --h3Bold-tracking: -0.6px;
+  --h4Bold-size: 24px; --h4Bold-line: 31.2px; --h4Bold-weight: 700; --h4Bold-tracking: -0.48px;
+  --h5Bold-size: 20px; --h5Bold-line: 27px; --h5Bold-weight: 700; --h5Bold-tracking: -0.4px;
+  --h6Bold-size: 18px; --h6Bold-line: 25.2px; --h6Bold-weight: 700; --h6Bold-tracking: -0.36px;
+  --h6SemiBold-size: 18px; --h6SemiBold-line: 25.2px; --h6SemiBold-weight: 600; --h6SemiBold-tracking: -0.36px;
+  --p1Bold-size: 16px; --p1Bold-line: 22.4px; --p1Bold-weight: 700; --p1Bold-tracking: -0.32px;
+  --p2Medium-size: 16px; --p2Medium-line: 22.4px; --p2Medium-weight: 600; --p2Medium-tracking: -0.32px;
+  --p3Bold-size: 14px; --p3Bold-line: 19.6px; --p3Bold-weight: 700; --p3Bold-tracking: -0.28px;
+  --p4Medium-size: 14px; --p4Medium-line: 19.6px; --p4Medium-weight: 600; --p4Medium-tracking: -0.28px;
+  --addTextBold-size: 12px; --addTextBold-line: 18px; --addTextBold-weight: 700; --addTextBold-tracking: 0px;
+  --addTextSemiBold-size: 12px; --addTextSemiBold-line: 18px; --addTextSemiBold-weight: 600; --addTextSemiBold-tracking: 0px;
+  --addTextMedium-size: 12px; --addTextMedium-line: 18px; --addTextMedium-weight: 400; --addTextMedium-tracking: 0px;
+  /* Mood header (CurrentDayWellbeingHeader) */
+  --mood-message-size: 22px; --mood-message-line: 28px;
+}
+.h1Bold{font-family:var(--font-sans);font-size:var(--h1Bold-size);line-height:var(--h1Bold-line);font-weight:var(--h1Bold-weight);letter-spacing:var(--h1Bold-tracking)}
+.h2Bold{font-family:var(--font-sans);font-size:var(--h2Bold-size);line-height:var(--h2Bold-line);font-weight:var(--h2Bold-weight);letter-spacing:var(--h2Bold-tracking)}
+.h3Bold{font-family:var(--font-sans);font-size:var(--h3Bold-size);line-height:var(--h3Bold-line);font-weight:var(--h3Bold-weight);letter-spacing:var(--h3Bold-tracking)}
+.h4Bold{font-family:var(--font-sans);font-size:var(--h4Bold-size);line-height:var(--h4Bold-line);font-weight:var(--h4Bold-weight);letter-spacing:var(--h4Bold-tracking)}
+.h5Bold{font-family:var(--font-sans);font-size:var(--h5Bold-size);line-height:var(--h5Bold-line);font-weight:var(--h5Bold-weight);letter-spacing:var(--h5Bold-tracking)}
+.h6Bold{font-family:var(--font-sans);font-size:var(--h6Bold-size);line-height:var(--h6Bold-line);font-weight:var(--h6Bold-weight);letter-spacing:var(--h6Bold-tracking)}
+.h6SemiBold{font-family:var(--font-sans);font-size:var(--h6SemiBold-size);line-height:var(--h6SemiBold-line);font-weight:var(--h6SemiBold-weight);letter-spacing:var(--h6SemiBold-tracking)}
+.p1Bold{font-family:var(--font-sans);font-size:var(--p1Bold-size);line-height:var(--p1Bold-line);font-weight:var(--p1Bold-weight);letter-spacing:var(--p1Bold-tracking)}
+.p2Medium{font-family:var(--font-sans);font-size:var(--p2Medium-size);line-height:var(--p2Medium-line);font-weight:var(--p2Medium-weight);letter-spacing:var(--p2Medium-tracking)}
+.p3Bold{font-family:var(--font-sans);font-size:var(--p3Bold-size);line-height:var(--p3Bold-line);font-weight:var(--p3Bold-weight);letter-spacing:var(--p3Bold-tracking)}
+.p4Medium{font-family:var(--font-sans);font-size:var(--p4Medium-size);line-height:var(--p4Medium-line);font-weight:var(--p4Medium-weight);letter-spacing:var(--p4Medium-tracking)}
+.addTextBold{font-family:var(--font-sans);font-size:var(--addTextBold-size);line-height:var(--addTextBold-line);font-weight:var(--addTextBold-weight);letter-spacing:var(--addTextBold-tracking)}
+.addTextSemiBold{font-family:var(--font-sans);font-size:var(--addTextSemiBold-size);line-height:var(--addTextSemiBold-line);font-weight:var(--addTextSemiBold-weight);letter-spacing:var(--addTextSemiBold-tracking)}
+.addTextMedium{font-family:var(--font-sans);font-size:var(--addTextMedium-size);line-height:var(--addTextMedium-line);font-weight:var(--addTextMedium-weight);letter-spacing:var(--addTextMedium-tracking)}
+.moodMessage{font-family:var(--font-mood);font-weight:700;font-size:22px;line-height:28px;letter-spacing:-0.44px;text-align:center}

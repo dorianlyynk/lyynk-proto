@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>EX4+ · La lettre retour</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+@keyframes ltOut{0%{transform:rotate(-2deg) translateY(0)}40%{transform:rotate(6deg) translate(40px,-30px) scale(.9)}100%{transform:rotate(14deg) translate(420px,-160px) scale(.6);opacity:0}}
+@keyframes ltBack{0%{transform:rotateY(90deg) scale(.9);opacity:0}100%{transform:rotateY(0) rotate(1.5deg);opacity:1}}
+@keyframes ltStamp{from{transform:scale(1.8) rotate(-18deg);opacity:0}to{transform:scale(1) rotate(-10deg);opacity:1}}
+@keyframes ltFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+textarea::placeholder{color:rgba(91,40,22,.35)}
+@keyframes kbCaret{0%,49%{opacity:1}50%,100%{opacity:0}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: linear-gradient(180deg, #FDE8E3 0%, #FCD6CC 100%); font-family: var(--font-sans); color: #5B2816">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(91,40,22,.08); display: flex; align-items: center; justify-content: center; color: #5B2816; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #5B2816; opacity: .75">{{stepLabel}}</span></div>
+<div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 6px;">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">{{kicker}}</span>
+<span class="h5Bold">{{title}}</span>
+<span class="p4Medium" style="opacity: .8">{{sub}}</span>
+</div>
+
+<sc-if value="{{isWrite}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; top: 230px; left: 28px; right: 28px; display: flex; flex-direction: column; gap: 26px">
+<div style="position: relative; padding: 22px; box-sizing: border-box; transform: rotate(-2deg); background: #FFF7EC; background-image: repeating-linear-gradient(180deg, transparent 0 33px, rgba(199,137,121,.25) 33px 34px); border-radius: 6px; box-shadow: 0 14px 34px rgba(91,40,22,.18); color: #5B2816; animation: {{flyAnim}}">
+<span style="position: absolute; top: 12px; right: 12px; width: 64px; height: 38px; border: 2px dashed rgba(199,137,121,.7); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 20px">💌</span>
+<div style="font-family: var(--font-thought); font-size: 22px; margin-bottom: 12px; padding-right: 64px">À mon ami·e,</div>
+<div style="font-family: var(--font-thought); font-size: 22px; line-height: 34px; min-height: 34px; color: #5B2816; overflow-wrap: anywhere">{{msg}}<span style="display: inline-block; width: 2px; height: 1.05em; background: #007AFF; vertical-align: -0.15em; margin-left: 1px; animation: kbCaret 1s step-end infinite"></span><span style="color: rgba(91,40,22,.35); display: {{phD}}">Écris-lui une phrase…</span></div>
+<div style="font-family: var(--font-thought); font-size: 18px; margin-top: 18px; text-align: right; opacity: .7">— moi</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{isMirror}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 240px; left: 28px; right: 28px; padding: 26px 22px; box-sizing: border-box; background: #FFF7EC; background-image: repeating-linear-gradient(180deg, transparent 0 33px, rgba(199,137,121,.25) 33px 34px); border-radius: 6px; box-shadow: 0 14px 34px rgba(91,40,22,.18); color: #5B2816; animation: ltBack .6s ease-out">
+<span class="addTextBold" style="position: absolute; top: 16px; right: 16px; padding: 4px 8px; border: 2.5px solid #D74E2B; color: #D74E2B; border-radius: 6px; animation: ltStamp .4s ease-out .5s both">RETOUR À L’ENVOYEUR</span>
+<div style="font-family: var(--font-thought); font-size: 22px; margin: 30px 0 12px">À moi,</div>
+<div style="font-family: var(--font-thought); font-size: 26px; line-height: 34px; white-space: pre-wrap; overflow-wrap: anywhere">{{msg}}</div>
+<div style="font-family: var(--font-thought); font-size: 18px; margin-top: 18px; text-align: right; opacity: .7">— moi aussi</div>
+<div class="addTextBold" style="margin-top: 14px; padding: 10px 12px; border-radius: 10px; background: rgba(215,78,43,.08); color: #8A3A1E; display: {{savedD}}">💛 Rangée dans tes pensées positives. Tu pourras la relire un jour où ça va moins bien.</div>
+</div>
+</sc-if>
+
+<div style="position: absolute; left: 22px; right: 22px; bottom: {{ctaBottom}}px">
+<sc-if value="{{isWrite}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{send}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 58px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 7px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer; opacity: {{sendOp}}">✉️ Envoyer à mon ami·e</button></sc-if>
+<sc-if value="{{isMirror}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-direction: column; gap: 8px"><sc-if value="{{notSaved}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{keep}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">{{keepLabel}}</button></sc-if><sc-if value="{{isSaved}}" hint-placeholder-val="{{false}}"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a></sc-if><button type="button" onClick="{{reset}}" class="p2Medium" style="all: unset; height: 36px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; opacity: .8">{{skipLabel}}</button></div></sc-if>
+</div>
+<sc-if value="{{kbOn}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: #D1D4DA; z-index: 20; font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif; color: #000">
+<div style="height: 40px; display: flex; align-items: center; padding: 0 6px">
+<sc-for list="{{kb.sugg}}" as="sg" hint-placeholder-count="3"><button type="button" onClick="{{sg.tap}}" style="all: unset; box-sizing: border-box; flex: 1; min-width: 0; height: 30px; display: flex; align-items: center; justify-content: center; font-size: {{sg.fs}}px; cursor: pointer; border-right: {{sg.br}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px">{{sg.l}}</button></sc-for>
+</div>
+<div style="padding: 6px 3px 0; display: flex; flex-direction: column; gap: 11px">
+<sc-for list="{{kb.rows}}" as="row" hint-placeholder-count="4"><div style="display: flex; justify-content: center; gap: 6px">
+<sc-for list="{{row.keys}}" as="k" hint-placeholder-count="10"><button type="button" onClick="{{k.tap}}" style="all: unset; box-sizing: border-box; height: 42px; width: {{k.w}}; flex: {{k.flex}}; border-radius: 5px; background: {{k.bg}}; color: {{k.fg}}; box-shadow: 0 1px 0 rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; font-size: {{k.fs}}px; cursor: pointer; user-select: none">{{k.l}}</button></sc-for>
+</div></sc-for>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 46px; display: flex; justify-content: space-between; align-items: flex-start; padding: 6px 28px 0; font-size: 22px; color: #50555C"><span>🌐</span><span>🎙️</span><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background: #000"></span></div>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+kbMake(field, max, o){ o = o || {}; const s = this.state; const v = s[field] || ''; const num = !!s.kbNum;
+const auto = v.length === 0 || /[.!?]\s$/.test(v); const up = !num && (!!s.kbShift || (auto && !o.lower));
+const put = (ch) => { const cur = this.state[field] || ''; if (cur.length >= max) return; this.setState({ [field]: (cur + ch).slice(0, max), kbShift: false }); };
+const del = () => { const cur = this.state[field] || ''; this.setState({ [field]: cur.slice(0, -1) }); };
+const K = (c) => { const l = up ? c.toUpperCase() : c; return { l: l, w: '33px', flex: '0 0 auto', bg: '#FFFFFF', fg: '#000', fs: 22, tap: () => put(l) }; };
+const S = (l, w, tap, fs, bg, fg) => ({ l: l, w: w, flex: '0 0 auto', bg: bg || '#ABB0BA', fg: fg || '#000', fs: fs || 16, tap: tap });
+const L = num ? [['1','2','3','4','5','6','7','8','9','0'],['-','/',':',';','(',')','€','&','@','"'],['.',',','?','!','’']] : [['a','z','e','r','t','y','u','i','o','p'],['q','s','d','f','g','h','j','k','l','m'],['w','x','c','v','b','n','’']];
+const rows = [ { keys: L[0].map(K) }, { keys: L[1].map(K) },
+ { keys: [S(num ? '#+=' : '⇧', num ? '52px' : '44px', () => { if (!num) this.setState({ kbShift: !s.kbShift }); }, num ? 15 : 20, up ? '#FFFFFF' : '#ABB0BA')].concat(L[2].map(K)).concat([S('⌫', num ? '52px' : '44px', del, 20)]) },
+ { keys: [S(num ? 'ABC' : '123', '88px', () => this.setState({ kbNum: !num }), 16), { l: 'espace', w: 'auto', flex: '1', bg: '#FFFFFF', fg: '#000', fs: 16, tap: () => put(' ') }, S(o.enter || 'retour', '88px', () => { if (o.newline) put('\n'); else if (o.onEnter) o.onEnter(); }, 16, o.blue ? '#007AFF' : '#ABB0BA', o.blue ? '#FFFFFF' : '#000')] } ];
+const acc = ['é', 'è', 'à', 'ç', 'ê', 'ù'];
+const sug = (v.length === 0 && o.sugg) ? o.sugg.slice(0, 3).map(t => ({ l: '« ' + t + ' »', fs: 15, tap: () => this.setState({ [field]: t.slice(0, max), kbShift: false }) })) : acc.map(a => ({ l: up ? a.toUpperCase() : a, fs: 20, tap: () => put(up ? a.toUpperCase() : a) }));
+return { rows: rows, sugg: sug.map((x, i, a) => Object.assign(x, { br: i < a.length - 1 ? '1px solid rgba(0,0,0,.12)' : 'none' })) }; }
+
+constructor(props){ super(props); this.state = { step: 'write', msg: '', flying: false, saved: false }; }
+renderVals(){
+const s = this.state; const ok = s.msg.trim().length > 0;
+const ideas = ['Tu fais de ton mieux.', 'C’est normal de ressentir ça.', 'Je suis là pour toi.', 'Ça va passer.'];
+return {
+step: s.step, isWrite: s.step === 'write', isMirror: s.step === 'mirror',
+stepLabel: s.step === 'write' ? '1 / 2' : '2 / 2',
+kicker: s.step === 'write' ? 'UNE LETTRE' : 'SURPRISE',
+title: s.step === 'write' ? 'Si ton ami·e vivait la même chose, tu lui dirais quoi ?' : 'Et si cette lettre était pour toi ?',
+sub: s.step === 'write' ? 'Une seule phrase. Comme tu lui parlerais vraiment.' : 'Relis-la lentement. Tu mérites autant de douceur que ton ami·e.',
+phD: s.msg.length ? 'none' : 'inline', ctaBottom: s.step === 'write' ? 312 : 34, kbOn: s.step === 'write' && !s.flying, kb: this.kbMake('msg', 66, { enter: 'envoyer', blue: true, sugg: ideas, onEnter: () => { if (!this.state.msg.trim() || this.state.flying) return; this.setState({ flying: true }); setTimeout(() => this.setState({ step: 'mirror', flying: false }), 950); } }),
+msg: s.msg, onMsg: (e) => this.setState({ msg: e.target.value.replace(/\n/g, ' ') }),
+rows: Math.max(1, Math.ceil(s.msg.length / 22)), taH: 34 * Math.max(1, Math.ceil(s.msg.length / 22)),
+ideas: ideas.map(t => ({ label: t, pick: () => this.setState({ msg: t }) })),
+chipsOp: s.flying ? 0 : 1,
+flyAnim: s.flying ? 'ltOut .9s ease-in forwards' : 'none',
+sendOp: ok ? 1 : .5,
+send: () => { if (!ok || s.flying) return; this.setState({ flying: true }); setTimeout(() => this.setState({ step: 'mirror', flying: false }), 950); },
+notSaved: !s.saved, isSaved: s.saved, savedD: s.saved ? 'block' : 'none', keepLabel: s.saved ? 'Terminer' : '💛 Garder dans mes pensées positives', skipLabel: s.saved ? 'Retirer de mes pensées' : 'Ne pas la garder',
+keep: () => { if (s.saved) this.setState({ step: 'write', msg: '', flying: false, saved: false }); else this.setState({ saved: true }); },
+reset: () => this.setState({ step: 'write', msg: '', flying: false, saved: false })
+};
+}
+}
+</script>
+</body>
+</html>

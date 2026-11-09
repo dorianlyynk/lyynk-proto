@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>V2 · Détective des yeux</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+
+@keyframes dtBump{0%{transform:scale(1) rotate(-8deg)}40%{transform:scale(1.12) rotate(4deg)}100%{transform:scale(1) rotate(-8deg)}}
+@keyframes dtShine{0%{transform:translateX(-120px) rotate(25deg)}100%{transform:translateX(160px) rotate(25deg)}}
+@keyframes dtStamp{0%{transform:scale(2.2) rotate(-18deg);opacity:0}60%{transform:scale(.9) rotate(-8deg);opacity:1}100%{transform:scale(1) rotate(-8deg);opacity:1}}
+@keyframes dtHand{0%,100%{transform:translate(0,0) scale(1)}45%{transform:translate(-24px,-34px) scale(1)}55%{transform:translate(-24px,-34px) scale(.88)}}
+@keyframes dtIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: #FFF4D6; background-image: radial-gradient(rgba(43,42,76,.08) 1px, transparent 1px); background-size: 18px 18px; font-family: var(--font-sans); color: #2B2A4C">
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(43,42,76,.08); display: flex; align-items: center; justify-content: center; color: #2B2A4C; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #2B2A4C; opacity: .75">{{stepLabel}}</span></div>
+<sc-if value="{{isIntro}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; animation: dtIn .4s ease-out">
+<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">DÉTECTIVE DES YEUX · 2 MIN</span>
+<span class="h5Bold">Mène l’enquête autour de toi</span>
+<span class="p2Medium" style="opacity: .75">Quand l’anxiété monte, ta tête tourne en boucle. En cherchant des indices autour de toi, ton attention revient dans la pièce et ton corps se calme.</span>
+</div>
+<div style="position: absolute; top: 330px; left: 0; right: 0; height: 260px">
+<span style="position: absolute; left: 50px; top: 30px; width: 150px; height: 190px; border-radius: 6px; background: #fff; border: 2.5px solid #2B2A4C; box-shadow: 0 6px 0 #2B2A4C; transform: rotate(-6deg); box-sizing: border-box; padding: 16px 14px; display: flex; flex-direction: column; gap: 10px"><span class="addTextBold" style="opacity: .55">MISSIONS</span><span class="p4Medium">🟡 3 choses jaunes</span><span class="p4Medium">⭕ 2 choses rondes</span><span class="p4Medium">🧸 1 chose douce</span></span>
+<span style="position: absolute; left: 170px; top: 40px; width: 140px; height: 140px; border-radius: 50%; border: 12px solid #2B2A4C; box-sizing: border-box; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.95), #FFE08A 140%); overflow: hidden; transform: rotate(-8deg)"><span style="position: absolute; top: -20px; left: 0; width: 26px; height: 180px; background: rgba(255,255,255,.55); animation: dtShine 2.4s ease-in-out infinite"></span></span>
+<span style="position: absolute; left: 280px; top: 160px; width: 22px; height: 76px; border-radius: 11px; background: #2B2A4C; transform: rotate(-42deg); transform-origin: top"></span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; z-index: 6"><button type="button" onClick="{{begin}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Ouvrir le carnet</button></div>
+</sc-if>
+<sc-if value="{{isRun}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; top: 104px; left: 22px; right: 22px; display: flex; justify-content: space-between; align-items: center"><span class="addTextBold" style="letter-spacing: .14em; opacity: .6">CARNET D’ENQUÊTE</span><button type="button" onClick="{{reroll}}" class="addTextBold" style="all: unset; padding: 6px 12px; border-radius: 999px; background: #2B2A4C; color: #FFF4D6; cursor: pointer">🎲 Autre enquête</button></div>
+<div style="position: absolute; top: 146px; left: 22px; right: 22px; box-sizing: border-box; padding: 18px; border-radius: 6px; background: #fff; box-shadow: 0 6px 0 #2B2A4C; border: 2.5px solid #2B2A4C; transform: rotate(-1deg)">
+<span class="addTextBold" style="opacity: .55">Mission {{mNum}} / 3</span>
+<div style="display: flex; align-items: center; gap: 12px; margin-top: 6px"><span style="font-size: 40px">{{mEmoji}}</span><span class="h5Bold">{{mText}}</span></div>
+<span class="p4Medium" style="opacity: .7; margin-top: 6px; display: block">{{mHelp}}</span>
+</div>
+<button type="button" onClick="{{find}}" aria-label="J’en ai trouvé une" style="all: unset; position: absolute; top: 340px; left: 95px; width: 200px; height: 230px; cursor: pointer">
+<span style="position: absolute; left: 0; top: 0; width: 170px; height: 170px; border-radius: 50%; border: 14px solid #2B2A4C; box-sizing: border-box; background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.95), {{mColor}} 140%); overflow: hidden; transform: rotate(-8deg); display: flex; align-items: center; justify-content: center">
+<span style="position: absolute; top: -20px; left: 0; width: 30px; height: 220px; background: rgba(255,255,255,.55); animation: dtShine 2.4s ease-in-out infinite"></span>
+<span class="h2Bold" style="position: relative; color: #2B2A4C">{{found}}/{{need}}</span>
+</span>
+<span style="position: absolute; left: 132px; top: 140px; width: 26px; height: 88px; border-radius: 13px; background: #2B2A4C; transform: rotate(-42deg); transform-origin: top"></span>
+</button>
+<span aria-hidden="true" style="position: absolute; left: 238px; top: 470px; z-index: 4; pointer-events: none"><span style="display: block; animation: dtHand 1.6s ease-in-out infinite"><span style="display: block; font-size: 48px; transform: rotate(-35deg); filter: drop-shadow(0 4px 8px rgba(43,42,76,.3))">👆</span></span></span>
+<span class="p2Medium" style="position: absolute; top: 580px; left: 30px; right: 30px; text-align: center; font-weight: 700; opacity: .8">Touche la loupe à chaque objet trouvé. Juste avec les yeux.</span>
+<div style="position: absolute; bottom: 44px; left: 22px; right: 22px; display: flex; gap: 10px; justify-content: center">
+<sc-for list="{{slots}}" as="s" hint-placeholder-count="3"><span style="width: 74px; height: 74px; border-radius: 6px; border: 2px dashed rgba(43,42,76,.3); background: {{s.bg}}; display: flex; align-items: center; justify-content: center; font-size: 30px"><span style="animation: {{s.anim}}; color: #C2410C; font-weight: 900">{{s.mark}}</span></span></sc-for>
+</div>
+</sc-if>
+<sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
+<div style="position: absolute; top: 150px; left: 40px; right: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; animation: dtIn .5s ease-out">
+<span class="h2Bold" style="padding: 10px 18px; border: 4px solid #C2410C; color: #C2410C; border-radius: 8px; transform: rotate(-8deg); animation: dtStamp .5s ease-out">DOSSIER CLASSÉ</span>
+<span class="h5Bold" style="margin-top: 30px">6 indices trouvés</span>
+<span class="p2Medium" style="opacity: .75">Pendant quelques minutes, ton attention était dehors, pas dans ta tête. C’est exactement ce qui calme.</span>
+</div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a><button type="button" onClick="{{reroll}}" class="p2Medium" style="all: unset; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer">Nouvelle enquête</button></div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+
+constructor(props){ super(props); this.state = Object.assign(this.fresh(), { intro: true }); }
+fresh(){ const r = (a) => a[Math.floor(Math.random() * a.length)];
+const C = [['jaunes','🟡','#F2C230'],['bleues','🔵','#7FB2FF'],['rouges','🔴','#FF8A8A'],['vertes','🟢','#7DDBA6'],['blanches','⚪','#FFFFFF'],['noires','⚫','#B8B8C8']];
+const S = [['rondes','⭕','Une horloge, un bouton, une tasse…'],['carrées','🟧','Une fenêtre, un cahier, un écran…'],['qui brillent','✨','Du métal, une vitre, un écran…'],['avec des lettres','🔠','Une affiche, une boîte, un tee-shirt…']];
+const T = [['douce','🧸'],['froide','🧊'],['rugueuse','🪵'],['lisse','🪨']];
+const c = r(C), s = r(S), t = r(T);
+return { intro: false, m: 0, found: 0, end: false, M: [ { n: 3, e: c[1], t: 'Trouve 3 choses ' + c[0], h: 'Regarde autour de toi, sans te lever.', col: c[2] }, { n: 2, e: s[1], t: '2 choses ' + s[0], h: s[2], col: '#FFE08A' }, { n: 1, e: t[1], t: '1 chose ' + t[0], h: 'Si tu peux, touche-la et sens sa texture.', col: '#FFC9A8' } ] }; }
+renderVals(){ const s = this.state; const M = s.M[s.m];
+return { isIntro: s.intro, isRun: !s.intro && !s.end, isEnd: s.end, begin: () => this.setState({ intro: false }), stepLabel: (s.end || s.intro) ? '' : 'Mission ' + (s.m + 1) + ' / 3', mKey: 'm' + s.m + M.t, mNum: s.m + 1, mEmoji: M.e, mText: M.t, mHelp: M.h, mColor: M.col, found: s.found, need: M.n,
+slots: s.M.map((x, i) => ({ k: i + '-' + (i < s.m ? 1 : 0), bg: i < s.m ? '#fff' : 'transparent', mark: i < s.m ? '✓' : '', anim: i < s.m ? 'dtStamp .4s ease-out' : 'none' })),
+find: () => { const f = s.found + 1; if (f >= M.n) { if (s.m >= 2) this.setState({ end: true, found: 0, m: 3 > s.m ? s.m : 2 }); else this.setState({ m: s.m + 1, found: 0 }); } else this.setState({ found: f }); },
+reroll: () => this.setState(this.fresh()), reset: () => this.setState(Object.assign(this.fresh(), { intro: true })) }; }
+
+}
+</script>
+</body>
+</html>

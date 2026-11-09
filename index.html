@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Réflexion · liste des exercices</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Lyynk">
+<meta name="theme-color" content="#F4F7FE">
+<link rel="apple-touch-icon" href="assets/icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="frame.css">
+<script src="dc-runtime.js"></script>
+<script src="frame.js" defer></script>
+<link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
+<script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0}
+a{color:#316BDF}a:hover{color:#2758CE}
+@keyframes rfIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: var(--blue25); font-family: var(--font-sans); color: var(--greyLight900)">
+<div style="position: absolute; inset: 0; overflow-y: auto">
+<div style="padding: 47px 20px 0; display: flex; flex-direction: column">
+<div style="height: 48px; display: flex; align-items: center">
+<button type="button" aria-label="Retour" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: var(--white); display: flex; align-items: center; justify-content: center; color: var(--greyLight900); cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+<div style="margin-top: -8px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center">
+<img src="assets/reflexion.png" alt="" style="width: 84px; height: 84px; object-fit: contain">
+<span class="h2Bold">Réflexion</span>
+</div>
+</div>
+
+<div style="padding: 28px 20px 40px; display: flex; flex-direction: column; gap: 24px">
+<sc-for list="{{groups}}" as="g" hint-placeholder-count="4">
+<div style="display: flex; flex-direction: column; gap: 10px; animation: rfIn .35s ease-out">
+<div style="display: flex; flex-direction: column; gap: 2px; font-size: 13px"><span style="font-family: var(--font-mood); font-weight: 700; font-size: 18px; line-height: 24px; letter-spacing: -0.36px; color: var(--greyLight900)">{{g.title}}</span>
+</div>
+<sc-for list="{{g.items}}" as="e" hint-placeholder-count="3">
+<a href="{{e.href}}" style="all: unset; box-sizing: border-box; display: flex; align-items: center; gap: 14px; padding: 12px 14px 12px 12px; border-radius: var(--radius-xl); background: var(--white); cursor: pointer; box-shadow: 0 1px 2px rgba(16,33,40,.04)">
+<span aria-hidden="true" style="width: 64px; height: 64px; border-radius: 16px; background: {{e.bg}}; display: flex; align-items: center; justify-content: center; font-size: 30px; flex-shrink: 0">{{e.emoji}}</span>
+<span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+<span class="p2Medium" style="font-weight: 700; color: var(--greyLight900)">{{e.title}}</span>
+<span class="p4Medium" style="color: var(--greyLight600)">{{e.desc}}</span>
+<span style="display: flex; gap: 6px; margin-top: 2px">
+<span class="addTextBold" style="padding: 2px 8px; border-radius: var(--radius-full); background: var(--blue50); color: var(--blue700)">{{e.time}}</span>
+<span class="addTextBold" style="padding: 2px 8px; border-radius: var(--radius-full); background: var(--blue50); color: var(--blue700); display: {{e.tagD}}">{{e.tag}}</span>
+</span>
+</span>
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="flex-shrink: 0; color: var(--greyLight600)"><path d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+</a>
+</sc-for>
+</div>
+</sc-for>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+constructor(props){ super(props); this.state = { f: 'all' }; }
+renderVals(){ const s = this.state;
+const G = [
+{ id: 'anx', chip: '😰 Anxiété', title: 'Quand l’anxiété monte', sub: 'Pour revenir ici et maintenant', items: [
+{ href: 'detective.html', emoji: '🔍', bg: '#FFF4D6', title: 'Détective des yeux', desc: 'Trouve des indices autour de toi.', time: '2 min' },
+{ href: 'radar.html', emoji: '🎧', bg: 'linear-gradient(135deg, #0F3A3A, #04140F)', title: 'Radar à sons', desc: 'Repère les sons, du plus proche au plus lointain.', time: '2 min' },
+{ href: 'alphabet.html', emoji: '🔤', bg: 'linear-gradient(180deg, #E9F7EF, #CDEBDB)', title: 'Alphabet à thèmes', desc: 'Un mot par lettre pour occuper ta tête.', time: 'À ton rythme' } ] },
+{ id: 'body', chip: '🫀 Corps tendu', title: 'Calmer ton corps', sub: 'Quand tout s’accélère à l’intérieur', items: [
+{ href: 'souffle.html', emoji: '🌬️', bg: 'linear-gradient(180deg, #EEF8FF, #CDE7F7)', title: 'Souffle', desc: 'Suis le cercle, ton cœur ralentit.', time: '1 min' },
+{ href: 'gestes.html', emoji: '🤫', bg: 'linear-gradient(135deg, #1E2752, #0E1430)', title: 'Gestes discrets', desc: '4 gestes qui calment, même en classe.', time: '2 min', tag: 'Discret' },
+{ href: 'decompter.html', emoji: '🌅', bg: 'linear-gradient(180deg, #FFD9B8, #FFB38A)', title: 'Décompter', desc: 'De 10 à 1, pour revenir dans ton corps.', time: '1 min' },
+{ href: 'papillon.html', emoji: '🦋', bg: 'linear-gradient(180deg, #FFE9F2, #E2DAFF)', title: 'Câlin papillon', desc: 'Un câlin que tu te fais à toi.', time: '1 min', tag: 'Mains libres' } ] },
+{ id: 'mind', chip: '💭 Tête pleine', title: 'Alléger tes pensées', sub: 'Quand ça tourne en boucle', items: [
+{ href: 'laisse-partir.html', emoji: '🔥', bg: 'linear-gradient(180deg, #FFE6D6, #FFC4A3)', title: 'Laisse partir', desc: 'Écris ce qui pèse, puis lâche-le.', time: '2 min', tag: 'J’écris' },
+{ href: 'bocal.html', emoji: '🫙', bg: 'linear-gradient(180deg, #F8F3FF, #E3CFFD)', title: 'Le bocal', desc: 'Vide ta tête et garde un seul mot.', time: '3 min', tag: 'J’écris' },
+{ href: 'lettre.html', emoji: '💌', bg: 'linear-gradient(180deg, #FDE8E3, #FCD6CC)', title: 'La lettre', desc: 'Ce que tu dirais à un·e ami·e qui vit la même chose.', time: '2 min', tag: 'J’écris' } ] },
+{ id: 'charge', chip: '🔋 Recharger', title: 'Recharger le positif', sub: 'Pour les jours ordinaires aussi', items: [
+{ href: 'points-appui.html', emoji: '🪨', bg: 'linear-gradient(180deg, #EEFBF5, #B0EAD1)', title: 'Mes points d’appui', desc: 'Ce qui te tient debout quand ça vacille.', time: '2 min', tag: 'J’écris' },
+{ href: 'rituel-du-soir.html', emoji: '🌙', bg: 'linear-gradient(135deg, #141C52, #2A2470)', title: 'Rituel du soir', desc: 'Allume 3 étoiles avant de dormir.', time: '2 min', tag: 'J’écris' },
+{ href: 'menu.html', emoji: '🍽️', bg: '#F3ECE0', title: 'Menu feel-good', desc: 'Commande-toi un moment qui fait du bien.', time: '2 min' } ] } ];
+const C = [{ id: 'all', label: 'Tout' }].concat(G.map(g => ({ id: g.id, label: g.chip })));
+return {
+chips: C.map(c => ({ label: c.label, bg: c.id === s.f ? 'var(--blue600)' : 'var(--white)', fg: c.id === s.f ? 'var(--white)' : 'var(--greyLight800)', bd: c.id === s.f ? 'var(--blue600)' : 'var(--blue50)', pick: () => this.setState({ f: c.id }) })),
+groups: G.filter(g => s.f === 'all' || g.id === s.f).map(g => ({ title: g.title, sub: g.sub, items: g.items.map(e => Object.assign({}, e, { tag: e.tag || '', tagD: e.tag ? 'inline-flex' : 'none' })) }))
+}; }
+}
+</script>
+</body>
+</html>
