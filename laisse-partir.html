@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
 <script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-<script src="assets/froisser-v5.js"></script>
+<script src="assets/froisser-corbeille.js"></script>
 </head>
 <body>
 <x-dc>
@@ -106,8 +106,8 @@ this.state = { step: 'write', text: '' };
 }
 play(txt) {
 let done = false; const fin = () => { if (done) return; done = true; if (this.anim) { this.anim.destroy(); this.anim = null; } this.setState({ step: 'end', text: '' }); };
-setTimeout(fin, 3400);
-let tries = 0; const go = () => { const el = document.querySelector('[data-lottie="froisser"]'); const src = window.LYYNK_LOTTIE && window.LYYNK_LOTTIE.froisserV5;
+setTimeout(fin, 5200);
+let tries = 0; const go = () => { const el = document.querySelector('[data-lottie="froisser"]'); const src = window.LYYNK_LOTTIE && window.LYYNK_LOTTIE.froisserCorbeille;
  if (!el || !window.lottie || !src) { if (++tries < 20) return setTimeout(go, 50); return; }
  const data = JSON.parse(JSON.stringify(src)); try { (data.fonts && data.fonts.list || []).forEach(f => { f.fFamily = getComputedStyle(el).fontFamily || 'Open Sans, sans-serif'; }); } catch (e) {}
  try { data.assets[0].layers[0].t.d.k[0].s.t = txt.replace(/\n/g, '\r'); } catch (e) {}
