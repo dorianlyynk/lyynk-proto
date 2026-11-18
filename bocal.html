@@ -56,6 +56,7 @@ input::placeholder{color:rgba(74,6,162,.35)}
 </sc-for>
 </div>
 
+<sc-if value="{{isPicking}}" hint-placeholder-val="{{false}}"><div style="position: absolute; top: 488px; left: 22px; right: 22px; display: flex; flex-direction: column; gap: 12px; text-align: center; animation: vtFade .4s ease-out"><span class="p2Medium" style="font-weight: 700">👆 Touche un mot dans le bocal</span><span class="p4Medium" style="box-sizing: border-box; padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.75); opacity: .9">Par exemple : sur un contrôle, tu peux réviser 10 minutes. Sur ce que pense quelqu’un d’autre, tu n’as pas la main.</span></div></sc-if>
 <div style="position: absolute; left: 22px; right: 22px; bottom: {{ctaBottom}}px; display: flex; flex-direction: column; gap: 10px">
 <sc-if value="{{isTyping}}" hint-placeholder-val="{{true}}">
 <div style="display: flex; gap: 8px">
@@ -63,7 +64,7 @@ input::placeholder{color:rgba(74,6,162,.35)}
 <button type="button" onClick="{{drop}}" aria-label="Sortir de ma tête" style="all: unset; box-sizing: border-box; width: 58px; height: 58px; border-radius: 16px; background: {{dropBg}}; color: #fff; display: flex; align-items: center; justify-content: center; font-size: 24px; cursor: pointer">⤵</button>
 </div>
 </sc-if>
-<sc-if value="{{isPicking}}" hint-placeholder-val="{{false}}"><div style="display: flex; flex-direction: column; gap: 10px; text-align: center"><span class="p4Medium" style="box-sizing: border-box; padding: 12px 14px; border-radius: 16px; background: rgba(255,255,255,.75); opacity: .9">Par exemple : sur un contrôle, tu peux réviser 10 minutes. Sur ce que pense quelqu’un d’autre, tu n’as pas la main.</span><span class="p2Medium" style="font-weight: 700">👆 Touche un mot dans le bocal</span></div></sc-if>
+
 <sc-if value="{{isDone}}" hint-placeholder-val="{{false}}"><button type="button" onClick="{{toEnd}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Continuer</button></sc-if>
 </div>
 <sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">

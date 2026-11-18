@@ -28,10 +28,11 @@ a{color:#316BDF}a:hover{color:#2758CE}
 @keyframes abPop{0%{transform:scale(.4)}70%{transform:scale(1.15)}100%{transform:scale(1)}}
 @keyframes abSpin{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
 
+@keyframes kbCaret{0%,49%{opacity:1}50%,100%{opacity:0}}
 </style>
 </helmet>
 <div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: linear-gradient(180deg, #E9F7EF 0%, #CDEBDB 100%); font-family: var(--font-sans); color: #123B2A">
-<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(18,59,42,.08); display: flex; align-items: center; justify-content: center; color: #123B2A; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><span class="addTextBold" style="color: #123B2A; opacity: .75">{{stepLabel}}</span></div>
+<div style="position: absolute; top: 47px; left: 16px; right: 16px; height: 48px; display: flex; align-items: center; justify-content: space-between; z-index: 5"><a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: 50%; background: rgba(18,59,42,.08); display: flex; align-items: center; justify-content: center; color: #123B2A; cursor: pointer"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></a><sc-if value="{{isRun}}" hint-placeholder-val="{{true}}"><button type="button" onClick="{{stop}}" class="addTextBold" style="all: unset; box-sizing: border-box; height: 34px; padding: 0 14px; border-radius: 999px; background: #fff; color: #123B2A; display: flex; align-items: center; gap: 6px; cursor: pointer; box-shadow: 0 2px 0 #9ED8BB">J’ai fini · {{found}} ✓</button></sc-if></div>
 <sc-if value="{{isIntro}}" hint-placeholder-val="{{false}}">
 <div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; animation: none">
 <span class="addTextBold" style="letter-spacing: .14em; opacity: .6">ALPHABET · À TON RYTHME</span>
@@ -46,50 +47,95 @@ a{color:#316BDF}a:hover{color:#2758CE}
 <div style="position: absolute; left: 22px; right: 22px; bottom: 34px; z-index: 6"><button type="button" onClick="{{begin}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">C’est parti</button></div>
 </sc-if>
 <sc-if value="{{isRun}}" hint-placeholder-val="{{true}}">
-<div style="position: absolute; top: 104px; left: 22px; right: 22px; display: flex; flex-direction: column; gap: 10px">
-<span class="addTextBold" style="letter-spacing: .14em; opacity: .6">L’ALPHABET DE…</span>
-<button type="button" onClick="{{roll}}" style="all: unset; box-sizing: border-box; padding: 14px 16px; border-radius: 16px; background: #fff; display: flex; align-items: center; gap: 12px; cursor: pointer; box-shadow: 0 4px 0 #9ED8BB">
-<span style="font-size: 32px">{{tEmoji}}</span><span class="h5Bold" style="flex: 1">{{tName}}</span><span class="addTextBold" style="opacity: .6">🎲 changer</span></button>
+<div style="position: absolute; top: 102px; left: 22px; right: 22px; display: flex; justify-content: center">
+<button type="button" onClick="{{roll}}" style="all: unset; box-sizing: border-box; height: 40px; padding: 0 14px; border-radius: 999px; background: #fff; display: flex; align-items: center; gap: 8px; cursor: pointer; box-shadow: 0 3px 0 #9ED8BB"><span style="font-size: 20px">{{tEmoji}}</span><span class="p2Medium" style="font-weight: 700">{{tName}}</span><span class="addTextBold" style="opacity: .55">🎲</span></button>
 </div>
-<div style="position: absolute; top: 250px; left: 0; right: 0; display: flex; justify-content: center; perspective: 600px">
-<div style="width: 170px; height: 190px; border-radius: 22px; background: #FFFDF6; box-shadow: 0 10px 0 #2F9E6E, 0 18px 30px rgba(18,59,42,.2); display: flex; flex-direction: column; align-items: center; justify-content: center">
-<div style="position: relative; width: 170px; height: 190px"><sc-for list="{{letters}}" as="lt" hint-placeholder-count="26"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 120px; line-height: 1; font-weight: 900; color: #123B2A; opacity: {{lt.op}}; transform: scale({{lt.sc}}); transition: opacity .3s ease, transform .3s ease">{{lt.l}}</span></sc-for></div>
+<div style="position: absolute; top: 156px; left: 0; right: 0; display: flex; align-items: center; justify-content: center; gap: 22px">
+<button type="button" aria-label="Lettre précédente" onClick="{{prev}}" style="all: unset; box-sizing: border-box; width: 44px; height: 44px; border-radius: 50%; background: rgba(18,59,42,.08); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: {{prevOp}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+<div style="position: relative; width: 96px; height: 104px; border-radius: 18px; background: {{tileBg}}; box-shadow: 0 7px 0 #2F9E6E, 0 14px 24px rgba(18,59,42,.18); transition: background .3s">
+<sc-for list="{{letters}}" as="lt" hint-placeholder-count="26"><span style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 68px; line-height: 1; font-weight: 900; color: {{lt.fg}}; opacity: {{lt.op}}; transform: scale({{lt.sc}}); transition: opacity .25s ease, transform .25s ease">{{lt.l}}</span></sc-for>
+<span style="position: absolute; top: -8px; right: -8px; width: 26px; height: 26px; border-radius: 50%; background: #2F9E6E; color: #fff; font-size: 14px; font-weight: 900; display: {{doneD}}; align-items: center; justify-content: center; box-shadow: 0 0 0 3px #E9F7EF">✓</span>
+</div>
+<button type="button" aria-label="Lettre suivante" onClick="{{nextL}}" style="all: unset; box-sizing: border-box; width: 44px; height: 44px; border-radius: 50%; background: rgba(18,59,42,.08); display: flex; align-items: center; justify-content: center; cursor: pointer; opacity: {{nextOp}}"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M8.91 19.92l6.52-6.52c.77-.77.77-2.03 0-2.8L8.91 4.08" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+<div style="position: absolute; top: 280px; left: 22px; right: 22px; height: 22px"><sc-for list="{{prompts}}" as="pr" hint-placeholder-count="26"><span class="p4Medium" style="position: absolute; inset: 0; text-align: center; font-weight: 700; opacity: {{pr.op}}; transition: opacity .25s ease">{{pr.t}}</span></sc-for></div>
+<div style="position: absolute; top: 314px; left: 18px; right: 18px; display: grid; grid-template-columns: repeat(13, minmax(0, 1fr)); gap: 4px">
+<sc-for list="{{tiles}}" as="t" hint-placeholder-count="26"><button type="button" onClick="{{t.go}}" aria-label="Lettre {{t.l}}" class="addTextBold" style="all: unset; box-sizing: border-box; height: 26px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: {{t.bg}}; color: {{t.fg}}; box-shadow: {{t.ring}}; cursor: pointer; transition: background .25s">{{t.l}}</button></sc-for>
+</div>
+<div style="position: absolute; top: 380px; left: 0; right: 0; height: 78px; overflow-y: auto; padding: 0 22px; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: center">
+<sc-for list="{{words}}" as="w" hint-placeholder-count="3"><button type="button" onClick="{{w.go}}" class="addTextSemiBold" style="all: unset; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.7); color: #123B2A; cursor: pointer; white-space: nowrap"><b style="color: #2F9E6E">{{w.l}}</b> · {{w.t}}</button></sc-for>
+<span class="addTextSemiBold" style="opacity: .55; display: {{wordsHintD}}">Tes mots s’afficheront ici.</span>
 </div>
 </div>
-<div style="position: absolute; top: 470px; left: 22px; right: 22px; height: 40px"><sc-for list="{{prompts}}" as="pr" hint-placeholder-count="26"><span class="p2Medium" style="position: absolute; inset: 0; text-align: center; opacity: {{pr.op}}; transition: opacity .3s ease">{{pr.t}}</span></sc-for></div>
-<div style="position: absolute; top: 520px; left: 22px; right: 22px; display: grid; grid-template-columns: repeat(9, 1fr); gap: 5px">
-<sc-for list="{{tiles}}" as="t" hint-placeholder-count="26"><span class="addTextBold" style="height: 30px; border-radius: 7px; display: flex; align-items: center; justify-content: center; background: {{t.bg}}; color: {{t.fg}}; outline: {{t.ol}}; transition: background .3s">{{t.l}}</span></sc-for>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 312px; display: flex; gap: 8px; z-index: 6">
+<div class="p1Bold" style="flex: 1; min-width: 0; box-sizing: border-box; height: 58px; padding: 0 16px; border-radius: 16px; border: 2px solid #2F9E6E; background: #fff; color: #123B2A; display: flex; align-items: center; white-space: nowrap; overflow: hidden">{{draft}}<span style="display: inline-block; width: 2px; height: 1.05em; background: #007AFF; vertical-align: -0.15em; margin-left: 1px; animation: kbCaret 1s step-end infinite"></span><span style="color: rgba(18,59,42,.4); display: {{phD}}">{{ph}}</span></div>
+<button type="button" onClick="{{submit}}" aria-label="Valider le mot" style="all: unset; box-sizing: border-box; width: 58px; height: 58px; flex-shrink: 0; border-radius: 16px; background: {{subBg}}; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background .2s"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
 </div>
-<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><div style="display: flex; gap: 10px">
-<button type="button" onClick="{{skip}}" class="p1Bold" style="all: unset; box-sizing: border-box; flex: 1; min-height: 62px; border-radius: 16px; background: rgba(18,59,42,.08); display: flex; align-items: center; justify-content: center; cursor: pointer">Passer</button>
-<button type="button" onClick="{{ok}}" class="p1Bold" style="all: unset; box-sizing: border-box; flex: 2; min-height: 62px; border-radius: 16px; background: #2F9E6E; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 0 #1D6B4A">✓ Trouvé</button>
-</div>
-<button type="button" onClick="{{stop}}" class="p2Medium" style="all: unset; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; opacity: .8">Je me sens mieux, j’arrête là</button></div>
 </sc-if>
 <sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
 <div style="position: absolute; top: 180px; left: 40px; right: 40px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center">
 <span style="font-size: 64px; animation: abPop .5s ease-out">{{tEmoji}}</span>
 <span class="h5Bold">{{endTitle}}</span>
 <span class="p2Medium" style="opacity: .75">Ton cerveau était occupé à chercher, il a eu moins de place pour ruminer. La prochaine fois, essaie un autre thème.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 6px"><sc-for list="{{words}}" as="w" hint-placeholder-count="3"><span class="addTextSemiBold" style="padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,.75)"><b style="color: #2F9E6E">{{w.l}}</b> · {{w.t}}</span></sc-for></div>
 </div>
 <div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a></div>
+</sc-if>
+<sc-if value="{{kbOn}}" hint-placeholder-val="{{true}}">
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: #D1D4DA; z-index: 20; font-family: -apple-system, 'SF Pro Text', 'Helvetica Neue', system-ui, sans-serif; color: #000">
+<div style="height: 40px; display: flex; align-items: center; padding: 0 6px">
+<sc-for list="{{kb.sugg}}" as="sg" hint-placeholder-count="3"><button type="button" onClick="{{sg.tap}}" style="all: unset; box-sizing: border-box; flex: 1; min-width: 0; height: 30px; display: flex; align-items: center; justify-content: center; font-size: {{sg.fs}}px; cursor: pointer; border-right: {{sg.br}}; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 4px">{{sg.l}}</button></sc-for>
+</div>
+<div style="padding: 6px 3px 0; display: flex; flex-direction: column; gap: 11px">
+<sc-for list="{{kb.rows}}" as="row" hint-placeholder-count="4"><div style="display: flex; justify-content: center; gap: 6px">
+<sc-for list="{{row.keys}}" as="k" hint-placeholder-count="10"><button type="button" onClick="{{k.tap}}" style="all: unset; box-sizing: border-box; height: 42px; width: {{k.w}}; flex: {{k.flex}}; border-radius: 5px; background: {{k.bg}}; color: {{k.fg}}; box-shadow: 0 1px 0 rgba(0,0,0,.3); display: flex; align-items: center; justify-content: center; font-size: {{k.fs}}px; cursor: pointer; user-select: none">{{k.l}}</button></sc-for>
+</div></sc-for>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 46px; display: flex; justify-content: space-between; align-items: flex-start; padding: 6px 28px 0; font-size: 22px; color: #50555C"><span>🌐</span><span>🎙️</span><span style="position: absolute; left: 50%; bottom: 8px; transform: translateX(-50%); width: 134px; height: 5px; border-radius: 3px; background: #000"></span></div>
+</div>
 </sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
+kbMake(field, max, o){ o = o || {}; const s = this.state; const v = s[field] || ''; const num = !!s.kbNum;
+const auto = v.length === 0 || /[.!?]\s$/.test(v); const up = !num && (!!s.kbShift || (auto && !o.lower));
+const put = (ch) => { const cur = this.state[field] || ''; if (cur.length >= max) return; this.setState({ [field]: (cur + ch).slice(0, max), kbShift: false }); };
+const del = () => { const cur = this.state[field] || ''; this.setState({ [field]: cur.slice(0, -1) }); };
+const K = (c) => { const l = up ? c.toUpperCase() : c; return { l: l, w: '33px', flex: '0 0 auto', bg: '#FFFFFF', fg: '#000', fs: 22, tap: () => put(l) }; };
+const S = (l, w, tap, fs, bg, fg) => ({ l: l, w: w, flex: '0 0 auto', bg: bg || '#ABB0BA', fg: fg || '#000', fs: fs || 16, tap: tap });
+const L = num ? [['1','2','3','4','5','6','7','8','9','0'],['-','/',':',';','(',')','€','&','@','"'],['.',',','?','!','’']] : [['a','z','e','r','t','y','u','i','o','p'],['q','s','d','f','g','h','j','k','l','m'],['w','x','c','v','b','n','’']];
+const rows = [ { keys: L[0].map(K) }, { keys: L[1].map(K) },
+ { keys: [S(num ? '#+=' : '⇧', num ? '52px' : '44px', () => { if (!num) this.setState({ kbShift: !s.kbShift }); }, num ? 15 : 20, up ? '#FFFFFF' : '#ABB0BA')].concat(L[2].map(K)).concat([S('⌫', num ? '52px' : '44px', del, 20)]) },
+ { keys: [S(num ? 'ABC' : '123', '88px', () => this.setState({ kbNum: !num }), 16), { l: 'espace', w: 'auto', flex: '1', bg: '#FFFFFF', fg: '#000', fs: 16, tap: () => put(' ') }, S(o.enter || 'retour', '88px', () => { if (o.newline) put('\n'); else if (o.onEnter) o.onEnter(); }, 16, o.blue ? '#007AFF' : '#ABB0BA', o.blue ? '#FFFFFF' : '#000')] } ];
+const acc = ['é', 'è', 'à', 'ç', 'ê', 'ù'];
+const sug = (v.length === 0 && o.sugg) ? o.sugg.slice(0, 3).map(t => ({ l: '« ' + t + ' »', fs: 15, tap: () => this.setState({ [field]: t.slice(0, max), kbShift: false }) })) : acc.map(a => ({ l: up ? a.toUpperCase() : a, fs: 20, tap: () => put(up ? a.toUpperCase() : a) }));
+return { rows: rows, sugg: sug.map((x, i, a) => Object.assign(x, { br: i < a.length - 1 ? '1px solid rgba(0,0,0,.12)' : 'none' })) }; }
 
-constructor(props){ super(props); this.state = { intro: true, th: Math.floor(Math.random() * 8), i: 0, st: [], end: false }; }
+
+constructor(props){ super(props); this.state = this.fresh(true); }
+fresh(intro){ return { intro: intro, th: Math.floor(Math.random() * 8), i: 0, words: Array(26).fill(''), draft: 'A', end: false }; }
 renderVals(){ const s = this.state;
 const TH = [['📺','Séries et films','Une série, un film ou un dessin animé en'],['🍝','Plats','Un plat ou un aliment en'],['🐾','Animaux','Un animal en'],['🌍','Pays et villes','Un pays ou une ville en'],['🎤','Artistes','Un·e chanteur·se ou un groupe en'],['⚽','Sports','Un sport ou un geste sportif en'],['🛏️','Ta chambre','Un objet de ta chambre en'],['🍎','Fruits et légumes','Un fruit ou un légume en']];
-const t = TH[s.th]; const L = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); const found = s.st.filter(x => x).length;
-const next = (v) => { const st = s.st.concat([v]); if (st.length >= 26) this.setState({ st: st, end: true }); else this.setState({ st: st, i: s.i + 1 }); };
-return { isIntro: s.intro, begin: () => this.setState({ intro: false }), letters: L.map((l, k) => ({ l: l, op: k === s.i ? 1 : 0, sc: k === s.i ? 1 : .8 })), prompts: L.map((l, k) => ({ t: t[2] + ' « ' + l + ' » ?', op: k === s.i ? .75 : 0 })),
-isRun: !s.intro && !s.end, isEnd: s.end, stepLabel: (s.end || s.intro) ? '' : found + ' trouvés', themeKey: s.th, tEmoji: t[0], tName: t[1], i: s.i, letter: L[s.i], prompt: t[2] + ' « ' + L[s.i] + ' » ?',
-tiles: L.map((l, k) => ({ l: l, bg: k < s.st.length ? (s.st[k] ? '#2F9E6E' : 'rgba(18,59,42,.12)') : '#fff', fg: k < s.st.length && s.st[k] ? '#fff' : '#123B2A', ol: k === s.i && !s.end ? '2px solid #123B2A' : 'none' })),
+const t = TH[s.th]; const L = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''); const found = s.words.filter(x => x).length;
+const go = (k) => { if (k < 0 || k > 25) return; this.setState({ i: k, draft: this.state.words[k] || L[k], kbShift: false }); };
+const submit = () => { const st = this.state; const w = st.draft.trim(); if (w.length < 2) return; const ws = st.words.slice(); ws[st.i] = w; let n = -1; for (let d = 1; d <= 26; d++) { const k = (st.i + d) % 26; if (!ws[k]) { n = k; break; } } if (n < 0) { this.setState({ words: ws, end: true }); return; } this.setState({ words: ws, i: n, draft: L[n], kbShift: false }); };
+const ok = s.draft.trim().length >= 2;
+return { isIntro: s.intro, begin: () => this.setState({ intro: false, i: 0, draft: 'A' }),
+isRun: !s.intro && !s.end, isEnd: s.end, found: found,
+letters: L.map((l, k) => ({ l: l, op: k === s.i ? 1 : 0, sc: k === s.i ? 1 : .7, fg: s.words[k] ? '#fff' : '#123B2A' })),
+tileBg: s.words[s.i] ? '#2F9E6E' : '#FFFDF6', doneD: s.words[s.i] ? 'flex' : 'none',
+prompts: L.map((l, k) => ({ t: t[2] + ' « ' + l + ' » ?', op: k === s.i ? .85 : 0 })),
+tiles: L.map((l, k) => ({ l: l, bg: s.words[k] ? '#2F9E6E' : (k === s.i ? '#FFFDF6' : 'rgba(255,255,255,.55)'), fg: s.words[k] ? '#fff' : '#123B2A', ring: k === s.i ? 'inset 0 0 0 2px #123B2A' : 'none', go: () => go(k) })),
+words: L.map((l, k) => ({ l: l, t: s.words[k], k: k })).filter(x => x.t).map(x => ({ l: x.l, t: x.t, go: () => go(x.k) })), wordsHintD: found ? 'none' : 'inline',
+prev: () => go(s.i - 1), nextL: () => go(s.i + 1), prevOp: s.i === 0 ? .3 : 1, nextOp: s.i === 25 ? .3 : 1,
+draft: s.draft, phD: s.draft.length ? 'none' : 'inline', ph: 'Un mot en « ' + L[s.i] + ' »…', subBg: ok ? '#2F9E6E' : 'rgba(47,158,110,.4)', submit: submit,
+kbOn: !s.intro && !s.end, kb: this.kbMake('draft', 24, { enter: 'OK', blue: true, onEnter: submit }),
+tEmoji: t[0], tName: t[1],
 endTitle: found + ' lettre' + (found > 1 ? 's' : '') + ' trouvée' + (found > 1 ? 's' : ''),
-roll: () => this.setState({ th: (s.th + 1 + Math.floor(Math.random() * 7)) % 8 }), ok: () => next(true), skip: () => next(false), stop: () => this.setState({ end: true }),
-reset: () => this.setState({ intro: true, th: Math.floor(Math.random() * 8), i: 0, st: [], end: false }) }; }
+roll: () => this.setState({ th: (s.th + 1 + Math.floor(Math.random() * 7)) % 8 }), stop: () => this.setState({ end: true }),
+reset: () => this.setState(this.fresh(true)) }; }
 
 }
 </script>

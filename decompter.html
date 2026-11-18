@@ -24,6 +24,7 @@
 body{margin:0}
 a{color:#316BDF}a:hover{color:#2758CE}
 
+@keyframes kbCaret{0%,49%{opacity:1}50%,100%{opacity:0}
 @keyframes dcPop{0%{transform:scale(.7);opacity:0}100%{transform:scale(1);opacity:1}}
 @keyframes dcRay{0%{transform:rotate(0)}100%{transform:rotate(360deg)}}
 @keyframes dcHand{0%,100%{transform:translate(0,0) scale(1)}45%{transform:translate(-26px,-30px) scale(1)}55%{transform:translate(-26px,-30px) scale(.88)}}
@@ -42,8 +43,9 @@ a{color:#316BDF}a:hover{color:#2758CE}
 <sc-if value="{{isIntro}}" hint-placeholder-val="{{true}}">
 <div style="position: absolute; top: 108px; left: 22px; right: 22px; display: flex; flex-direction: column; gap: 10px">
 <span class="addTextBold" style="letter-spacing: .14em; opacity: .7">RETOUR ICI</span>
-<span class="h5Bold">Décompter de 10 à 1</span>
-<span class="p2Medium" style="opacity: .8">Un petit geste à chaque chiffre. À chaque étape, le jour se lève un peu plus, et toi tu reviens dans ton corps.</span>
+<span class="h5Bold">Décompter de 7 en 7</span>
+<span class="p2Medium" style="opacity: .8">Tu pars de 1000 et tu enlèves 7 : tu écris 993. Puis tu enlèves encore 7 au chiffre que tu viens d’écrire, et ainsi de suite.</span>
+<span class="p2Medium" style="opacity: .8">Si tu te trompes, ce n’est pas grave : on repart de ton chiffre. Le but, c’est juste de te concentrer sur le calcul. À chaque réponse, le jour se lève un peu plus.</span>
 <button type="button" onClick="{{openInfo}}" style="all: unset; box-sizing: border-box; margin-top: 8px; padding: 14px 16px; border-radius: 16px; background: rgba(255,255,255,.14); display: flex; align-items: center; gap: 12px; cursor: pointer"><span style="font-size: 22px">💡</span><span style="display: flex; flex-direction: column; flex: 1"><span class="p2Medium" style="font-weight: 700">La dissociation, c’est quoi ?</span><span class="addTextSemiBold" style="opacity: .7">Comprendre en 1 minute</span></span><span>›</span></button>
 </div>
 <div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><button type="button" onClick="{{start}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Commencer</button></div>
@@ -57,46 +59,60 @@ a{color:#316BDF}a:hover{color:#2758CE}
 <span class="p4Medium">🫥 Tu sens mal ton corps, ou il te paraît étranger.</span>
 <span class="p4Medium">⏳ Le temps passe bizarrement, trop vite ou trop lentement.</span>
 </div>
-<span class="p2Medium" style="color: var(--greyLight700)">Ce n’est pas dangereux en soi et ça passe. Compter et bouger un peu aide le cerveau à revenir ici et maintenant.</span>
+<span class="p2Medium" style="color: var(--greyLight700)">Ce n’est pas dangereux en soi et ça passe. Compter et se concentrer sur un calcul aide le cerveau à revenir ici et maintenant.</span>
 <div style="box-sizing: border-box; padding: 14px 16px; border-radius: 16px; background: var(--miel50); display: flex; gap: 10px"><span>💬</span><span class="p4Medium" style="color: var(--miel900)">Si ça t’arrive souvent ou que ça te fait peur, parles-en à un adulte de confiance ou à un professionnel de santé.</span></div>
 <button type="button" onClick="{{closeInfo}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 60px; display: flex; align-items: center; justify-content: center; background: var(--blue600); color: #fff; border-radius: var(--radius-xl); font-weight: 700; cursor: pointer">J’ai compris</button>
 </div></div></sc-if>
 </sc-if>
 <sc-if value="{{isRun}}" hint-placeholder-val="{{false}}">
-<div style="position: absolute; top: 118px; left: 26px; right: 26px; height: 150px">
-<sc-for list="{{steps}}" as="st" hint-placeholder-count="10"><div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; opacity: {{st.op}}; transform: translateY({{st.dy}}px); transition: opacity .7s ease, transform .7s ease; pointer-events: none">
-<span class="addTextBold" style="letter-spacing: .2em; opacity: .7">{{st.label}}</span>
-<span class="h4Bold" style="font-size: 26px; line-height: 34px; color: #fff; text-shadow: 0 2px 18px rgba(20,16,60,.45)">{{st.t}}</span>
-</div></sc-for>
+<div style="position: absolute; top: 112px; left: 22px; right: 22px; display: flex; flex-direction: column; align-items: center; gap: 4px; text-align: center">
+<span class="addTextBold" style="letter-spacing: .2em; opacity: .7">DE 7 EN 7</span>
+<span style="font-size: 64px; font-weight: 900; line-height: 1.1; text-shadow: 0 4px 24px rgba(20,16,60,.45); white-space: nowrap">{{cur}} <span style="opacity: .7">− 7</span></span>
+<span class="p2Medium" style="opacity: .8">Écris le résultat</span>
 </div>
-<button type="button" onClick="{{tick}}" style="all: unset; position: absolute; top: 450px; left: 0; right: 0; height: 190px; display: flex; align-items: center; justify-content: center; cursor: pointer">
-<span style="font-size: 150px; font-weight: 900; line-height: 1; text-shadow: 0 6px 30px rgba(0,0,0,.3)">{{n}}</span></button>
-<div style="position: absolute; top: 646px; left: 30px; right: 30px; text-align: center; opacity: {{helpOp}}; transition: opacity .6s ease; pointer-events: none"><span class="addTextSemiBold" style="opacity: .85">Fais le geste, puis touche le chiffre</span></div>
-<span aria-hidden="true" style="position: absolute; left: 240px; top: 575px; z-index: 4; pointer-events: none; opacity: {{helpOp}}; transition: opacity .6s ease"><span style="display: block; animation: dcHand 1.6s ease-in-out infinite"><span style="display: block; font-size: 52px; transform: rotate(-35deg); filter: drop-shadow(0 4px 10px rgba(0,0,0,.3))">👆</span></span></span>
-<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p2Medium" style="all: unset; align-self: center; height: 44px; padding: 0 22px; border-radius: 999px; background: rgba(255,255,255,.85); display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; color: #2A2350">Arrêter</a></div>
+<div style="position: absolute; top: 268px; left: 22px; right: 22px; height: 36px; display: flex; justify-content: center; gap: 6px; overflow: hidden">
+<sc-for list="{{hist}}" as="h" hint-placeholder-count="4"><span class="addTextSemiBold" style="padding: 6px 10px; border-radius: 999px; background: rgba(255,255,255,.16); opacity: {{h.op}}; white-space: nowrap">{{h.v}}</span></sc-for>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 384px; display: flex; justify-content: center; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p2Medium" style="all: unset; height: 40px; padding: 0 18px; border-radius: 999px; background: rgba(255,255,255,.85); display: flex; align-items: center; font-weight: 700; cursor: pointer; color: #2A2350">Je me sens mieux, j’arrête là</a></div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 312px; display: flex; gap: 8px; z-index: 6">
+<div class="p1Bold" style="flex: 1; min-width: 0; box-sizing: border-box; height: 58px; padding: 0 16px; border-radius: 16px; border: 2px solid #FFB45A; background: #fff; color: #2A2350; display: flex; align-items: center; font-size: 24px">{{draft}}<span style="display: inline-block; width: 2px; height: 1.05em; background: #007AFF; vertical-align: -0.15em; margin-left: 1px; animation: kbCaret 1s step-end infinite"></span><span style="color: rgba(42,35,80,.4); display: {{phD}}">{{ph}}</span></div>
+<button type="button" onClick="{{submit}}" aria-label="Valider" style="all: unset; box-sizing: border-box; width: 58px; height: 58px; flex-shrink: 0; border-radius: 16px; background: {{subBg}}; color: #fff; display: flex; align-items: center; justify-content: center; cursor: pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></svg></button>
+</div>
+<div style="position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: #D1D4DA; box-sizing: border-box; padding: 8px 6px 34px; display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; gap: 7px; z-index: 7; color: #000">
+<sc-for list="{{pad}}" as="k" hint-placeholder-count="12"><button type="button" onClick="{{k.tap}}" aria-label="{{k.l}}" style="all: unset; box-sizing: border-box; border-radius: 6px; background: {{k.bg}}; box-shadow: {{k.sh}}; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; font-size: 25px; line-height: 1">{{k.l}}<span style="font-size: 9px; font-weight: 700; letter-spacing: .15em; margin-top: 2px">{{k.sub}}</span></button></sc-for>
+</div>
 </sc-if>
 <sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
-<div style="position: absolute; top: 120px; left: 40px; right: 40px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; color: #2A2350; animation: dcUp .6s ease-out"><span class="h5Bold">Tu es là. Ici, maintenant.</span><span class="p2Medium">Prends ton temps avant de reprendre ce que tu faisais.</span></div>
-<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Je me sens revenu·e</a><button type="button" onClick="{{start}}" class="p2Medium" style="all: unset; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; color: #2A2350">Refaire un décompte</button></div>
+<div style="position: absolute; top: 120px; left: 40px; right: 40px; display: flex; flex-direction: column; align-items: center; gap: 12px; text-align: center; color: #2A2350; animation: dcUp .6s ease-out"><span class="h5Bold">{{endTitle}}</span><span class="p2Medium">{{endText}}</span></div>
+<div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 6px; z-index: 6"><a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 66px; display: flex; align-items: center; justify-content: center; gap: 8px; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Je me sens revenu·e</a><button type="button" onClick="{{start}}" class="p2Medium" style="all: unset; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; color: #2A2350">Recommencer à 1000</button></div>
 </sc-if>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
 class Component extends DCLogic {
 
-constructor(props){ super(props); this.state = { step: 'intro', n: 10, info: false, idle: false }; this.t = null; }
-arm(){ if (this.t) clearTimeout(this.t); this.t = setTimeout(() => { if (this.state.step === 'run') this.setState({ idle: true }); }, 2000); }
+constructor(props){ super(props); this.state = { step: 'intro', cur: 1000, draft: '', hist: [], info: false, bottom: false }; }
 renderVals(){ const s = this.state;
-const I = { 10: 'Pose tes pieds bien à plat par terre.', 9: 'Appuie ton dos contre ta chaise ou le mur.', 8: 'Regarde un objet. Dis sa couleur dans ta tête.', 7: 'Pose ta main sur ton avant-bras. Sens sa chaleur.', 6: 'Écoute le bruit le plus lointain.', 5: 'Serre tes mains l’une contre l’autre, puis relâche.', 4: 'Touche quelque chose de doux ou de froid.', 3: 'Inspire par le nez.', 2: 'Souffle lentement par la bouche.', 1: 'Dis-toi ton prénom et où tu es.' };
-const p = s.step === 'intro' ? 0 : s.step === 'end' ? 1 : (10 - s.n) / 10;
+const p = s.step === 'intro' ? 0 : s.step === 'end' ? 1 : Math.min(1, s.hist.length / 12);
 const mix = (a, b) => { const h = (x) => [1,3,5].map(i => parseInt(x.substr(i,2),16)); const A = h(a), B = h(b); return 'rgb(' + A.map((v,i) => Math.round(v + (B[i]-v) * p)).join(',') + ')'; };
+const put = (d) => { const v = this.state.draft; if (v.length >= 4 || (v === '' && d === '0')) return; this.setState({ draft: v + d }); };
+const del = () => this.setState({ draft: this.state.draft.slice(0, -1) });
+const submit = () => { const st = this.state; if (!st.draft) return; const v = parseInt(st.draft, 10); const h = st.hist.concat([v]); if (v < 7) { this.setState({ hist: h, cur: v, draft: '', step: 'end', bottom: true }); return; } this.setState({ hist: h, cur: v, draft: '' }); };
+const S = ['', 'ABC', 'DEF', 'GHI', 'JKL', 'MNO', 'PQRS', 'TUV', 'WXYZ'];
+const pad = [1,2,3,4,5,6,7,8,9].map(n => ({ l: String(n), sub: S[n - 1], bg: '#FFFFFF', sh: '0 1px 0 #898A8D', tap: () => put(String(n)) }))
+.concat([{ l: '', sub: '', bg: 'transparent', sh: 'none', tap: () => {} }, { l: '0', sub: '', bg: '#FFFFFF', sh: '0 1px 0 #898A8D', tap: () => put('0') }, { l: '⌫', sub: '', bg: 'transparent', sh: 'none', tap: del }]);
+const H = s.hist.slice(-4);
 return { isIntro: s.step === 'intro', isRun: s.step === 'run', isEnd: s.step === 'end', showInfo: s.info,
-stepLabel: s.step === 'run' ? (10 - s.n + 1) + ' / 10' : '', n: s.n, helpOp: (s.n === 10 || s.idle) ? 1 : 0, steps: [10,9,8,7,6,5,4,3,2,1].map(k => ({ t: I[k], label: 'GESTE ' + (11 - k), op: k === s.n ? 1 : 0, dy: k === s.n ? 0 : (k > s.n ? -10 : 10) })),
+stepLabel: s.step === 'run' && s.hist.length ? s.hist.length + ' calcul' + (s.hist.length > 1 ? 's' : '') : '',
+cur: s.cur, draft: s.draft, phD: s.draft ? 'none' : 'inline', ph: '?', subBg: s.draft ? '#FFB45A' : 'rgba(255,180,90,.45)', submit: submit, pad: pad,
+hist: H.map((v, k) => ({ v: v, op: .4 + .6 * (k + 1) / H.length })),
+endTitle: s.bottom ? 'Tu es arrivé·e en bas !' : 'Tu es là. Ici, maintenant.',
+endText: s.bottom ? s.hist.length + ' calculs de 7 en 7, jusqu’à ' + s.cur + '. Prends ton temps avant de reprendre ce que tu faisais.' : 'Prends ton temps avant de reprendre ce que tu faisais.',
 skyTop: mix('#141A45','#8FD3FF'), skyBot: mix('#3B2E7A','#FFE2B8'), hill: mix('#1F1846','#9ED8A6'), sunY: Math.round(640 - p * 470), rayOp: p, starOp: 1 - p,
 stars: [[30,140],[90,220],[160,120],[240,190],[330,150],[60,320],[300,300],[200,260],[350,380],[20,420],[130,400],[270,440]].map(a => ({ x: a[0], y: a[1] })),
 openInfo: () => this.setState({ info: true }), closeInfo: () => this.setState({ info: false }),
-tick: () => { if (s.n <= 1) { if (this.t) clearTimeout(this.t); this.setState({ step: 'end', n: 0, idle: false }); } else { this.setState({ n: s.n - 1, idle: false }); this.arm(); } },
-start: () => { if (this.t) clearTimeout(this.t); this.setState({ step: 'run', n: 10, idle: false }); }, reset: () => { if (this.t) clearTimeout(this.t); this.setState({ step: 'intro', n: 10, idle: false }); } }; }
+start: () => this.setState({ step: 'run', cur: 1000, draft: '', hist: [], bottom: false }),
+reset: () => this.setState({ step: 'intro', cur: 1000, draft: '', hist: [], bottom: false }) }; }
 
 }
 </script>

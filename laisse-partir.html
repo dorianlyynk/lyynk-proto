@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
-<title>MG4 · Laisse partir (brûler)</title>
+<title>MG4c · Laisse partir · froisser</title>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -16,6 +16,8 @@
 <script src="frame.js?v=4" defer></script>
 <link rel="stylesheet" href="ds/lyynkdesignsystem_a84dce/styles.css">
 <script src="ds/lyynkdesignsystem_a84dce/ds_bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<script src="assets/froisser-v5.js"></script>
 </head>
 <body>
 <x-dc>
@@ -24,17 +26,13 @@
 body{margin:0}
 a{color:#316BDF}a:hover{color:#2758CE}
 textarea::placeholder{color:rgba(23,37,74,0.4)}
-@keyframes mgPaper{0%{transform:rotate(-1.5deg);filter:none;opacity:1}35%{filter:sepia(0.6) brightness(0.95)}75%{transform:rotate(-1.5deg) scale(0.96);filter:sepia(1) brightness(0.55);opacity:0.9}100%{transform:rotate(-1.5deg) scale(0.9) translateY(-24px);filter:sepia(1) brightness(0.2);opacity:0}}
-@keyframes mgFire{0%{transform:translateY(0);opacity:0}10%{opacity:1}85%{opacity:1}100%{transform:translateY(-330px);opacity:0}}
-@keyframes mgChar{0%{height:0}100%{height:100%}}
-@keyframes mgEmber{0%{transform:translate(0,0);opacity:0}15%{opacity:1}100%{transform:translate(var(--dx),-260px);opacity:0}}
 @keyframes mgFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 @keyframes kbCaret{0%,49%{opacity:1}50%,100%{opacity:0}}
 </style>
 </helmet>
-<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: linear-gradient(180deg, #FFF3E8 0%, #FFD9BF 60%, #FFB892 100%); font-family: var(--font-sans); color: #3A1A0E">
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; box-sizing: border-box; background: var(--blue25); font-family: var(--font-sans); color: var(--greyLight900)">
 <div style="position: absolute; top: 47px; left: 16px; height: 48px; display: flex; align-items: center; z-index: 5">
-<a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: var(--radius-full); background: rgba(58,26,14,.08); display: flex; align-items: center; justify-content: center; color: #3A1A0E; cursor: pointer">
+<a href="index.html" aria-label="Retour" onClick="{{reset}}" style="all: unset; box-sizing: border-box; width: 40px; height: 40px; border-radius: var(--radius-full); background: var(--white); display: flex; align-items: center; justify-content: center; color: var(--greyLight900); cursor: pointer">
 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 19.92L8.48 13.4c-.77-.77-.77-2.03 0-2.8L15 4.08" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg>
 </a>
 </div>
@@ -42,40 +40,33 @@ textarea::placeholder{color:rgba(23,37,74,0.4)}
 <sc-if value="{{isWrite}}" hint-placeholder-val="{{true}}">
 <div style="position: absolute; top: 100px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 4px">
 <span class="addTextBold" style="letter-spacing: .14em; opacity: .6">LAISSE PARTIR</span>
-<span class="h5Bold">Qu’est-ce qui te pèse en ce moment ?</span>
-<span class="p4Medium" style="opacity: .7; margin-top: 4px">Écris-le sur le papier, puis brûle-le. Rien n’est enregistré.</span>
+<span class="h5Bold">Qu’est-ce qui te pèse en ce moment ?</span>
+<span class="p4Medium" style="opacity: .7; margin-top: 4px">Écris-le sur le papier, puis froisse-le et jette-le. Rien n’est enregistré.</span>
 </div>
-<div style="position: absolute; top: 247px; left: 34px; right: 34px; height: 190px; transform: rotate(-1.5deg); border-radius: 6px; background: repeating-linear-gradient(180deg, #FFF8EA 0px, #FFF8EA 31px, #EADFC8 31px, #EADFC8 32px); box-shadow: 0 16px 36px rgba(140, 60, 20, 0.25); box-sizing: border-box; padding: 22px 22px 16px; display: flex; flex-direction: column">
+<div style="position: absolute; top: 247px; left: 34px; right: 34px; height: 190px; transform: rotate(-1.5deg); border-radius: 6px; background: repeating-linear-gradient(180deg, #FFF8EA 0px, #FFF8EA 31px, #EADFC8 31px, #EADFC8 32px); box-shadow: 0 16px 36px rgba(23, 37, 74, 0.16); box-sizing: border-box; padding: 22px 22px 16px; display: flex; flex-direction: column">
 <div class="p1Bold" style="flex: 1; color: #17254A; line-height: 32px; margin-top: 2px; white-space: pre-wrap; word-break: break-word; overflow: hidden">{{text}}<span style="display: inline-block; width: 2px; height: 1.05em; background: #007AFF; vertical-align: -0.15em; margin-left: 1px; animation: kbCaret 1s step-end infinite"></span><span style="color: rgba(23,37,74,0.4); display: {{phD}}">Ce que je veux laisser partir…</span></div>
 <span class="addTextSemiBold" style="align-self: flex-end; color: {{counterColor}}">{{counter}}</span>
 </div>
 <div style="position: absolute; left: 22px; right: 22px; bottom: 312px; display: flex; flex-direction: column; gap: 8px">
 <span class="addTextSemiBold" style="text-align: center; opacity: 0.7">{{hint}}</span>
-<button type="button" onClick="{{burn}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 58px; border-radius: 18px; background: linear-gradient(180deg, #F2703A, #D8461F); color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 800; cursor: pointer; box-shadow: 0 5px 0 #9E2F12; opacity: {{burnOpacity}}">🔥 Brûler</button>
+<button type="button" onClick="{{burn}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 58px; border-radius: var(--radius-xl); background: var(--blue600); color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; opacity: {{burnOpacity}}">Froisser et jeter</button>
 </div>
 </sc-if>
 
 <sc-if value="{{isBurning}}" hint-placeholder-val="{{false}}">
-<div style="position: absolute; top: 214px; left: 34px; right: 34px; height: 190px; border-radius: 6px; overflow: hidden; background: repeating-linear-gradient(180deg, #FFF8EA 0px, #FFF8EA 31px, #EADFC8 31px, #EADFC8 32px); box-shadow: 0 16px 36px rgba(140, 60, 20, 0.25); box-sizing: border-box; padding: 22px; animation: mgPaper 2.6s ease-in forwards">
-<span class="p1Bold" style="color: #17254A; line-height: 32px; white-space: pre-wrap; word-break: break-word">{{text}}</span>
-<div style="position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(0deg, #2A1A12 0%, #5A2E14 70%, rgba(90,46,20,0) 100%); animation: mgChar 2.2s ease-in forwards"></div>
-</div>
-<div style="position: absolute; top: 370px; left: 20px; right: 20px; height: 70px; border-radius: 50%; background: radial-gradient(ellipse at 50% 60%, #FFE6A3 0%, #FF9A2E 35%, rgba(255,90,30,0.6) 60%, rgba(255,90,30,0) 75%); filter: blur(6px); animation: mgFire 2.3s ease-in forwards"></div>
-<sc-for list="{{embers}}" as="e" hint-placeholder-count="8">
-<span style="position: absolute; top: 410px; left: {{e.x}}px; width: {{e.s}}px; height: {{e.s}}px; border-radius: 50%; background: #FFB347; box-shadow: 0 0 8px #FF8A1F; --dx: {{e.dx}}px; animation: mgEmber {{e.d}}s ease-out {{e.delay}}s forwards; opacity: 0"></span>
-</sc-for>
+<div data-lottie="froisser" aria-hidden="true" style="position: absolute; top: 147px; left: 0; width: 390px; height: 700px; pointer-events: none"></div>
 </sc-if>
 
 <sc-if value="{{isEnd}}" hint-placeholder-val="{{false}}">
 <div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 0 32px; text-align: center; animation: mgFade 0.6s ease-out">
-<span style="font-size: 56px; margin-bottom: 8px">🌬️</span>
-<span class="h5Bold">C’est parti en fumée</span>
-<span class="p2Medium" style="opacity: 0.8">Tu l’as sorti de ta tête, puis tu l’as détruit. Ce geste compte : une pensée qu’on jette pèse moins lourd ensuite.</span>
-<span class="p4Medium" style="opacity: 0.65">Si elle revient, ce n’est pas un échec. Tu peux la brûler à nouveau.</span>
+<span style="font-size: 56px; margin-bottom: 8px">🍃</span>
+<span class="h5Bold">C’est à la corbeille</span>
+<span class="p2Medium" style="color: var(--greyLight700)">Tu l’as sorti de ta tête, puis tu l’as jeté. Rien n’a été gardé.</span>
+<span class="p4Medium" style="color: var(--greyLight600)">Si ça revient, tu peux recommencer quand tu veux.</span>
 </div>
 <div style="position: absolute; left: 22px; right: 22px; bottom: 34px; display: flex; flex-direction: column; gap: 4px">
 <a href="index.html" onClick="{{reset}}" class="p1Bold" style="all: unset; box-sizing: border-box; width: 100%; min-height: 70px; display: flex; align-items: center; justify-content: center; background: var(--greyLight50); color: #17254A; border: 3px solid #17254A; border-bottom-width: 8px; border-radius: 12px 12px 18px 18px; font-weight: 700; cursor: pointer">Terminer</a>
-<button type="button" onClick="{{reset}}" class="p2Medium" style="all: unset; box-sizing: border-box; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer; opacity: 0.85">Brûler autre chose</button>
+<button type="button" onClick="{{reset}}" class="p2Medium" style="all: unset; box-sizing: border-box; height: 44px; display: flex; align-items: center; justify-content: center; font-weight: 700; cursor: pointer">Écrire autre chose</button>
 </div>
 </sc-if>
 <sc-if value="{{kbOn}}" hint-placeholder-val="{{true}}">
@@ -113,23 +104,31 @@ constructor(props) {
 super(props);
 this.state = { step: 'write', text: '' };
 }
+play(txt) {
+let done = false; const fin = () => { if (done) return; done = true; if (this.anim) { this.anim.destroy(); this.anim = null; } this.setState({ step: 'end', text: '' }); };
+setTimeout(fin, 3400);
+let tries = 0; const go = () => { const el = document.querySelector('[data-lottie="froisser"]'); const src = window.LYYNK_LOTTIE && window.LYYNK_LOTTIE.froisserV5;
+ if (!el || !window.lottie || !src) { if (++tries < 20) return setTimeout(go, 50); return; }
+ const data = JSON.parse(JSON.stringify(src)); try { (data.fonts && data.fonts.list || []).forEach(f => { f.fFamily = getComputedStyle(el).fontFamily || 'Open Sans, sans-serif'; }); } catch (e) {}
+ try { data.assets[0].layers[0].t.d.k[0].s.t = txt.replace(/\n/g, '\r'); } catch (e) {}
+ this.anim = window.lottie.loadAnimation({ container: el, renderer: 'svg', loop: false, autoplay: true, animationData: data });
+ this.anim.addEventListener('complete', () => setTimeout(fin, 400)); };
+setTimeout(go, 0); }
 renderVals() {
 const s = this.state;
 const MAX = 120;
 const n = s.text.length;
 const ok = s.text.trim().length > 0;
-const embers = [40, 80, 115, 150, 190, 225, 260, 300].map((x, i) => ({ x: x, s: 4 + (i % 3) * 2, dx: (i % 2 ? 1 : -1) * (10 + i * 4), d: 1.6 + (i % 4) * 0.3, delay: 0.3 + i * 0.15 }));
 return {
 isWrite: s.step === 'write', isBurning: s.step === 'burning', isEnd: s.step === 'end',
 text: s.text, phD: s.text.length ? 'none' : 'inline', kbOn: s.step === 'write', kb: this.kbMake('text', MAX, { newline: true }),
 onText: (e) => this.setState({ text: e.target.value.slice(0, MAX) }),
 counter: n + ' / ' + MAX,
 counterColor: n >= MAX ? '#C2410C' : 'rgba(23,37,74,0.45)',
-hint: ok ? 'Une fois brûlé, tu ne pourras pas le relire.' : 'Quelques mots suffisent.',
+hint: ok ? 'Une fois jeté, tu ne pourras plus le relire.' : 'Quelques mots suffisent.',
 burnOpacity: ok ? 1 : 0.5,
-embers: embers,
-burn: () => { if (!ok) return; this.setState({ step: 'burning' }); setTimeout(() => this.setState({ step: 'end' }), 2800); },
-reset: () => this.setState({ step: 'write', text: '' })
+burn: () => { if (!ok) return; this.setState({ step: 'burning' }); this.play(s.text); },
+reset: () => { if (this.anim) { this.anim.destroy(); this.anim = null; } this.setState({ step: 'write', text: '' }); }
 };
 }
 }

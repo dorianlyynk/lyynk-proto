@@ -37,7 +37,7 @@ a{color:#316BDF}a:hover{color:#2758CE}
 <div style="position: absolute; top: 104px; left: 24px; right: 24px; display: flex; flex-direction: column; gap: 8px; animation: rdFade .4s ease-out">
 <span class="addTextBold" style="letter-spacing: .14em; opacity: .7">RADAR À SONS · 2 MIN</span>
 <span class="h5Bold" style="color: #fff">Fais le tour des sons autour de toi</span>
-<span class="p2Medium" style="opacity: .8">Écouter ce qui t’entoure, du plus fort au plus lointain, sort ta tête des pensées qui tournent. 4 sons à repérer.</span>
+<span class="p2Medium" style="opacity: .8">Écouter ce qui t’entoure, du plus proche au plus lointain, sort ta tête des pensées qui tournent. 4 sons à repérer.</span>
 </div>
 <div style="position: absolute; top: 330px; left: 85px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle, rgba(70,193,153,.10) 0%, rgba(70,193,153,.02) 70%); box-shadow: inset 0 0 0 1px rgba(207,247,232,.25)">
 <span style="position: absolute; inset: 27px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 55px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; inset: 82px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(207,247,232,.18)"></span><span style="position: absolute; left: 50%; top: 0; bottom: 0; width: 1px; background: rgba(207,247,232,.15)"></span>
@@ -92,7 +92,7 @@ class Component extends DCLogic {
 constructor(props){ super(props); this.state = { intro: true, n: 0, pts: [] }; }
 renderVals(){
 const s = this.state;
-const P = [ { k: 'SON 1 SUR 4', t: 'Le son le plus fort', sub: 'Ferme les yeux si tu veux. D’où vient-il ?', label: 'le plus fort' }, { k: 'SON 2 SUR 4', t: 'Un son plus discret', sub: 'Une voix, une ventilation, une voiture…', label: 'plus discret' }, { k: 'SON 3 SUR 4', t: 'Un son très discret', sub: 'Ta respiration, un frottement, le frigo…', label: 'très discret' }, { k: 'SON 4 SUR 4', t: 'Le son le plus lointain', sub: 'Va chercher au bout de ce que tu entends.', label: 'le plus loin' } ];
+const P = [ { k: 'SON 1 SUR 4', t: 'Le son le plus proche de toi', sub: 'Ferme les yeux si tu veux. Ta respiration, tes vêtements…', label: 'tout près' }, { k: 'SON 2 SUR 4', t: 'Un son dans la pièce', sub: 'Une voix, un clic, la ventilation, le frigo…', label: 'dans la pièce' }, { k: 'SON 3 SUR 4', t: 'Un son plus loin', sub: 'Derrière le mur, dans le couloir, dehors…', label: 'plus loin' }, { k: 'SON 4 SUR 4', t: 'Le son le plus lointain', sub: 'Va chercher au bout de ce que tu entends.', label: 'le plus loin' } ];
 const done = s.n >= 4; const cur = Math.min(s.n, 4);
 const T = P.map(p => ({ k: p.k, t: p.t, sub: p.sub })).concat([{ k: 'TERMINÉ', t: 'Ton oreille a fait le tour 🎧', sub: 'Tu as cartographié ce qui t’entoure. Ta tête a eu une vraie pause.' }]);
 const next = (pt) => this.setState({ n: s.n + 1, pts: pt ? s.pts.concat([Object.assign({ i: s.n }, pt)]) : s.pts });
