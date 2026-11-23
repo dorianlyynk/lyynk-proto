@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Repérage">
+<meta name="theme-color" content="#F5F6F8">
+<title>Proto · Repérage</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap">
+<style>
+:root{
+  --blue25:#F4F7FE;--blue50:#E3EAFC;--blue100:#D9E3FB;--blue200:#B4D2F9;--blue500:#4689EC;--blue600:#316BDF;--blue800:#2244A1;--blue950:#17254A;
+  --white:#FFFFFF;--background:#F5F6F8;
+  --greyLight100:#F2F5F7;--greyLight200:#EAEEF0;--greyLight300:#D0D9DD;--greyLight400:#98ABB3;--greyLight500:#667C85;--greyLight600:#475D67;--greyLight700:#344A54;--greyLight900:#102128;
+  --mint100:#D6F5E6;--mint500:#23A67F;--mint800:#105545;
+  --miel100:#FEEEC7;--miel300:#FAC14F;--miel800:#91660F;
+  --orange100:#FDE8E3;--orange600:#D74E2B;--orange800:#95371F;
+  --red100:#FEE5E5;--red500:#F04359;--red700:#BB1537;
+  --font-sans:"Open Sans",system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-sans);background:#E7EAEE;color:var(--greyLight900);min-height:100vh;display:flex;justify-content:center;align-items:flex-start;gap:32px;padding:32px 16px;flex-wrap:wrap}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+a{color:var(--blue600)}
+.h4Bold{font-size:24px;line-height:31.2px;font-weight:700;letter-spacing:-.48px}
+.h5Bold{font-size:20px;line-height:27px;font-weight:700;letter-spacing:-.4px}
+.h6Bold{font-size:18px;line-height:25.2px;font-weight:700;letter-spacing:-.36px}
+.h6SemiBold{font-size:18px;line-height:25.2px;font-weight:600;letter-spacing:-.36px}
+.p1Bold{font-size:16px;line-height:22.4px;font-weight:700;letter-spacing:-.32px}
+.p2Medium{font-size:16px;line-height:22.4px;font-weight:600;letter-spacing:-.32px}
+.p3Bold{font-size:14px;line-height:19.6px;font-weight:700;letter-spacing:-.28px}
+.p4Medium{font-size:14px;line-height:19.6px;font-weight:600;letter-spacing:-.28px}
+.addTextBold{font-size:12px;line-height:18px;font-weight:700}
+.addTextSemiBold{font-size:12px;line-height:18px;font-weight:600}
+.addTextMedium{font-size:12px;line-height:18px;font-weight:400}
+
+/* phone */
+.phone{width:375px;height:812px;border-radius:44px;background:var(--background);position:relative;overflow:hidden;box-shadow:0 0 0 10px #1c1f24,0 24px 60px rgba(0,0,0,.25);flex-shrink:0}
+.status{position:absolute;top:0;left:0;right:0;height:47px;display:flex;justify-content:space-between;align-items:center;padding:0 28px 0 36px;font-weight:600;font-size:16px;z-index:30;pointer-events:none}
+.status.light{color:#fff}
+.screen{position:absolute;inset:0;display:flex;flex-direction:column;background:var(--background)}
+.grad{position:absolute;top:0;left:0;right:0;height:291px;background:linear-gradient(180deg,#BBD5F5 0%,rgba(245,246,248,0) 100%);pointer-events:none}
+.scroll{flex:1;overflow-y:auto;position:relative;scrollbar-width:none}
+.scroll::-webkit-scrollbar{display:none}
+
+/* header */
+.hdr{position:relative;height:102px;padding-top:47px;display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:5}
+.hdr .ttl{font-size:16px;font-weight:700;letter-spacing:-.32px;max-width:240px;text-align:center;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hdr .left{position:absolute;left:16px;top:55px}
+.hdr .right{position:absolute;right:16px;top:55px}
+.iconbtn{width:40px;height:40px;border-radius:999px;display:flex;align-items:center;justify-content:center}
+.iconbtn.white{background:rgba(255,255,255,.7)}
+.iconbtn svg{width:20px;height:20px}
+
+/* buttons */
+.bottom{padding:12px 16px 34px;flex-shrink:0;position:relative;z-index:5;display:flex;flex-direction:column;gap:8px;align-items:stretch}
+.btn{height:48px;border-radius:12px;background:var(--blue600);color:#fff;font-size:16px;font-weight:700;letter-spacing:-.32px;display:flex;align-items:center;justify-content:center;width:100%}
+.btn:disabled{background:var(--blue200)}
+.btn.danger{background:var(--red500)}
+.btn.link{background:none;color:var(--blue600);height:40px}
+
+/* home */
+.logo{display:flex;align-items:center;gap:6px;color:var(--blue600);font-size:20px;line-height:27px;font-weight:700;letter-spacing:-.4px}
+.homecard{background:#fff;border-radius:16px;overflow:hidden;margin:0 22px 16px;display:block;width:331px;text-align:left}
+.homecard img{display:block;width:100%;height:auto}
+.homecard .txt{padding:12px 12px 16px}
+.tabbar{height:83px;background:#fff;border-top:1px solid var(--greyLight200);display:flex;justify-content:space-around;padding-top:8px;flex-shrink:0;z-index:5}
+.tab{display:flex;flex-direction:column;align-items:center;gap:0;font-size:12px;line-height:18px;font-weight:400;color:var(--greyLight600);width:70px}
+.tab.on{color:var(--blue950);font-weight:700}
+.tab svg{width:24px;height:24px}
+
+/* lists */
+.pad{padding:0 22px}
+.card{background:#fff;border-radius:16px;padding:16px}
+.childcard{background:#fff;border-radius:16px;padding:16px;display:flex;align-items:center;gap:12px;width:100%;text-align:left;margin-bottom:12px}
+.avatar{width:48px;height:48px;border-radius:999px;flex-shrink:0}
+.rangebadge{display:inline-flex;align-items:center;gap:4px;margin-top:6px;height:24px;padding:0 8px;border-radius:999px;background:var(--miel100);color:var(--miel800);font-size:12px;font-weight:700;white-space:nowrap}
+.rangebadge svg{width:14px;height:14px}
+.chev{margin-left:auto;color:var(--greyLight700)}
+
+/* intro */
+.hero{position:relative;height:280px;flex-shrink:0;background-size:cover;background-position:center}
+.badges{position:absolute;left:22px;bottom:14px;display:flex;gap:8px}
+.badge{background:#fff;border-radius:999px;height:32px;padding:0 12px 0 4px;display:flex;align-items:center;gap:6px;font-size:14px;font-weight:600;letter-spacing:-.28px}
+.badge.q{padding-left:10px}
+.badge img{width:24px;height:24px;border-radius:999px}
+.hint{display:flex;gap:8px;align-items:flex-start;border-radius:12px;padding:12px;font-size:12px;line-height:18px;font-weight:600}
+.hint.miel{background:var(--miel100);color:var(--miel800)}
+.hint.blue{background:var(--blue50);color:var(--blue800);justify-content:center}
+.hint.orange{background:var(--orange100);color:var(--orange800)}
+.hint svg{width:16px;height:16px;flex-shrink:0;margin-top:1px}
+
+/* question */
+.progress{display:flex;align-items:center;gap:10px;padding:0 16px 0 16px;margin-top:-4px;position:relative;z-index:5}
+.bar{flex:1;height:8px;border-radius:999px;background:#fff;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue500);border-radius:999px;transition:width .25s}
+.choice{display:block;width:100%;background:#fff;border-radius:12px;padding:14px 12px;text-align:left;font-size:14px;font-weight:600;letter-spacing:-.28px;margin-bottom:8px;border:2px solid transparent}
+.choice.on{border-color:var(--blue600);background:var(--blue25)}
+
+/* report */
+.lvl{display:inline-flex;align-items:center;height:32px;padding:0 12px;border-radius:999px;font-size:14px;font-weight:700;letter-spacing:-.28px}
+.lvl.rien{background:var(--mint100);color:var(--mint800)}
+.lvl.surveiller{background:var(--miel100);color:var(--miel800)}
+.lvl.professionnel{background:var(--red100);color:var(--red700)}
+.p1hero{position:absolute;top:0;left:0;right:0;height:288px;background-size:cover;background-position:center 10%}
+.sheet{position:relative;margin-top:256px;background:var(--background);border-radius:16px 16px 0 0;padding:24px 22px 16px;min-height:calc(100% - 256px)}
+.gauge{background:#fff;border-radius:12px;padding:16px 12px 10px;margin:16px 0}
+.gauge .segs{display:flex;gap:4px;position:relative}
+.gauge .seg{flex:1;text-align:center;position:relative}
+.gauge .seg i{display:block;height:6px;border-radius:999px;margin-bottom:8px}
+.gauge .seg span{font-size:12px;line-height:18px;font-weight:600;color:var(--greyLight700);display:block}
+.gauge .seg.on span{font-weight:700;color:var(--greyLight900)}
+.gauge .seg.on:before{content:"";position:absolute;top:-11px;left:50%;margin-left:-5px;border:5px solid transparent;border-top:6px solid var(--mk)}
+.dots{display:flex;gap:4px;justify-content:center;padding:6px 0}
+.dots i{width:6px;height:6px;border-radius:99px;background:var(--greyLight300)}
+.dots i.on{width:18px;background:var(--blue600)}
+.rcard{background:#fff;border-radius:16px;padding:16px;margin-bottom:12px}
+.tag{display:inline-flex;height:26px;align-items:center;padding:0 10px;border-radius:999px;background:var(--blue50);color:var(--blue800);font-size:12px;line-height:18px;font-weight:700;margin-bottom:8px}
+.idea{display:flex;gap:12px}
+.ico{width:32px;height:32px;border-radius:999px;background:var(--blue50);color:var(--blue600);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.ico svg{width:18px;height:18px}
+.ico.red{background:var(--red100);color:var(--red500)}
+.ico.orange{background:var(--orange100);color:var(--orange600)}
+.phonerow{display:flex;gap:12px;align-items:center;background:var(--greyLight100);border-radius:12px;padding:12px;margin-top:8px}
+.phonerow .ph{width:32px;height:32px;border-radius:999px;background:var(--blue600);color:#fff;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.phonerow .ph svg{width:16px;height:16px}
+.phonerow .num{font-size:18px;line-height:25.2px;font-weight:700;letter-spacing:-.36px;color:var(--greyLight950)}
+.orient{border-left:2px solid var(--greyLight200);padding-left:10px;margin-top:10px}
+.lnk{color:var(--blue600);text-decoration:none}
+
+/* stepper */
+.stepper{display:flex;align-items:flex-start;margin:16px 0 0}
+.step{display:flex;flex-direction:column;align-items:center;width:32px;flex-shrink:0}
+.step .dot{width:32px;height:32px;border-radius:999px;display:flex;align-items:center;justify-content:center;background:#fff;color:var(--greyLight400);border:1.5px solid #fff}
+.step .dot svg{width:16px;height:16px}
+.step.done .dot{background:#fff;color:var(--blue600);border-color:#fff}
+.step.on .dot{background:var(--blue600);color:#fff;border-color:var(--blue600)}
+.step.red.on .dot{background:var(--red500);border-color:var(--red500)}
+.step.red:not(.on) .dot{color:var(--red500)}
+.stepline{flex:1;height:2px;background:#fff;margin:15px 6px 0;min-width:6px}
+.stepline.done{background:#fff}
+/* vertical stepper */
+.vstep{display:flex;gap:10px;position:relative}
+.vstep:not(.last):before{content:"";position:absolute;left:6px;top:39px;bottom:-21px;width:2px;background:var(--greyLight300)}
+.vnum{width:14px;height:14px;margin-top:21px;border-radius:999px;background:var(--blue600);color:#fff;font-size:9px;line-height:1;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;z-index:1}
+.vbody{flex:1;min-width:0}
+.signrow{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid var(--greyLight200)}
+.signrow.last{border-bottom:none}
+.chipans{flex-shrink:0;font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px;white-space:nowrap}
+/* p5 / chat */
+.p5img{height:360px;background-size:cover;background-position:center top;flex-shrink:0;position:relative}
+.p5img:after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;background:linear-gradient(180deg,rgba(245,246,248,0),var(--background))}
+.chatq{background:#fff;border-radius:12px;padding:12px;font-size:14px;line-height:19.6px;font-weight:600;letter-spacing:-.28px;margin-bottom:8px;text-align:left;width:100%}
+.chatin{background:#fff;border-radius:16px;padding:12px;height:84px;color:var(--greyLight500);font-size:12px}
+
+/* modal */
+.overlay{position:absolute;inset:0;background:rgba(12,24,29,.45);display:flex;align-items:center;justify-content:center;z-index:50;padding:16px}
+.modal{background:#fff;border-radius:20px;padding:24px 16px 12px;text-align:center;width:100%}
+
+/* history */
+.chip{height:32px;padding:0 12px;border-radius:999px;background:#fff;font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;border:1.5px solid transparent;white-space:nowrap}
+.chip.on{border-color:var(--blue600);color:var(--blue600)}
+.chip img{width:20px;height:20px;border-radius:99px}
+.themerow{display:flex;align-items:center;gap:12px;width:100%;background:#fff;border-radius:16px;padding:16px;margin-bottom:12px;text-align:left}
+.themerow img{width:48px;height:48px;border-radius:10px;object-fit:cover;flex-shrink:0}
+.themecard{display:block;width:100%;background:#fff;border-radius:16px;overflow:hidden;margin-bottom:12px;text-align:left}
+.themecard img{display:block;width:100%;height:96px;object-fit:cover}
+.themecard .txt{display:flex;align-items:center;gap:8px;padding:12px}
+.side button.s.on{background:var(--blue600);color:#fff}
+.hthumb{width:56px;height:56px;border-radius:12px;object-fit:cover;flex-shrink:0}
+.hrow{display:flex;gap:12px;align-items:center;background:#fff;border-radius:16px;padding:12px;margin-bottom:10px;width:100%;text-align:left}
+
+/* side panel */
+.side{width:300px;background:#fff;border-radius:16px;padding:20px;font-size:13px;line-height:19px;color:var(--greyLight700)}
+.side h2{font-size:16px;color:var(--greyLight900);margin-bottom:8px}
+.side h3{font-size:13px;color:var(--greyLight900);margin:16px 0 6px}
+.side button.s{display:block;width:100%;text-align:left;padding:8px 10px;border-radius:8px;background:var(--greyLight100);margin-bottom:6px;font-size:13px;font-weight:600}
+.side button.s:hover{background:var(--blue50)}
+.side .dbg{font-family:ui-monospace,monospace;font-size:11px;background:var(--greyLight100);border-radius:8px;padding:8px;white-space:pre-wrap;max-height:260px;overflow:auto}
+@media (max-width:520px){
+  body{padding:0;gap:0;background:var(--background);display:block}
+  .phone{width:100vw;height:100vh;height:100dvh;border-radius:0;box-shadow:none}
+  .status{display:none}
+  .hdr{padding-top:env(safe-area-inset-top,47px);height:calc(55px + env(safe-area-inset-top,47px))}
+  .side{width:auto;margin:16px;border-radius:16px}
+}
+</style>
+</head>
+<body>
+<div class="phone" id="phone"></div>
+<aside class="side">
+  <h2>Proto · Repérage</h2>
+  <p>Maquettes Figma « Discovery » + textes et règles du JSON des questionnaires (19 nov.). Les niveaux sont calculés en direct avec les règles du JSON.</p>
+  <h3>Aller vite (question en cours)</h3>
+  <button class="s" data-fill="0">Finir : tout « Jamais » → vert</button>
+  <button class="s" data-fill="1">Finir : tout « Parfois »</button>
+  <button class="s" data-fill="2">Finir : tout « Souvent » → rouge</button>
+  <button class="s" data-fill="rnd">Finir : au hasard</button>
+  <p class="addTextMedium" style="margin-top:4px">Les questions sensibles sont répondues « Non » : réponds-y à la main pour tester l'urgence.</p>
+  <h3>Calcul du niveau</h3>
+  <div class="dbg" id="dbg">Réponds à un questionnaire.</div>
+  <h3>Historique</h3>
+  <button class="s" id="seed">Cheat code : remplir l'historique (8 comptes rendus)</button>
+  <div style="display:flex;gap:6px"><button class="s on" data-hv="v1" style="flex:1">V1 · tout regroupé</button><button class="s" data-hv="v2" style="flex:1">V2 · par thématique</button></div>
+  <h3>Proto</h3>
+  <button class="s" id="reset">Recommencer (vider l'historique)</button>
+</aside>
+<script>
+"use strict";
+const ICON={
+  back:'<svg viewBox="0 0 20 20" fill="none"><path d="M12.5 4.5 7 10l5.5 5.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  close:'<svg viewBox="0 0 20 20" fill="none"><path d="m5 5 10 10M15 5 5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  chev:'<svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="m7.5 4.5 5.5 5.5-5.5 5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  clip:'<svg viewBox="0 0 20 20" fill="none"><rect x="4" y="3.5" width="12" height="14" rx="3" stroke="currentColor" stroke-width="1.6"/><path d="M7.5 3.5h5v2.2h-5zM7.5 10h5M7.5 13h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  info:'<svg viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7.5" stroke="currentColor" stroke-width="1.6"/><path d="M10 9v4.5M10 6.5v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  warn:'<svg viewBox="0 0 20 20" fill="none"><path d="M10 3.2 17.5 16H2.5L10 3.2Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 8.2v3.6M10 13.9v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>',
+  thumb:'<svg viewBox="0 0 20 20" fill="none"><path d="M6.5 9 9.5 3c1.3 0 2.2 1 2 2.3L11 8h4c1 0 1.7.9 1.5 1.9l-1.2 5.6c-.2.9-1 1.5-1.9 1.5H6.5M6.5 9v8M6.5 9H4v8h2.5" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>',
+  phone:'<svg viewBox="0 0 20 20" fill="none"><path d="M6.3 3h-2C3.6 3 3 3.6 3 4.3 3 11.3 8.7 17 15.7 17c.7 0 1.3-.6 1.3-1.3v-2l-3.3-1.3-1.5 1.5a9 9 0 0 1-5.1-5.1L8.6 7.3 7.3 4z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>',
+  flag:'<svg viewBox="0 0 20 20" fill="none"><path d="M5 17.5V3.5M5 4h9l-2 3.5 2 3.5H5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  people:'<svg viewBox="0 0 20 20" fill="none"><circle cx="7.5" cy="6.5" r="2.8" stroke="currentColor" stroke-width="1.6"/><path d="M2.5 16c.4-2.8 2.4-4.5 5-4.5s4.6 1.7 5 4.5M13 4a2.6 2.6 0 0 1 0 5M14.5 11.8c1.7.5 2.8 1.9 3 4.2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  logo:'<svg width="22" height="22" viewBox="0 0 20 20" fill="none"><path d="M11.1258 5.39489C15.057 4.7382 15.344 2.12663 14.4122 1.40001C13.4805 0.673389 10.2667 0.67795 9.81939 3.65283C9.81264 3.69844 9.72656 3.6954 9.72318 3.64979C9.63203 2.43825 7.09002 1.10662 5.99963 2.18287C5.31602 2.85629 5.41054 5.05135 8.88091 5.57275C9.11239 5.60753 9.12955 6.30289 8.88091 6.32467C4.43879 6.71388 1 9.39265 1 12.6383C1 16.1513 5.02907 19 10 19C14.9709 19 19 16.1513 19 12.6383C19 9.39352 15.5652 6.71692 11.1258 6.32546C10.8336 6.29969 10.8683 5.43791 11.1258 5.39489Z" stroke="currentColor" stroke-width="1.8"/></svg>',
+  tabLyynk:'<svg viewBox="0 0 24 24" fill="none"><path d="M13.3 6.5c4.7-.8 5-3.9 3.9-4.8-1.1-.9-5-.9-5.5 2.7 0 .1-.1.1-.1 0-.1-1.4-3.2-3-4.5-1.7-.8.8-.7 3.4 3.5 4.1.3 0 .3.9 0 .9C5.3 8.1 1.2 11.3 1.2 15.2c0 4.2 4.8 7.6 10.8 7.6s10.8-3.4 10.8-7.6c0-3.9-4.1-7.1-9.4-7.6-.4 0-.3-1.1-.1-1.1Z" stroke="currentColor" stroke-width="1.6"/></svg>',
+  tabQuiz:'<svg viewBox="0 0 24 24" fill="none"><rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.6"/><path d="M10 9.5a2 2 0 1 1 2.8 1.8c-.5.3-.8.7-.8 1.2v.5M12 16v.1" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>',
+  tabRep:'<svg viewBox="0 0 24 24" fill="none"><rect x="5" y="4" width="14" height="17" rx="3.5" fill="currentColor" fill-opacity=".12" stroke="currentColor" stroke-width="1.8"/><path d="M9 4h6v2.6H9zM9 12l2 2 4-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+  tabJeunes:'<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.6"/><path d="M9 14.5c1.6 1.4 4.4 1.4 6 0M9.3 10v.1M14.7 10v.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>'
+};
+const HOME_ORDER=['mal-etre','tdah','ecrans','harcelement','tsa'];
+const LEVELS=['rien','surveiller','professionnel'];
+const LEVEL_LABEL={rien:'Rien de particulier',surveiller:'À surveiller',professionnel:'En parler à un professionnel'};
+const LEVEL_MARK={rien:'var(--mint500)',surveiller:'var(--miel300)',professionnel:'var(--red500)'};
+const TSA_SMALL=['lt12m','m12-17','m18-23','m24-35','y3-5'];
+const EXTRA_CHILD={id:'emma',name:'Emma',gender:'f',months:228};
+
+let DATA=null;
+const state={view:'home',theme:null,child:null,answers:{},index:0,selected:null,result:null,page:0,popup:false,history:[],historyFilter:'all',historyVersion:'v1',historyTheme:null,returnTo:'home'};
+try{const saved=localStorage.getItem('proto-reperage-history');if(saved)state.history=JSON.parse(saved);}catch(error){}
+function saveHistory(){try{localStorage.setItem('proto-reperage-history',JSON.stringify(state.history));}catch(error){}}
+
+/* ---------- âge ---------- */
+function ageYears(child){return Math.floor(child.months/12);}
+function ageLabel(child){return child.months<24?child.months+' mois':ageYears(child)+' ans';}
+function rawBand(child,themeId){
+  const years=ageYears(child),months=child.months;
+  if(themeId==='tsa'&&years<6){
+    if(months<12)return 'lt12m';if(months<18)return 'm12-17';if(months<24)return 'm18-23';if(months<36)return 'm24-35';return 'y3-5';
+  }
+  if(years<6)return 'lt6';if(years<=10)return '6-10';if(years<=14)return '11-14';if(years<=18)return '15-18';return 'gt18';
+}
+function bandInfo(child,themeId){
+  const theme=DATA.themes[themeId];const band=rawBand(child,themeId);const strategy=theme.perBand[band]||{applies:true};
+  if(strategy.applies===false)return {band:strategy.useBand,outOfRange:true,raw:band};
+  return {band,outOfRange:false,raw:band};
+}
+
+/* ---------- textes ---------- */
+function gendered(child){const girl=child.gender==='f';return {il:girl?'elle':'il',e:girl?'e':'',lui:girl?'elle':'lui',le:girl?'la':'le'};}
+function fill(text,child,extra){
+  if(!text)return '';
+  const gender=gendered(child);
+  let out=text.replace(/\{prenom\}/g,child.name).replace(/\{il\}/g,gender.il).replace(/\{e\}/g,gender.e).replace(/\{lui\}/g,gender.lui).replace(/\{le\}/g,gender.le).replace(/\{age\}/g,ageLabel(child));
+  if(extra&&extra.signes!==undefined)out=out.replace(/\{signes\}/g,extra.signes);
+  out=out.replace(/\b(que|de|Que|De) ([AEIOUYÉÈÊÀÂÎÔaeiouyéèêàâîô])/g,(match,word,letter)=>word.slice(0,-1)+"'"+letter);
+  return out;
+}
+function escapeHtml(text){return text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function rich(text){return escapeHtml(text).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\[([^\]]+)\]\((https?:[^)]+)\)/g,'<a class="lnk" href="$2" target="_blank" rel="noopener">$1</a>');}
+function bandKeyFor(map,band){
+  if(!map)return null;
+  if(map[band])return map[band];
+  if(TSA_SMALL.includes(band)&&map.lt6)return map.lt6;
+  return null;
+}
+function questionText(question,band,field){const override=bandKeyFor(question.ageText,band);return (override&&override[field])||question[field];}
+
+/* ---------- questions ---------- */
+function allQuestions(themeId){
+  const theme=DATA.themes[themeId];
+  return theme.readingOrder.map(id=>theme.questions[id]).concat(theme.includeShared.map(id=>DATA.shared[id]));
+}
+function scoreOf(question,label){if(label===undefined)return undefined;const choice=question.choices.find(item=>item.label===label);return choice?choice.score:null;}
+function visibleQuestions(){
+  const info=bandInfo(state.child,state.theme);const years=ageYears(state.child);
+  const base=allQuestions(state.theme).filter(question=>question.ageBands.includes(info.band)&&(!question.minAgeYears||years>=question.minAgeYears));
+  const symptoms=base.filter(question=>question.role==='symptom'&&scoreOf(question,state.answers[question.id])>=2).length;
+  return base.filter(question=>!question.showIf||symptoms>=question.showIf.min);
+}
+function initialCount(){return visibleQuestions().filter(question=>!question.showIf).length;}
+
+/* ---------- moteur ---------- */
+function evaluate(){
+  const theme=DATA.themes[state.theme];const child=state.child;const info=bandInfo(child,state.theme);
+  const questions=visibleQuestions();
+  const scored=[];
+  questions.forEach(question=>{
+    if(question.sensitive)return;
+    const score=scoreOf(question,state.answers[question.id]);
+    if(typeof score==='number')scored.push({question,score});
+  });
+  const countWhere=(filter,at)=>scored.filter(item=>filter(item.question)&&item.score>=at).length;
+  function check(condition){
+    switch(condition.t){
+      case 'count':return countWhere(()=>true,condition.at)>=condition.min;
+      case 'ids':return countWhere(question=>condition.ids.includes(question.id),condition.at)>=condition.min;
+      case 'sumcap':return scored.filter(item=>condition.ids.includes(item.question.id)).reduce((sum,item)=>sum+Math.min(item.score,condition.cap),0)>=condition.min;
+      case 'impact':{const total=countWhere(question=>question.role==='impact',condition.at);return (condition.min===undefined||total>=condition.min)&&(condition.max===undefined||total<=condition.max);}
+      case 'specific':return countWhere(question=>question.specific,condition.at)>=condition.min;
+      case 'keys':return countWhere(question=>question.key,condition.at)>=condition.min;
+    }
+    return false;
+  }
+  const passes=alternatives=>(alternatives||[]).some(group=>group.every(check));
+  const trace=[];
+  let level='rien';
+  if(passes(theme.rules.professionnel))level='professionnel';else if(passes(theme.rules.surveiller))level='surveiller';
+  trace.push('Règles : '+level);
+  let capped=false;
+  theme.caps.forEach(cap=>{if(cap.if.every(check)&&LEVELS.indexOf(level)>LEVELS.indexOf(cap.max)){level=cap.max;capped=true;trace.push('Plafond (sans impact) : '+level);}});
+  const raise=(target,why)=>{if(LEVELS.indexOf(target)>LEVELS.indexOf(level)){level=target;}trace.push(why+' → '+target);};
+  const escalated=[];let onlySummary=null;
+  questions.forEach(question=>{
+    const label=state.answers[question.id];
+    if(question.escalation&&question.escalation[label]){raise(question.escalation[label],question.id+' « '+label+' »');escalated.push(question);if(question.onlySummary)onlySummary=question.onlySummary;}
+  });
+  let emergency=false,unsure=false;const kinds=new Set();const flagged=[];const unsureQuestions=[];
+  questions.forEach(question=>{
+    if(!question.sensitive)return;const label=state.answers[question.id];
+    if(question.sensitive.worryingAnswers.includes(label)){emergency=true;kinds.add(question.sensitive.emergencyKind);flagged.push(question);raise('professionnel',question.id+' sensible');}
+    else if(label==='Je ne sais pas'){unsure=true;kinds.add(question.sensitive.emergencyKind);unsureQuestions.push(question);}
+  });
+  /* signes cités */
+  const strong=scored.filter(item=>item.score>=2).sort((first,second)=>(second.question.citationPriority||0)-(first.question.citationPriority||0)).slice(0,3);
+  let signs=strong.map(item=>questionText(item.question,info.band,'sign'));
+  if(signs.length<3){
+    const sometimes=scored.filter(item=>item.score===1&&item.question.signSometimes).sort((first,second)=>(second.question.citationPriority||0)-(first.question.citationPriority||0));
+    sometimes.slice(0,3-signs.length).forEach(item=>signs.push(questionText(item.question,info.band,'signSometimes')));
+  }
+  if(!signs.length)signs=escalated.concat(flagged).map(question=>questionText(question,info.band,'sign')).filter(Boolean).slice(0,3);
+  /* ce qui a fait pencher */
+  const itemOf=(question,strongItem)=>({question,label:state.answers[question.id],strong:strongItem});
+  function itemsFor(group){
+    const picked=[];const add=(filter,at)=>scored.forEach(item=>{if(filter(item.question)&&item.score>=at&&!picked.some(other=>other.question===item.question))picked.push(itemOf(item.question,true));});
+    group.forEach(condition=>{
+      if(condition.t==='ids')add(question=>condition.ids.includes(question.id),condition.at);
+      else if(condition.t==='sumcap')add(question=>condition.ids.includes(question.id),1);
+      else if(condition.t==='impact')add(question=>question.role==='impact',condition.at===undefined?2:condition.at);
+      else if(condition.t==='specific')add(question=>question.specific,condition.at);
+      else if(condition.t==='keys')add(question=>question.key,condition.at);
+      else if(condition.t==='count')add(()=>true,condition.at);
+    });
+    return picked.slice(0,6);
+  }
+  let reason=null;
+  if(flagged.length)reason={code:'urgent:'+flagged[0].sensitive.emergencyKind,items:flagged.map(question=>itemOf(question,true))};
+  else{
+    const decisive=escalated.filter(question=>question.escalation[state.answers[question.id]]===level);
+    if(decisive.length)reason={code:'esc:'+decisive[0].id,items:decisive.map(question=>itemOf(question,true))};
+  }
+  if(!reason&&level!=='rien'){
+    if(!capped&&level==='surveiller'&&theme.caps.length&&(theme.rules.professionnel||[]).some(group=>group.some(condition=>condition.t==='impact')&&group.filter(condition=>condition.t!=='impact').every(check)))capped=true;
+    if(capped){
+      const strongItems=scored.filter(item=>item.score>=2&&item.question.role!=='impact').slice(0,4).map(item=>itemOf(item.question,true));
+      const impactItems=scored.filter(item=>item.question.role==='impact').slice(0,2).map(item=>itemOf(item.question,false));
+      reason={code:'cap',items:strongItems.concat(impactItems)};
+    }else{
+      const alternatives=theme.rules[level]||[];const index=alternatives.findIndex(group=>group.every(check));
+      if(index>=0)reason={code:level+':'+index,items:itemsFor(alternatives[index])};
+    }
+  }
+  const notices=[];
+  questions.forEach(question=>{const label=state.answers[question.id];if(question.notices&&question.notices[label])notices.push(question.notices[label]);});
+  const sensitiveEscalated=escalated.some(question=>question.sensitive);
+  const listenKinds=new Set(theme.levels[level].listenKinds||[]);
+  if(sensitiveEscalated||unsure)theme.emergencyKinds.concat([...kinds]).forEach(kind=>listenKinds.add(kind));
+  if(reason)trace.push('Ce qui a fait pencher : '+reason.code);
+  trace.push('Signes ≥ Souvent : '+scored.filter(item=>item.score>=2).length+' · sensible : '+(emergency?'urgence':unsure?'je ne sais pas':'non'));
+  return {level,emergency,unsure,kinds:[...kinds],flagged,unsureQuestions,signs,onlySummary,notices,listenKinds,trace,band:info.band,outOfRange:info.outOfRange,reason};
+}
+function lowerSign(text,child){return text.startsWith(child.name)?text:text.charAt(0).toLowerCase()+text.slice(1);}
+function joinSigns(signs,child){
+  const parts=signs.map(sign=>lowerSign(fill(sign,child),child));
+  if(parts.length<=1)return parts.join('');
+  return parts.slice(0,-1).join(', ')+' et '+parts[parts.length-1];
+}
+function numbersFor(kinds,child,urgentOnly){
+  const years=ageYears(child);
+  return DATA.emergencyFR.filter(entry=>entry.kinds.some(kind=>kinds.includes(kind))&&(entry.maxAgeYears===undefined||years<=entry.maxAgeYears)&&(entry.ageMinYears===undefined||years>=entry.ageMinYears)&&(urgentOnly===undefined||(urgentOnly?true:!entry.urgent)));
+}
+
+/* ---------- rendu ---------- */
+const phone=document.getElementById('phone');
+function statusBar(light){return '<div class="status'+(light?' light':'')+'"><span>9:41</span><span style="display:flex;gap:5px;align-items:center"><svg width="18" height="12" viewBox="0 0 18 12" fill="currentColor"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg><svg width="16" height="12" viewBox="0 0 16 12" fill="currentColor"><path d="M8 2.5c2.3 0 4.4.9 6 2.4l1.2-1.3A10.4 10.4 0 0 0 8 .7 10.4 10.4 0 0 0 .8 3.6L2 4.9a8.6 8.6 0 0 1 6-2.4Zm0 3.6c1.3 0 2.5.5 3.4 1.3l1.2-1.3A6.8 6.8 0 0 0 8 4.3a6.8 6.8 0 0 0-4.6 1.8l1.2 1.3c.9-.8 2.1-1.3 3.4-1.3ZM8 12l2.2-2.4a3.2 3.2 0 0 0-4.4 0Z"/></svg><svg width="26" height="12" viewBox="0 0 26 12" fill="none"><rect x=".5" y=".5" width="22" height="11" rx="3.5" stroke="currentColor" opacity=".4"/><rect x="2" y="2" width="19" height="8" rx="2" fill="currentColor"/><path d="M24 4v4c.8-.3 1.3-1.1 1.3-2S24.8 4.3 24 4Z" fill="currentColor" opacity=".4"/></svg></span></div>';}
+function header(title,left,right){return '<div class="hdr">'+(left?'<button class="iconbtn left" data-act="'+left+'">'+ICON.back+'</button>':'')+'<div class="ttl">'+title+'</div>'+(right||'')+'</div>';}
+function displayTitle(themeId){return DATA.themes[themeId].title.replace(/\s*\(TDAH\)/,'');}
+function avatar(child){return 'img/avatar-'+(child.gender==='f'?'f':'m')+'.png';}
+function children(){return [DATA.children.find(item=>item.id==='ines'),EXTRA_CHILD].concat(DATA.children.filter(item=>item.id!=='ines')).filter(Boolean);}
+function genderLabel(child){return child.gender==='f'?'Fille':'Garçon';}
+
+function render(){
+  const views={home:renderHome,child:renderChild,intro:renderIntro,question:renderQuestion,report:renderReport,p5:renderP5,chat:renderChat,history:renderHistory};
+  phone.innerHTML=views[state.view]();
+  const scroller=phone.querySelector('.scroll');if(scroller)scroller.scrollTop=0;
+}
+function renderHome(){
+  const cards=HOME_ORDER.map(id=>'<button class="homecard" data-theme="'+id+'"><img src="img/home-'+id+'.jpg" alt=""><div class="txt"><div class="p1Bold">'+displayTitle(id)+'</div><div class="p4Medium" style="color:var(--greyLight600);margin-top:2px">'+DATA.summaries[id]+'</div></div></button>').join('');
+  return '<div class="screen"><div class="grad"></div>'+statusBar()+
+  '<div class="scroll"><div style="height:47px"></div><div style="display:flex;justify-content:space-between;align-items:center;padding:8px 22px 16px;position:relative"><div class="logo">lyynk</div><button class="iconbtn white" data-act="history" title="Mes comptes rendus">'+ICON.clip+'</button></div>'+
+  '<div class="pad" style="position:relative;margin-bottom:16px"><div class="h4Bold" style="color:var(--blue950)">Repérer des signes</div><div class="p4Medium" style="color:var(--greyLight600);margin-top:4px">Repère tôt les signes de difficulté chez ton enfant, et sache quoi faire ensuite.</div></div>'+cards+'</div>'+
+  '<div class="tabbar">'+[['tabLyynk','Lyynk'],['tabQuiz','Quiz'],['tabRep','Repérage',true],['tabJeunes','Jeunes']].map(([icon,label,on])=>'<div class="tab'+(on?' on':'')+'">'+ICON[icon]+label+'</div>').join('')+'</div></div>';
+}
+function rangeBadge(child){
+  const info=bandInfo(child,state.theme);if(!info.outOfRange)return '';
+  const tooYoung=info.raw==='lt6'||info.raw==='lt12m';
+  const label=tooYoung?'Trop jeune':'Trop âgé'+(child.gender==='f'?'e':'');
+  return '<span class="rangebadge">'+ICON.info+label+' · '+DATA.themes[state.theme].ageRange+'</span>';
+}
+function renderChild(){
+  const list=children().map(child=>'<button class="childcard" data-child="'+child.id+'"><img class="avatar" src="'+avatar(child)+'" alt=""><div><div class="p1Bold">'+child.name+'</div><div class="p4Medium" style="color:var(--greyLight600)">'+genderLabel(child)+' · '+ageLabel(child)+'</div>'+rangeBadge(child)+'</div><span class="chev">'+ICON.chev+'</span></button>').join('');
+  return '<div class="screen"><div class="grad"></div>'+statusBar()+header(displayTitle(state.theme),'home')+'<div class="scroll"><div class="pad"><div class="h4Bold" style="margin:8px 0 16px">Pour quel enfant ?</div>'+list+'</div></div></div>';
+}
+function renderIntro(){
+  const theme=DATA.themes[state.theme],child=state.child,info=bandInfo(child,state.theme);
+  const introSource=(bandKeyFor(theme.ageText,info.band)||{}).intro||theme.intro;
+  const intro=fill(introSource,child);
+  const splitAt=intro.indexOf("Ce n'est ni");
+  const paragraphs=(splitAt>0?[intro.slice(0,splitAt).trim(),intro.slice(splitAt)]:[intro]).map(text=>'<p class="p2Medium" style="margin-bottom:12px">'+rich(text).replace(new RegExp('chez '+child.name),'chez <b>'+child.name+'</b>')+'</p>').join('');
+  const alert=info.outOfRange?'<div class="hint miel" style="margin-bottom:16px">'+ICON.info+'<span>'+fill(theme.ageAlert,child)+'</span></div>':'';
+  return '<div class="screen">'+statusBar(true)+'<div class="scroll"><div class="hero" style="background-image:url(img/intro-'+state.theme+'.jpg)"><div class="hdr" style="position:absolute;top:0;left:0;right:0"><button class="iconbtn left" style="color:#fff" data-act="back-child">'+ICON.back+'</button></div>'+
+  '<div class="badges"><div class="badge"><img src="'+avatar(child)+'" alt="">Pour '+child.name+' · '+ageLabel(child)+'</div><div class="badge q">'+ICON.clip.replace('<svg','<svg width="16" height="16"')+initialCount()+' questions</div></div></div>'+
+  '<div class="pad" style="padding-top:20px">'+alert+'<div class="h4Bold" style="margin-bottom:12px">'+displayTitle(state.theme)+'</div>'+paragraphs+'</div></div>'+
+  '<div class="bottom"><div class="hint blue">'+fill(theme.windowLine,child).replace(/\.$/,'')+'</div><button class="btn" data-act="start">Commencer</button></div></div>';
+}
+function renderQuestion(){
+  const list=visibleQuestions();const question=list[state.index];const info=bandInfo(state.child,state.theme);
+  const total=list.length,position=state.index+1;
+  const choices=question.choices.map(choice=>'<button class="choice'+(state.selected===choice.label?' on':'')+'" data-choice="'+escapeHtml(choice.label)+'">'+choice.label+'</button>').join('');
+  const popup=state.popup?'<div class="overlay"><div class="modal"><div class="h5Bold" style="margin-bottom:6px">Attention, tu n’as pas terminé</div><div class="p4Medium" style="color:var(--greyLight600);margin-bottom:16px">Si tu quittes maintenant, tes réponses ne seront pas enregistrées.</div><button class="btn danger" data-act="quit">Quitter</button><button class="btn link" data-act="stay">Non, rester</button></div></div>':'';
+  return '<div class="screen"><div class="grad"></div>'+statusBar()+header(displayTitle(state.theme),null,'<button class="iconbtn white right" data-act="ask-quit">'+ICON.close+'</button>')+
+  '<div class="progress"><button class="iconbtn" style="width:24px" data-act="prev">'+ICON.back+'</button><div class="bar"><i style="width:'+(position/total*100)+'%"></i></div><span class="addTextMedium" style="font-weight:600">'+position+'/'+total+'</span></div>'+
+  '<div class="scroll" style="padding-top:24px"><div class="pad"><div class="p4Medium" style="text-align:center;color:var(--greyLight600);margin-bottom:8px">Question '+position+'</div><div class="h5Bold" style="margin-bottom:24px">'+fill(questionText(question,info.band,'text'),state.child)+'</div>'+choices+'</div></div>'+
+  '<div style="height:34px;flex-shrink:0"></div>'+popup+'</div>';
+}
+
+/* compte rendu */
+function reportPages(){
+  const result=state.result,level=DATA.themes[state.theme].levels[result.level];
+  const pages=['p1'];
+  if(result.emergency||result.unsure)pages.push('important');
+  if(result.level!=='rien'&&(level.meaningIdeas||level.meaning))pages.push('meaning');
+  pages.push('advice');
+  if(result.level!=='rien'&&(level.orientation.length||result.notices.length))pages.push('orientation');
+  return pages;
+}
+const STEP_META={important:['warn','Important'],meaning:['info','Comprendre'],advice:['flag','Agir'],orientation:['people','Vers qui']};
+function stepper(pages,current){
+  return '<div class="stepper">'+pages.map((page,index)=>{
+    const meta=STEP_META[page];const status=index<current?' done':index===current?' on':'';
+    const line=index?'<div class="stepline'+(index<=current?' done':'')+'"></div>':'';
+    return line+'<div class="step'+status+(page==='important'?' red':'')+'" title="'+meta[1]+'"><div class="dot">'+ICON[meta[0]]+'</div></div>';
+  }).join('')+'</div>';
+}
+function renderReport(){
+  const pages=reportPages();const page=pages[state.page];
+  const dots='<div class="dots">'+pages.map((item,index)=>'<i class="'+(index===state.page?'on':'')+'"></i>').join('')+'</div>';
+  const isLast=state.page===pages.length-1;
+  const buttons=state.result.level==='rien'&&page==='advice'?'<button class="btn" data-act="next">Terminer</button><button class="btn link" data-act="redo">Refaire ce questionnaire</button>':'<button class="btn" data-act="next">Suivant</button>';
+  const body={p1:pageP1,important:pageImportant,meaning:pageMeaning,advice:pageAdvice,orientation:pageOrientation}[page]();
+  if(page==='p1')return '<div class="screen">'+statusBar()+'<div class="scroll"><div class="p1hero" style="background-image:url(img/cr-'+state.theme+'-'+state.result.level+'.jpg)"></div><div class="hdr" style="position:absolute;top:0;left:0;right:0"><button class="iconbtn left" data-act="report-back">'+ICON.back+'</button></div>'+body+'</div><div class="bottom" style="padding-top:0">'+dots+buttons+'</div></div>';
+  return '<div class="screen"><div class="grad"></div>'+statusBar()+header(displayTitle(state.theme),'report-back')+'<div class="scroll"><div class="pad" style="position:relative"><span class="lvl '+state.result.level+'">'+LEVEL_LABEL[state.result.level]+'</span>'+(pages.length>2?stepper(pages.slice(1),state.page-1):'')+body+'</div></div><div class="bottom" style="padding-top:0">'+dots+buttons+'</div></div>';
+}
+function pageP1(){
+  const result=state.result,child=state.child,level=DATA.themes[state.theme].levels[result.level];
+  let template=level.summary;
+  if(result.signs.length===1&&level.summaryOne)template=level.summaryOne;
+  if(result.onlySummary&&result.onlySummary[result.level]&&result.signs.length<=1)template=result.onlySummary[result.level];
+  const summary=fill(template,child,{signes:joinSigns(result.signs,child)});
+  const gauge='<div class="gauge"><div class="segs">'+LEVELS.map(name=>'<div class="seg'+(name===result.level?' on':'')+'" style="--mk:'+LEVEL_MARK[name]+'"><i style="background:'+LEVEL_MARK[name]+'"></i><span>'+LEVEL_LABEL[name]+'</span></div>').join('')+'</div></div>';
+  const alert=result.outOfRange?'<div class="hint miel" style="margin-bottom:12px">'+ICON.info+'<span>'+fill(DATA.themes[state.theme].ageAlert,child)+'</span></div>':'';
+  return '<div class="sheet"><div class="h5Bold">Compte rendu pour '+child.name+'</div>'+gauge+alert+'<p class="p2Medium">'+rich(summary)+'</p></div>';
+}
+function phoneRows(entries){return entries.map(entry=>'<div class="phonerow"><span class="ph">'+ICON.phone+'</span><div><div class="num">'+entry.number+'</div><div class="p4Medium">'+entry.label+'</div><div class="addTextMedium" style="color:var(--greyLight500)">'+entry.hours+(entry.forChild?' · à proposer à '+state.child.name:'')+'</div></div></div>').join('');}
+function pageImportant(){
+  const result=state.result,child=state.child,info=bandInfo(child,state.theme);
+  let html='<div class="h4Bold" style="margin:16px 0">Important</div>';
+  if(result.emergency){
+    const reported=result.flagged.map(question=>fill(questionText(question,info.band,'sign')||'',child)).filter(Boolean);
+    html+='<div class="rcard"><div class="idea"><span class="ico red">'+ICON.warn+'</span><div><div class="p3Bold">Si tu t’inquiètes pour la sécurité de '+child.name+', appelle maintenant.</div>'+(reported.length?'<div class="p4Medium" style="margin-top:4px">Tu as signalé : '+reported.map(text=>lowerSign(text,child)).join(' ; ')+'.</div>':'')+'</div></div>'+phoneRows(numbersFor(result.kinds,child))+'</div>';
+  }
+  if(result.unsure&&!result.emergency){
+    html+='<div class="rcard"><div class="idea"><span class="ico orange">'+ICON.info+'</span><div><div class="p3Bold">Tu ne sais pas répondre à une question sur la sécurité de '+child.name+'.</div><div class="p4Medium" style="margin-top:4px">C’est fréquent. Si tu as un doute, tu peux en parler à un numéro d’écoute : tu n’as pas à décider seul·e.</div></div></div>'+phoneRows(numbersFor(result.kinds,child,false))+'</div>';
+  }
+  return html;
+}
+/* « Ce que ça veut dire » V2 : textes par cas (brouillons, à valider) */
+const NOT_DIAG='**Ce n’est pas un diagnostic.** Ces signes peuvent avoir plusieurs causes : un professionnel pourra comprendre avec {prenom} ce qu’{il} traverse.';
+const CASES={
+  'mal-etre':{
+    'surveiller:0+':['**Des signes fréquents méritent qu’on y prête attention**, sans s’inquiéter pour autant : ça peut être passager.','S’ils durent plus de deux semaines ou touchent d’autres domaines (sommeil, école, amis), c’est le moment d’en parler à un médecin.','ameli','**Ce n’est pas un diagnostic.** Beaucoup de jeunes traversent des moments difficiles : c’est surtout leur durée qui compte.'],
+    'urgent:suicide':['**Ces paroles ou ces gestes suffisent à eux seuls pour demander de l’aide rapidement**, même s’ils semblaient dits ou faits en passant.','La Haute Autorité de santé et l’Assurance maladie en font des signes d’alerte : ils doivent toujours être pris au sérieux.','HAS, 2021 · ameli','**Ce n’est pas un diagnostic.** Ça ne veut pas dire que {prenom} va passer à l’acte : ça veut dire qu’{il} a besoin qu’on en parle, avec {lui} et avec un professionnel.'],
+    'esc:M-S1':['**Même ancienne, une tentative est un élément important à partager avec un professionnel.**','La Haute Autorité de santé recommande d’en tenir compte dans le suivi d’un jeune, même quand tout semble aller mieux.','HAS, 2021'],
+    'professionnel:0':['Ces réponses portent sur 5 questions d’un outil de repérage utilisé par les pédiatres. **Ensemble, elles atteignent le seuil à partir duquel cet outil conseille d’en parler à un professionnel.**','Ce seuil vient du PSC-17, un questionnaire utilisé dans de nombreux pays pour repérer tôt les difficultés émotionnelles des enfants et des ados.','PSC-17 (Gardner et Kelleher, 1999)'],
+    'professionnel:1':['Pris séparément, chacun peut passer. **Ensemble, ce sont deux des signes que les médecins prennent le plus au sérieux** chez un jeune de l’âge de {prenom}.','Quand ces signes durent plus de deux semaines, la Haute Autorité de santé recommande d’en parler à un médecin. En parler tôt permet d’aider plus simplement.','HAS, 2021 · SMFQ'],
+    'surveiller:0':['**Un signe fréquent mérite qu’on y prête attention**, sans s’inquiéter pour autant : ça peut être passager.','S’il dure plus de deux semaines ou touche d’autres domaines (sommeil, école, amis), c’est le moment d’en parler à un médecin.','ameli','**Ce n’est pas un diagnostic.** Beaucoup de jeunes traversent des moments difficiles : c’est surtout leur durée qui compte.'],
+    'surveiller:1':['Aucun signe n’est fréquent, mais **plusieurs apparaissent de temps en temps, en même temps**. Ensemble, ils atteignent le seuil d’un outil utilisé par les pédiatres.','Le PSC-17 compte ces petits signes ensemble : leur accumulation peut révéler une période plus difficile.','PSC-17 (Gardner et Kelleher, 1999)']
+  },
+  'tdah':{
+    'surveiller:0+':['Ces comportements sont fréquents chez les enfants. **Tant qu’ils ne gênent pas {prenom} au quotidien, ils invitent surtout à observer.**','Observer s’ils durent, et s’ils gênent {prenom} à l’école ou à la maison, permet de savoir quand en parler.','Repère Lyynk, d’après Vanderbilt','**Ce n’est pas un diagnostic.** Bouger, rêver ou oublier font partie de l’enfance : c’est la durée et l’effet au quotidien qui comptent.'],
+    'professionnel:0':['**Les difficultés d’attention sont nombreuses, et elles pèsent sur son quotidien.** C’est cette combinaison, plus qu’un signe isolé, que les médecins regardent.','Les outils de repérage et la Haute Autorité de santé demandent à la fois des signes fréquents et des difficultés au quotidien avant d’aller plus loin.','Vanderbilt · HAS, 2014','**Ce n’est pas un diagnostic.** Seul un médecin formé peut évaluer la situation, en croisant plusieurs avis, dont celui de l’école.'],
+    'professionnel:2':['**L’agitation et l’impulsivité sont fréquentes, et elles compliquent le quotidien de {prenom}.**','Comme pour l’attention, c’est le nombre de signes et leurs effets au quotidien qui comptent, pas un comportement isolé.','Vanderbilt · HAS, 2014','**Ce n’est pas un diagnostic.** Seul un médecin formé peut évaluer la situation, en croisant plusieurs avis, dont celui de l’école.'],
+    'surveiller:0':['**Ce comportement est fréquent chez les enfants** : à lui seul, il ne dit pas grand-chose.','Observer si d’autres signes apparaissent, et s’ils gênent {prenom} à l’école ou à la maison, permet de savoir quand en parler.','Repère Lyynk, d’après Vanderbilt','**Ce n’est pas un diagnostic.** Bouger, rêver ou oublier font partie de l’enfance : c’est la durée et l’effet au quotidien qui comptent.'],
+    'cap':['Plusieurs signes sont fréquents, **mais ils ne semblent pas gêner {prenom} au quotidien**. C’est ce qui fait la différence avec « En parler à un professionnel ».','Sans difficultés à l’école, à la maison ou avec les autres, les outils de repérage ne conseillent pas d’aller plus loin pour l’instant.','Vanderbilt · HAS, 2014','**Ce n’est pas un diagnostic.** Si des difficultés apparaissent, refais ce questionnaire.']
+  },
+  'harcelement':{
+    'surveiller:1+':['Ces signes peuvent venir du harcèlement, **mais aussi de beaucoup d’autres choses** : fatigue, stress, tensions à la maison.','Seuls, des signes généraux ne suffisent pas à parler de harcèlement : c’est pour ça qu’ils restent « À surveiller ».','Éduscol'],
+    'urgent:violence':['**Des violences ou des marques qu’on ne s’explique pas demandent d’agir tout de suite**, pour protéger {prenom}.','L’Éducation nationale les classe parmi les signes à ne jamais laisser passer. Le 17, le 119 et le 3018 peuvent t’aider.','Éduscol · education.gouv.fr','**Ce n’est pas un diagnostic.** Ça ne dit pas ce qui s’est passé : c’est en parlant avec {prenom} et des professionnels que tu le sauras.'],
+    'urgent:cyber':['**Ce qui se passe en ligne est grave et peut s’aggraver vite.** Il faut agir maintenant.','Le 3018 aide à faire retirer les contenus et à signaler le harcèlement en ligne.','3018 · education.gouv.fr','**Ce n’est pas un diagnostic.** Ça ne dit pas ce qui s’est passé : c’est en parlant avec {prenom} et des professionnels que tu le sauras.'],
+    'urgent:suicide':['Le harcèlement peut faire très mal. **Ces paroles ou ces gestes demandent de l’aide rapidement.**','La Haute Autorité de santé cite le harcèlement comme un facteur de risque : ces signes doivent toujours être pris au sérieux.','HAS, 2021'],
+    'esc:H6@professionnel':['**Que {prenom} le dise {lui}-même est le signe le plus direct.** Quand {il} en parle souvent, il faut l’écouter et agir.','Beaucoup de jeunes n’en parlent pas, par honte ou par peur : quand ils le font, c’est souvent que ça dure.','SDQ · HAS, 2021'],
+    'esc:H6@surveiller':['**Même occasionnel, c’est un signe à suivre de près.**','Le harcèlement commence souvent par des moqueries qui semblent anodines, puis se répète.','Repère Lyynk, d’après le SDQ'],
+    'professionnel:0':['**Ces signes sont typiques du harcèlement**, et ils reviennent souvent.','La grille de l’Éducation nationale additionne ces signaux faibles : deux signes propres au harcèlement suffisent à alerter.','Éduscol'],
+    'professionnel:1':['Un signe propre au harcèlement, **accompagné de plusieurs signes de mal-être**, forme un ensemble qui inquiète.','La grille de l’Éducation nationale additionne ces signaux faibles : c’est leur accumulation qui alerte.','Éduscol'],
+    'surveiller:0':['**Même occasionnel, un signe propre au harcèlement est à suivre de près.**','Le harcèlement commence souvent par des signes discrets, puis se répète.','Repère Lyynk, d’après Éduscol'],
+    'surveiller:1':['Ces signes peuvent venir du harcèlement, **mais aussi de beaucoup d’autres choses** : fatigue, stress, tensions à la maison.','Seuls, des signes généraux ne suffisent pas à parler de harcèlement : c’est pour ça qu’ils restent « À surveiller ».','Éduscol']
+  },
+  'tsa':{
+    'surveiller:0+':['**Ces signes invitent à observer**, sans conclure.','Note quand et comment ils apparaissent, et parles-en au prochain rendez-vous chez le médecin.','Repère Lyynk','**Ce n’est pas un diagnostic.** Chaque enfant a son rythme.'],
+    'capacity':['**Cette capacité clé n’est pas encore là, et elle fait partie des signes d’alerte majeurs à cet âge.** Mieux vaut en parler sans attendre.','La Haute Autorité de santé recommande de consulter dès un de ces signes : plus on repère tôt, plus on peut aider.','HAS, 2018','**Ce n’est pas un diagnostic.** Chaque enfant a son rythme : c’est un professionnel qui pourra dire ce qu’il en est pour {prenom}.'],
+    'esc:S14':['**Perdre des mots ou des façons d’échanger qu’{il} avait est un signe à toujours signaler**, quel que soit l’âge.','La Haute Autorité de santé en fait un signe d’alerte majeur, à partager rapidement avec un médecin.','HAS, 2018','**Ce n’est pas un diagnostic.** Chaque enfant a son rythme : c’est un professionnel qui pourra dire ce qu’il en est pour {prenom}.'],
+    'worry@professionnel':['**Ton inquiétude compte.** Les parents sont souvent les premiers à remarquer que quelque chose est différent.','La Haute Autorité de santé considère l’inquiétude des parents comme un signe d’alerte à part entière.','HAS, 2018'],
+    'worry@surveiller':['**Ton inquiétude mérite d’être entendue**, même si peu de signes sont fréquents.','En parler au médecin lors du prochain rendez-vous permet d’avoir un avis sans dramatiser.','Repère Lyynk, d’après HAS 2018'],
+    'professionnel:0':['**Plusieurs signes clés sont présents ensemble.** C’est cette combinaison qui justifie un avis.','La Haute Autorité de santé et les outils de repérage utilisés par les professionnels retiennent ces signes comme les plus importants.','HAS, 2018 · M-CHAT · ASSQ'],
+    'surveiller:0':['**Un signe seul invite à observer**, sans conclure.','Note quand et comment il apparaît, et parles-en au prochain rendez-vous chez le médecin.','Repère Lyynk','**Ce n’est pas un diagnostic.** Chaque enfant a son rythme.'],
+    'surveiller:1':['**Deux capacités clés sont là, mais pas encore régulièrement.**','Le M-CHAT, un outil de repérage utilisé par les médecins, retient ce repère pour rester attentif.','M-CHAT-R/F','**Ce n’est pas un diagnostic.** Chaque enfant a son rythme.']
+  },
+  'ecrans':{
+    'surveiller:0+':['**Ce sont des signes à suivre**, sans qu’ils suffisent à parler de problème.','Les écrans font partie de la vie des jeunes : ils ne posent problème que quand ils prennent le dessus sur le reste.','Repère Lyynk','**Ce n’est pas un diagnostic.** Un échange sans reproche est souvent le meilleur point de départ.'],
+    'professionnel:0':['**Les trois signes retenus par l’OMS sont présents, et ils ont déjà un effet sur sa vie.**','L’Organisation mondiale de la santé parle d’usage problématique quand ces trois signes s’accompagnent de conséquences au quotidien.','OMS, CIM-11','**Ce n’est pas un diagnostic.** {prenom} n’est pas « accro » : c’est l’équilibre de ses journées qui est à retrouver, avec l’aide d’un professionnel.'],
+    'surveiller:0':['**C’est un signe à suivre**, sans qu’il suffise à parler de problème.','Les écrans font partie de la vie des jeunes : ils ne posent problème que quand ils prennent le dessus sur le reste.','Repère Lyynk','**Ce n’est pas un diagnostic.** Un échange sans reproche est souvent le meilleur point de départ.'],
+    'surveiller:1':['**Les écrans ont déjà un effet sur son quotidien.** C’est souvent le premier signe visible.','Protéger le sommeil, par exemple sans écran dans la chambre la nuit, fait partie des premières recommandations des autorités de santé.','Ministère des Solidarités','**Ce n’est pas un diagnostic.** Un échange sans reproche est souvent le meilleur point de départ.'],
+    'cap':['Les signes de l’OMS sont là, **mais ils n’ont pas encore d’effet marqué sur sa vie**. C’est ce qui le garde en « À surveiller ».','L’OMS demande des conséquences au quotidien avant de parler d’usage problématique.','OMS, CIM-11','**Ce n’est pas un diagnostic.** Si son sommeil, ses devoirs ou ses relations en pâtissent, refais ce questionnaire.']
+  }
+};
+function caseFor(themeId,reason,level){
+  const table=CASES[themeId]||{};if(!reason)return null;
+  let code=reason.code;
+  if(themeId==='tdah'&&/^professionnel:[13]$/.test(code))code='professionnel:'+(Number(code.slice(-1))-1);
+  if(themeId==='tsa'&&code.startsWith('esc:')&&code!=='esc:S14'){const question=reason.items[0].question;code=/inquiètes/.test(question.text)?'worry':'capacity';}
+  if(reason.items.length>1&&table[code+'+'])return table[code+'+'];
+  return table[code+'@'+level]||table[code]||null;
+}
+function signLabel(question,band){
+  const child=state.child;let text=fill(questionText(question,band,'text'),child);
+  text=text.replace(/^Est-ce qu(e |’|')/,'');
+  if(text.startsWith(child.name+' '))text=text.slice(child.name.length+1);
+  text=text.replace(/\s*\([^)]*\)/g,'').replace(/\s*\?\s*$/,'');
+  return text.charAt(0).toUpperCase()+text.slice(1);
+}
+function pageMeaning(){
+  const result=state.result,level=DATA.themes[state.theme].levels[result.level],child=state.child;
+  const entry=caseFor(state.theme,result.reason,result.level);
+  const chip=(label,strongChip)=>{const palette=strongChip?(result.level==='surveiller'?'background:var(--miel100);color:var(--miel800)':'background:var(--red100);color:var(--red700)'):'background:var(--greyLight100);color:var(--greyLight600)';return '<span class="chipans" style="'+palette+'">'+escapeHtml(label)+'</span>';};
+  let html='<div class="h4Bold" style="margin:16px 0">Ce que ça veut dire</div>';
+  if(entry&&result.reason.items.length){
+    const rows=result.reason.items.map((item,index)=>'<div class="signrow'+(index===result.reason.items.length-1?' last':'')+'"><span class="p4Medium" style="color:var(--greyLight900)">'+escapeHtml(signLabel(item.question,result.band))+'</span>'+chip(item.label,item.strong)+'</div>').join('');
+    html+='<div class="rcard"><span class="tag">Ce qui a fait pencher</span><div>'+rows+'</div><div class="p4Medium" style="margin-top:10px">'+rich(fill(entry[0],child))+'</div></div>';
+    html+='<div class="rcard"><span class="tag">Pourquoi ça compte</span><div class="p4Medium">'+rich(fill(entry[1],child))+'</div><div class="addTextMedium" style="color:var(--greyLight500);margin-top:8px">Source : '+escapeHtml(entry[2])+'</div></div>';
+    html+='<div class="rcard"><span class="tag">Ce que ça ne veut pas dire</span><div class="p4Medium">'+rich(fill(entry[3]||NOT_DIAG,child))+'</div></div>';
+  }else{
+    html+='<div class="rcard"><div class="p4Medium">'+rich(fill(level.meaning||'',child))+'</div></div>';
+  }
+  if(level.alertWhen)html+='<div class="hint miel">'+ICON.info+'<span>'+rich(fill(level.alertWhen,child))+'</span></div>';
+  return html;
+}
+function pageAdvice(){
+  const result=state.result,level=DATA.themes[state.theme].levels[result.level],child=state.child;
+  const listenKinds=[...result.listenKinds];
+  const listen=listenKinds.length?numbersFor(listenKinds,child,false):[];
+  let attached=false;
+  const cards=level.advice.map(advice=>{
+    let extra='';
+    if(listen.length&&!attached&&/écoute/.test(advice)){extra=phoneRows(listen);attached=true;}
+    return '<div class="rcard"><div class="p4Medium">'+rich(fill(advice,child))+'</div>'+extra+'</div>';
+  }).join('');
+  const tail=listen.length&&!attached?'<div class="rcard"><span class="tag">Si tu as un doute</span>'+phoneRows(listen)+'</div>':'';
+  return '<div class="h4Bold" style="margin:16px 0">Ce que tu peux faire</div>'+cards+tail;
+}
+function pageOrientation(){
+  const result=state.result,level=DATA.themes[state.theme].levels[result.level],child=state.child;
+  const items=level.orientation.filter(item=>(item.country==='all'||item.country==='FR')&&(!item.bands||item.bands.includes(result.band)));
+  const block=item=>'<div class="p3Bold">'+rich(fill(item.type,child))+'</div><div class="p4Medium" style="color:var(--greyLight700)">'+rich(fill(item.detail||'',child))+'</div>';
+  let html='<div class="h4Bold" style="margin:16px 0">Vers qui te tourner</div>';
+  const steps=[];
+  if(items.length)steps.push('<div class="rcard"><span class="tag">Par où commencer</span>'+block(items[0])+'</div>');
+  if(items.length>1)steps.push('<div class="rcard"><span class="tag">Il pourra t’orienter vers</span>'+items.slice(1).map(item=>'<div class="orient">'+block(item)+'</div>').join('')+'</div>');
+  html+=steps.map((card,index)=>'<div class="vstep'+(index===steps.length-1?' last':'')+'"><div class="vnum">'+(index+1)+'</div><div class="vbody">'+card+'</div></div>').join('');
+  if(result.notices.length)html+='<div class="rcard"><span class="tag">D’après tes réponses</span>'+result.notices.map(notice=>'<div class="p4Medium" style="margin-top:4px">'+rich(fill(notice,child))+'</div>').join('')+'</div>';
+  return html;
+}
+function renderP5(){
+  return '<div class="screen">'+statusBar()+'<div class="p5img" style="background-image:url(img/p5-lyynk.jpg)"></div><div class="scroll" style="text-align:center;padding:8px 22px 0"><div class="h4Bold" style="margin-bottom:12px">Une question sur ce compte rendu ?</div><div class="p4Medium" style="color:var(--greyLight600)">Pose tes questions au chatbot Lyynk : il aura ce compte rendu en tête, pas besoin de tout réexpliquer.</div></div><div class="bottom"><button class="btn" data-act="chat">Discuter avec Lyynk</button><button class="btn link" data-act="done">Pas maintenant</button></div></div>';
+}
+function renderChat(){
+  const name=state.child.name;
+  return '<div class="screen"><div class="grad"></div>'+statusBar()+'<div class="hdr"><button class="iconbtn white left" data-act="done">'+ICON.back+'</button><img src="img/lyynk-bot.webp" width="32" height="32" alt=""></div><div class="scroll pad" style="display:flex;flex-direction:column"><div class="h5Bold" style="text-align:center;margin:60px 0 auto">Que souhaites-tu savoir ?</div><div class="addTextMedium" style="margin:24px 0 8px">Quelques exemples de questions :</div>'+['Comment en parler avec '+name+' ?','Comment trouver un professionnel près de chez nous ?','Comment savoir si ça s’aggrave ?'].map(text=>'<button class="chatq">'+text+'</button>').join('')+'<div class="chatin">Écris ton message…</div></div><div style="height:34px"></div></div>';
+}
+function historyRow(entry,showTheme){
+  const child=children().find(item=>item.id===entry.childId);
+  const top=showTheme?displayTitle(entry.theme):child.name+' · '+entry.date;
+  const sub=showTheme?child.name+' · '+entry.date:'';
+  return '<button class="hrow" data-open="'+entry.id+'"><img class="hthumb" src="img/cr-'+entry.theme+'-'+entry.result.level+'.jpg" alt=""><div style="flex:1"><div class="p3Bold">'+top+'</div>'+(sub?'<div class="addTextMedium" style="color:var(--greyLight600)">'+sub+'</div>':'')+'<span class="lvl '+entry.result.level+'" style="height:24px;font-size:12px;margin-top:4px">'+LEVEL_LABEL[entry.result.level]+'</span></div><span class="chev">'+ICON.chev+'</span></button>';
+}
+function childChips(entries){
+  const kids=[...new Set(entries.map(entry=>entry.childId))].map(id=>children().find(child=>child.id===id));
+  if(kids.length<2)return '';
+  return '<div style="display:flex;gap:8px;overflow-x:auto;padding:0 22px 16px;scrollbar-width:none"><button class="chip'+(state.historyFilter==='all'?' on':'')+'" data-filter="all">Tous</button>'+kids.map(child=>'<button class="chip'+(state.historyFilter===child.id?' on':'')+'" data-filter="'+child.id+'"><img src="'+avatar(child)+'" alt="">'+child.name+'</button>').join('')+'</div>';
+}
+function byChild(entries){return entries.filter(entry=>state.historyFilter==='all'||entry.childId===state.historyFilter);}
+const EMPTY_HISTORY='<div class="pad" style="text-align:center;padding-top:80px"><div class="ico" style="margin:0 auto 12px;width:56px;height:56px">'+ICON.clip+'</div><div class="h6SemiBold">Aucun compte rendu pour l’instant</div><div class="p4Medium" style="color:var(--greyLight600);margin-top:6px">Quand tu réponds à un questionnaire, son compte rendu s’affiche ici.</div></div>';
+function renderHistory(){
+  if(state.historyVersion==='v2')return state.historyTheme?renderHistoryTheme():renderHistoryThemes();
+  const filtered=byChild(state.history);
+  let body='';
+  if(!state.history.length)body=EMPTY_HISTORY;
+  else HOME_ORDER.forEach(themeId=>{
+    const entries=filtered.filter(entry=>entry.theme===themeId);if(!entries.length)return;
+    body+='<div class="pad"><div class="p1Bold" style="margin:8px 0 10px">'+displayTitle(themeId)+'</div>'+entries.map(entry=>historyRow(entry)).join('')+'</div>';
+  });
+  return '<div class="screen"><div class="grad"></div>'+statusBar()+header('Mes comptes rendus','home')+'<div class="scroll">'+childChips(state.history)+body+'</div></div>';
+}
+function renderHistoryThemes(){
+  let body='';
+  if(!state.history.length)body=EMPTY_HISTORY;
+  else body='<div class="pad">'+HOME_ORDER.map(themeId=>{
+    const total=state.history.filter(entry=>entry.theme===themeId).length;
+    const count=total?total+' compte'+(total>1?'s':'')+' rendu'+(total>1?'s':''):'Aucun compte rendu';
+    return '<button class="themerow" data-htheme="'+themeId+'"><img src="img/home-'+themeId+'.jpg" alt=""><div style="flex:1"><div class="p1Bold">'+displayTitle(themeId)+'</div><div class="p4Medium" style="color:var(--greyLight600)">'+count+'</div></div><span class="chev">'+ICON.chev+'</span></button>';
+  }).join('')+'</div>';
+  return '<div class="screen"><div class="grad"></div>'+statusBar()+header('Mes comptes rendus','home')+'<div class="scroll">'+body+'</div></div>';
+}
+function renderHistoryTheme(){
+  const entries=state.history.filter(entry=>entry.theme===state.historyTheme);
+  const body='<div class="pad">'+byChild(entries).map(entry=>historyRow(entry)).join('')+'</div>';
+  return '<div class="screen"><div class="grad"></div>'+statusBar()+header(displayTitle(state.historyTheme),'history-themes')+'<div class="scroll">'+childChips(entries)+body+'</div></div>';
+}
+
+/* exemples d'historique */
+function answersFor(themeId,child,target){
+  const saved={theme:state.theme,child:state.child,answers:state.answers};
+  state.theme=themeId;state.child=child;state.answers={};
+  const pickScore=(question,score)=>{const choice=question.choices.find(item=>item.score===score);return choice?choice.label:question.choices[0].label;};
+  const all=()=>visibleQuestions();
+  const base=question=>question.sensitive?'Non':(question.escalation&&question.escalation[pickScore(question,0)]?pickScore(question,2):pickScore(question,0));
+  for(let pass=0;pass<3;pass++)all().forEach(question=>{if(!state.answers[question.id])state.answers[question.id]=base(question);});
+  if(target==='professionnel')for(let pass=0;pass<3;pass++)all().forEach(question=>{if(!question.sensitive&&!question.escalation)state.answers[question.id]=pickScore(question,question.choices.some(item=>item.score===3)&&!question.choices.some(item=>item.score===2)?3:2);});
+  if(target==='surveiller'){const first=all().find(question=>!question.sensitive&&!question.escalation&&question.role==='symptom');if(first)state.answers[first.id]=pickScore(first,2);}
+  const answers={...state.answers};const level=evaluate().level;
+  state.theme=saved.theme;state.child=saved.child;state.answers=saved.answers;
+  return {answers,level};
+}
+function seedHistory(){
+  const plan=[['mal-etre','ines','professionnel','12 nov.'],['harcelement','ines','rien','5 nov.'],['ecrans','tom','surveiller','28 oct.'],['tdah','lea','professionnel','20 oct.'],['tsa','leo','surveiller','14 oct.'],['mal-etre','ines','surveiller','2 oct.'],['tdah','tom','rien','18 sept.'],['ecrans','lea','rien','9 sept.']];
+  state.history=plan.map(([themeId,childId,target,date],index)=>{const child=children().find(item=>item.id===childId);const made=answersFor(themeId,child,target);return {id:'seed'+index,theme:themeId,childId,answers:made.answers,date,result:{level:made.level}};});
+  saveHistory();
+}
+
+/* ---------- navigation ---------- */
+function startReport(){
+  state.result=evaluate();state.page=0;state.view='report';
+  const now=new Date();
+  state.history.unshift({id:String(now.getTime()),theme:state.theme,childId:state.child.id,answers:{...state.answers},date:now.toLocaleDateString('fr-FR',{day:'numeric',month:'short'}),result:{level:state.result.level}});
+  saveHistory();updateDebug();
+}
+function updateDebug(){
+  const box=document.getElementById('dbg');if(!state.result){box.textContent='Réponds à un questionnaire.';return;}
+  const result=state.result;
+  box.textContent=displayTitle(state.theme)+' · '+state.child.name+' ('+ageLabel(state.child)+', tranche '+result.band+(result.outOfRange?' hors âge':'')+')\nNiveau : '+result.level+'\n'+result.trace.join('\n')+'\nSignes cités : '+result.signs.length;
+}
+function confirmAnswer(){
+  state.answers[visibleQuestions()[state.index].id]=state.selected;
+  const list=visibleQuestions();
+  if(state.index+1<list.length){state.index++;state.selected=state.answers[list[state.index].id]||null;}
+  else startReport();
+  render();
+}
+function quickFill(mode){
+  if(state.view!=='question')return;
+  let guard=0;
+  while(state.view==='question'&&guard++<80){
+    const question=visibleQuestions()[state.index];
+    let label;
+    if(question.sensitive)label='Non';
+    else{
+      const frequency=question.choices.filter(choice=>typeof choice.score==='number');
+      const pick=mode==='rnd'?Math.floor(Math.random()*4):Number(mode);
+      const byScore=frequency.find(choice=>choice.score===pick)||frequency[Math.min(pick,frequency.length-1)];
+      label=(byScore||question.choices[mode==='rnd'?Math.floor(Math.random()*question.choices.length):0]).label;
+    }
+    state.selected=label;state.answers[question.id]=label;
+    const list=visibleQuestions();
+    if(state.index+1<list.length){state.index++;}else{startReport();}
+  }
+  render();
+}
+phone.addEventListener('click',event=>{
+  const target=event.target.closest('button');if(!target)return;
+  const data=target.dataset;
+  if(data.theme){state.theme=data.theme;state.view='child';return render();}
+  if(data.child){state.child=children().find(child=>child.id===data.child);state.view='intro';return render();}
+  if(data.choice!==undefined){if(state.advancing)return;state.advancing=true;state.selected=data.choice;render();setTimeout(()=>{state.advancing=false;confirmAnswer();},250);return;}
+  if(data.htheme){state.historyTheme=data.htheme;state.historyFilter='all';return render();}
+  if(data.filter){state.historyFilter=data.filter;return render();}
+  if(data.open){const entry=state.history.find(item=>item.id===data.open);state.theme=entry.theme;state.child=children().find(child=>child.id===entry.childId);state.answers={...entry.answers};state.result=evaluate();state.page=0;state.returnTo='history';state.view='report';updateDebug();return render();}
+  switch(data.act){
+    case 'home':state.view='home';state.returnTo='home';break;
+    case 'history':state.view='history';break;
+    case 'history-themes':state.historyTheme=null;state.historyFilter='all';break;
+    case 'back-child':state.view='child';break;
+    case 'start':state.answers={};state.index=0;state.selected=null;state.returnTo='home';state.view='question';break;
+    case 'confirm':return confirmAnswer();
+    case 'prev':if(state.index>0){state.index--;state.selected=state.answers[visibleQuestions()[state.index].id]||null;}else state.view='intro';break;
+    case 'ask-quit':state.popup=true;break;
+    case 'stay':state.popup=false;break;
+    case 'quit':state.popup=false;state.view='home';break;
+    case 'report-back':if(state.page>0)state.page--;else state.view=state.returnTo;break;
+    case 'next':if(state.page<reportPages().length-1)state.page++;else state.view='p5';break;
+    case 'redo':state.view='intro';break;
+    case 'chat':state.view='chat';break;
+    case 'done':state.view='history';break;
+  }
+  render();
+});
+document.querySelectorAll('[data-fill]').forEach(button=>button.addEventListener('click',()=>quickFill(button.dataset.fill)));
+document.getElementById('seed').addEventListener('click',()=>{if(!DATA)return;seedHistory();state.view='history';state.historyTheme=null;state.historyFilter='all';render();});
+document.querySelectorAll('[data-hv]').forEach(button=>button.addEventListener('click',()=>{state.historyVersion=button.dataset.hv;state.historyTheme=null;state.historyFilter='all';document.querySelectorAll('[data-hv]').forEach(other=>other.classList.toggle('on',other===button));if(state.view==='history')render();}));
+document.getElementById('reset').addEventListener('click',()=>{state.history=[];saveHistory();state.view='home';state.result=null;updateDebug();render();});
+
+fetch('data.json').then(response=>response.json()).then(json=>{DATA=json;render();}).catch(()=>{phone.innerHTML='<div style="padding:80px 24px">Impossible de charger les questionnaires.</div>';});
+</script>
+</body>
+</html>
